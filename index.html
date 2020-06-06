@@ -39,7 +39,8 @@
 	            </p>Check me on <a href="#" id="github" target="_blank">GitHub</a></p>
 	            <br>
 	            <p>Number of Projects: <span id="projectCount">0</span></p>
-
+	            <h3>My Projects</h3>
+	            <ul id="projectList"></ul>
 	        </div>
 	    </div>		
 	</div>
@@ -61,7 +62,18 @@
                 document.getElementById("mainContent").style.display="block"
                 document.getElementById("loading").style.display="none"
             });
-            
+        fetch("https://api.github.com/users/rahul-fabled2020/repos")
+            .then(response=>response.json())
+            .then(function(data){
+            	// console.log(data)
+            	data.forEach(function(repoInfo){
+            		// console.log(repoInfo)
+            		let listItem = document.createElement("LI")
+            		let textNode = document.createTextNode(repoInfo.description)
+            		listItem.appendChild(textNode)
+            		document.getElementById("projectList").appendChild(listItem)
+            	});
+			});        	    
     </script>
 </body>
 </html>
