@@ -19,24 +19,30 @@
         #location{
             color:blue;
         }
+        #mainContent{
+        	display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-4">
-            <img src="" alt="Profile Picture" height="100%" width="100%" id="avatar">
-        </div>
-        <div class="col-md-8">
-            <h1 id="fname">Full Name</h1>
-            <h2 id="location">Location</h2>
-            <p id="bio">Bio</p>
-            <br>
-            </p>Check me on <a href="#" id="github" target="_blank">GitHub</a></p>
-            <br>
-            <p>Number of Projects: <span id="projectCount">0</span></p>
+	<div id="loading"><h1 align="center">Loading...</h1></div>
+	<div id="mainContent">
+	    <div class="row">
+	        <div class="col-md-4">
+	            <img src="" alt="Profile Picture" height="100%" width="100%" id="avatar">
+	        </div>
+	        <div class="col-md-8">
+	            <h1 id="fname">Full Name</h1>
+	            <h2 id="location">Location</h2>
+	            <p id="bio">Bio</p>
+	            <br>
+	            </p>Check me on <a href="#" id="github" target="_blank">GitHub</a></p>
+	            <br>
+	            <p>Number of Projects: <span id="projectCount">0</span></p>
 
-        </div>
-    </div>
+	        </div>
+	    </div>		
+	</div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -44,7 +50,7 @@
         fetch("https://api.github.com/users/rahul-fabled2020")
             .then(response=>response.json())
             .then(function(data){
-                console.log(data)
+                // console.log(data)
                 document.getElementById("avatar").src=data.avatar_url
                 document.getElementById("fname").textContent=data.name
                 document.getElementById("location").textContent=data.location
@@ -52,6 +58,8 @@
                 let projectCount=data.public_repos
                 document.getElementById("projectCount").textContent=projectCount
                 document.getElementById("github").href=data.html_url
+                document.getElementById("mainContent").style.display="block"
+                document.getElementById("loading").style.display="none"
             });
             
     </script>
