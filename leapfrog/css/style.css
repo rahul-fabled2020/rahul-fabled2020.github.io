@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a:link, a:visited {
+    color: green;
+}
+
+a:hover {
+    color: brown;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    border-radius: 50%;
+    height: 300px;
+    padding: 10px;
+    width: 300px;
+}
+
+main {
+    padding: 20px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid white;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: black;
+    color: white;
+  }
