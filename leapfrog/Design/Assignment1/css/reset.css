@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.active {
+    background-color: #2fc1da !important;
+    color: #fff !important;
+}
+
+.border-right {
+    border-right: 1px solid #aeaeae;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.hide {
+    display: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.remove-right-border {
+    border-right: 0px solid black !important;
+}
+
+.remove-right-padding {
+    padding-right: 0 !important;
+}
