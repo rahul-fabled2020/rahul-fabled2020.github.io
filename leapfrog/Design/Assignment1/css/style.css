@@ -259,9 +259,14 @@ p {
     background-color: transparent;
     border: 0;
     height: 20px;
+    margin: 0 10px;
     outline: none;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     width: 210px; /* 100% - 10*2px - 45px */
+}
+
+.searchbar input[type=text]:focus {
+    background-color: #caeff7;
 }
 
 .subscriber-tab {
@@ -371,4 +376,8 @@ p {
 .user-nav li a {
     color: black;
     text-decoration: none;
+}
+
+.user-nav li a:hover {
+    color: #fff;
 }

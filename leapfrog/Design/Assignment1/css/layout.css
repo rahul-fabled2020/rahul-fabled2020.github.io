@@ -34,10 +34,6 @@
     min-width: 1002px;
 }
 
-.nav .container {
-    /* padding: 12px 0; */
-}
-
 .tab-container>div {
     display: inline-block;
     vertical-align: top;
