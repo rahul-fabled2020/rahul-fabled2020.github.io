@@ -10,67 +10,71 @@
     <body>
         <div class="main-container-wrapper">
             <div class="header">
-                <div class="container clearfix">
-                    <div class="logo">
-                        <a href="#"><img src="images/Logo.png" alt="Logo"></a>
-                    </div>
-                    <div class="searchbar">
-                        <form action="#" method="get">
-                            <div class="search-input">
-                                <input type="text" name="search" id="search">
-                                <div class="search-buttons">
-                                    <input type="reset" value="" name="Cancel">
-                                    <input type="submit" value="" name="Submit">
+                <div class="header-primary">
+                    <div class="container clearfix">
+                        <div class="logo">
+                            <a href="#" title="Logo"><img src="images/Logo.png" alt="Logo"></a>
+                        </div>
+                        <div class="searchbar">
+                            <form action="#" method="get">
+                                <div class="search-input">
+                                    <input type="text" name="search" id="search">
+                                    <div class="search-buttons">
+                                        <input type="reset" value="" name="Cancel">
+                                        <input type="submit" value="" name="Submit">
+                                    </div>
                                 </div>
+                                <div class="search-btn">
+                                    <input type="submit" value="Search" name="Submit">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="profile right">
+                            <p class="user-name">Joe Burros</p>
+                            <div class="user-nav">
+                                <ul>
+                                    <li><a href="" title="Home">Home</a></li>
+                                    <li><a href="" title="Setting">Settings</a></li>
+                                    <li class="remove-right-border remove-right-padding"><a href="" title="Logout">Logout</a></li>
+                                </ul>
                             </div>
-                            <div class="search-btn">
-                                <input type="submit" value="Search" name="Submit">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="profile right">
-                        <p class="user-name">Joe Burros</p>
-                        <div class="user-nav">
-                            <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="">Settings</a></li>
-                                <li class="remove-right-border remove-right-padding"><a href="">Logout</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="nav">
-                <div class="container clearfix">
-                    <div class="user-links">
-                        <ul>
-                            <li><a href="">Create New Entry</a></li>
-                            <li><a href="">My Topic Boxes</a></li>
-                            <li><a href="">Friends</a></li>
-                            <li><a href="">Invite New Members</a></li>
+    
+                <div class="nav">
+                    <div class="container clearfix">
+                        <div class="user-links">
+                            <ul>
+                                <li><a href="" title="Create New Entry">Create New Entry</a></li>
+                                <li><a href="" title="My Topic Boxes">My Topic Boxes</a></li>
+                                <li><a href="" title="Friends">Friends</a></li>
+                                <li><a href="" title="Invite New Members">Invite New Members</a></li>
+                            </ul>
+                        </div>
+                        <ul class="notification right">
+                            <li class="topic-box-invites">
+                                <div class="invite-icon">
+                                    <img src="images/TopicBox.png" alt="Topic Box">
+                                </div>
+                                <div class="invites">
+                                    Topic Boxes Invies - <span id="inviteCount">2</span>
+                                </div>
+                            </li>
+                            <li class="friend-requests">
+                                <div class="friend-request-icon">
+                                    <img src="images/User.png" alt="Topic Box">
+                                </div>
+                                <div class="requests">
+                                    Friend Requests - <span id="requestCount">0</span>
+                                </div>
+                            </li>
                         </ul>
                     </div>
-                    <ul class="notification right">
-                        <li class="topic-box-invites">
-                            <div class="invite-icon">
-                                <img src="images/TopicBox.png" alt="Topic Box">
-                            </div>
-                            <div class="invites">
-                                Topic Boxes Invies - <span id="inviteCount">2</span>
-                            </div>
-                        </li>
-                        <li class="friend-requests">
-                            <div class="friend-request-icon">
-                                <img src="images/User.png" alt="Topic Box">
-                            </div>
-                            <div class="requests">
-                                Friend Requests - <span id="requestCount">0</span>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
+    
             </div>
+
 
             <div class="main-container">
                 <div class="container clearfix">
@@ -79,7 +83,7 @@
                         <div class="recent-links">
                             <ul>
                                 <li>
-                                    <a href="" class="links-container clearfix">
+                                    <a href="" class="links-container clearfix" title="Nick Cave and the Bad Seeds">
                                         <span class="link-content left">
                                             Nick Cave and the Bad Seeds
                                         </span>
@@ -89,7 +93,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="African Animals">
                                         <span class="link-content left">African Animals</span>
                                         <span class="download right">
                                             <img src="images/Download.png" alt="Download">
@@ -105,7 +109,7 @@
                         <div class="recent-links">
                             <ul>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Different Versions of the Tristan Und Isolde Prelude">
                                         <span class="link-content left">Different versions of the Tristan Und Isolde Prelude</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -113,7 +117,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Music">
                                         <span class="link-content left">Music</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -121,7 +125,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Guitar">
                                         <span class="link-content left">Guitar</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -129,7 +133,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Bob Cohen">
                                         <span class="link-content left">Bob Cohen</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -137,7 +141,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Mark Schnack">
                                         <span class="link-content left">Mark Schnack</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -145,7 +149,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container clearfix">
+                                    <a href=""  class="links-container clearfix" title="Jefferson Dickey">
                                         <span class="link-content left">Jefferson Dickey</span>
                                         <span class="download right">
                                             <img src="images/NavIcon.png" alt="Download">
@@ -164,10 +168,10 @@
                                     All Entries
                                 </div>
                                 <div class="tabs">
-                                    <a class="tab-item-1 active">
+                                    <a class="tab-item active">
                                         All Members
                                     </a>
-                                    <a class="tab-item-2">
+                                    <a class="tab-item">
                                         Friends
                                     </a>
                                 </div>
@@ -177,10 +181,10 @@
                                     Subsribed
                                 </div>
                                 <div class="tabs">
-                                    <a class="tab-item-1">
+                                    <a class="tab-item">
                                         New Entries
                                     </a>
-                                    <a class="tab-item-2">
+                                    <a class="tab-item">
                                         New Comments
                                     </a>
                                 </div>
@@ -195,10 +199,10 @@
                                     </div>
                                     <div class="description">
                                         <div class="alert-primary hide">Alert</div>
-                                        <h2><a href="">Day for Night by Francois Truffault, a ground breaking film</a></h2>
+                                        <h2><a href="" title="Day for Night by Francois">Day for Night by Francois Truffault, a ground breaking film</a></h2>
                                         <div class="description-content">
-                                            <p>by <a href="" class="border-right">Alan Coe</a> <span class="border-right">February 10, 2012</span> <span class="subsribed">Subscribed</span></p>
-                                            <p>From Topic Box: <a href="">My Favorite Movies</a></p>
+                                            <p>by <a href="" class="border-right" title="Alan Coe">Alan Coe</a> <span class="border-right">February 10, 2012</span> <span class="subsribed">Subscribed</span></p>
+                                            <p>From Topic Box: <a href="" title="My Favorite Movies">My Favorite Movies</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -208,10 +212,10 @@
                                     </div>
                                     <div class="description">
                                         <div class="alert-primary">New Entry!</div>
-                                        <h2><a href="">Blade Runner, The Director's Cut</a></h2>
+                                        <h2><a href="" title="Blade Runner">Blade Runner, The Director's Cut</a></h2>
                                         <div class="description-content">
-                                            <p>by <a href="" class="border-right">Mary Pilot</a> <span class="border-right">February 8, 2012</span></p>
-                                            <p>From Topic Box: <a href="">Behind the Scene</a></p>
+                                            <p>by <a href="" class="border-right" title="Mary Pilot">Mary Pilot</a> <span class="border-right">February 8, 2012</span></p>
+                                            <p>From Topic Box: <a href="" title="Behind the Scene">Behind the Scene</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -221,10 +225,10 @@
                                     </div>
                                     <div class="description">
                                         <div class="alert-primary">New Comment!</div>
-                                        <h2><a href="">The Best French Restaurant in Chicago?</a></h2>
+                                        <h2><a href="" title="The Best French Restaurant">The Best French Restaurant in Chicago?</a></h2>
                                         <div class="description-content">
-                                            <p>by <a href="" class="border-right">Jim Roy</a> <span class="border-right">February 7, 2012</span></p>
-                                            <p>From Topic Box: <a href="">Chicago Restaurants Reviews</a></p>
+                                            <p>by <a href="" class="border-right" title="Jim Roy">Jim Roy</a> <span class="border-right">February 7, 2012</span></p>
+                                            <p>From Topic Box: <a href="" title="Chicago Restaurants">Chicago Restaurants Reviews</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -234,10 +238,10 @@
                                     </div>
                                     <div class="description">
                                         <div class="alert-primary hide">Alert</div>
-                                        <h2><a href="">The meaning of Night, Dark Book but incredibly well written.</a></h2>
+                                        <h2><a href="" title="The meaning of Night, Dark Book">The meaning of Night, Dark Book but incredibly well written.</a></h2>
                                         <div class="description-content">
-                                            <p>by <a href="" class="border-right">John-Peter Moise</a> <span class="border-right">February 7, 2012</span> <span class="subsribed">Subscribed</span></p>
-                                            <p>From Topic Box: <a href="">Books Read & Books to Read</a></p>
+                                            <p>by <a href="" class="border-right" title="John-Peter Moise">John-Peter Moise</a> <span class="border-right">February 7, 2012</span> <span class="subsribed">Subscribed</span></p>
+                                            <p>From Topic Box: <a href="" title="Books Read & Books to Read">Books Read & Books to Read</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -247,10 +251,10 @@
                                     </div>
                                     <div class="description">
                                         <div class="alert-secondary">Topc Box Invite!</div>
-                                        <h2><a href="">Pea Pesto</a></h2>
+                                        <h2><a href="" title="Pea Pesto">Pea Pesto</a></h2>
                                         <div class="description-content">
-                                            <p>by <a href="" class="border-right">Marianne Gig</a> <span class="border-right">February 6, 2012</span></p>
-                                            <p>From Topic Box: <a href="">Favorite Recipes</a></p>
+                                            <p>by <a href="" class="border-right" title="Marianne Gig">Marianne Gig</a> <span class="border-right">February 6, 2012</span></p>
+                                            <p>From Topic Box: <a href="" title="Favorite Recipes">Favorite Recipes</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -263,49 +267,49 @@
                         <div class="video-links">
                             <ul>
                                 <li>
-                                    <a href="" class="links-container">
+                                    <a href="" class="links-container" title="Overview of TuTangle">
                                         <span class="link-content">
                                             Overview of TuTangle
                                         </span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Searching the Site">
                                         <span class="link-content">Searching the Site</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Previous & Saved Searches">
                                         <span class="link-content">Previous & Saved Searches</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="The Topic Box Page">
                                         <span class="link-content">The Topic Box Page</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Creating a Topic Box">
                                         <span class="link-content">Creating a Topic Box</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="View Topic Box Entries">
                                         <span class="link-content">View Topic Box Entries</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Creating an Entry">
                                         <span class="link-content">Creating an Entry</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Privacy Settings">
                                         <span class="link-content">Privacy Settings</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href=""  class="links-container">
+                                    <a href=""  class="links-container" title="Co-Authoring">
                                         <span class="link-content">Co-Authoring</span>
                                     </a>
                                 </li>
@@ -318,11 +322,11 @@
                 <div class="container clearfix">
                     <div class="footer-links">
                         <ul class="clearfix">
-                            <li><a href="">About Us</a></li>
-                            <li><a href="">Contact Us</a></li>
-                            <li><a href="">Terms of Use</a></li>
-                            <li><a href="">Privacy Policy</a></li>
-                            <li><a href="">Feedback</a></li>
+                            <li><a href="" title="About Us">About Us</a></li>
+                            <li><a href="" title="Contact Us">Contact Us</a></li>
+                            <li><a href="" title="Terms of Use">Terms of Use</a></li>
+                            <li><a href="" title="Privacy Policy">Privacy Policy</a></li>
+                            <li><a href="" title="Feedback">Feedback</a></li>
                         </ul>
                     </div>
                     <div class="copyright right">

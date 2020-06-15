@@ -12,11 +12,15 @@
 
 .footer .container {
     color: #d4d4d4;
-    font-size: 12px;
+    font-size: 11px;
     padding: 15px 0;
 }
 
 .header {
+    height: 125px;
+}
+
+.header-primary {
     background-color: #7dd9e8;
     height: 85px;
 }
