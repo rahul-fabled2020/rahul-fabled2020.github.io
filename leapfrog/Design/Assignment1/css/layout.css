@@ -1,7 +1,8 @@
 .container {
     margin: 0 auto;
+    height: 100%;
     width: 940px;
-    padding: 0 42px;
+    /* padding: 0 42px; */
 }
 
 .footer {
@@ -30,11 +31,11 @@
 }
 
 .main-container-wrapper {
-    min-width: 1024px;
+    min-width: 1002px;
 }
 
 .nav .container {
-    padding: 12px 0;
+    /* padding: 12px 0; */
 }
 
 .tab-container>div {

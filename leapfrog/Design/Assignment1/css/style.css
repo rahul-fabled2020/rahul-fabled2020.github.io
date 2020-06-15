@@ -83,6 +83,10 @@ p {
     text-decoration: none;
 }
 
+.footer-links li a:hover {
+    color: #fff;
+}
+
 .friend-request-icon, .invite-icon {
     margin-right: 10px;
 }
@@ -94,7 +98,11 @@ p {
 
 .logo {
     display: inline-block;
-    padding: 20px 0;
+    padding: 18px 0;
+}
+
+.logo a {
+    display: inline-block;
 }
 
 .link-content {
@@ -110,11 +118,23 @@ p {
 .notification {
     display: inline-block;
     font-size: 12px;
+    height: 100%;
 }
 
-.notification div {
+.notification li div {
+    height: 100%;
+}
+
+.notification li {
     display: inline-block;
+    height: 16px;
+    list-style-type: none;
+    padding: 12px 0;
     vertical-align: top;
+}
+
+.notification li:first-child {
+    margin-right: 30px;
 }
 
 .primary-heading {
@@ -131,7 +151,8 @@ p {
 .profile {
     display: inline-block;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 25px;
+    text-align: right;
     vertical-align: top;
 }
 
@@ -286,14 +307,22 @@ p {
     display: inline-block;
 }
 
+.tab-content-container li a:hover {
+    color: inherit;
+}
+
+.tab-content-container h2 a:link, .tab-content-container h2 a:visited {
+    color: inherit;
+}
+
+.tab-content-container h2 a:hover {
+    color: #4cb0bf;
+}
+
 .tab-content-container ul li {
     border-bottom: 1px solid #d8d8d8;
     list-style-type: none;
     padding: 15px 0;
-}
-
-.topic-box-invites {
-    margin-right: 30px;
 }
 
 .user-links {
@@ -302,24 +331,39 @@ p {
 
 .user-links li {
     display: inline-block;
-    /* font-size: 12px; */
+    font-size: 12px;
     list-style-type: none;
-    padding-right: 30px;
+    /* padding-right: 30px; */
+}
+
+.user-links, .user-links ul, .user-links li, .user-links a {
+    height: 100%;
 }
 
 .user-links li a {
     color: black;
+    height: 16px;
+    padding: 12px 15px;
     text-decoration: none;
 }
 
+.user-links li:first-child a {
+    padding-left: 0;
+}
+
+.user-links li a:hover {
+    background-color: #fff;
+}
+
 .user-name {
-    margin-bottom: 10px;
+    font-size: 12px;
+    margin-bottom: 0px;
 }
 
 .user-nav li {
     border-right: 1px solid black;
     display: inline-block;
-    font-size: 12px;
+    font-size: 10px;
     list-style-type: none;
     padding-right: 5px;
 }
