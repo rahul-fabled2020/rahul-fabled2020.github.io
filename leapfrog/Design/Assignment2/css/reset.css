@@ -28,6 +28,10 @@
     float: left;
 }
 
+.open {
+    display: block !important;
+}
+
 .right {
     float: right;
 }
