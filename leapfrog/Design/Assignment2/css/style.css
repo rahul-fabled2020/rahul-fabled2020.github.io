@@ -491,10 +491,10 @@ p {
     }
 
     .profile {
-        /* display: inline-block; */
+        display: inline-block;
         float: right;
         margin-top: 25px;
-        /* vertical-align: top; */
+        vertical-align: top;
     }
 
     .searchbar {
