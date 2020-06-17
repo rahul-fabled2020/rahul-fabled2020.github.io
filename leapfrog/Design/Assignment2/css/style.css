@@ -46,8 +46,7 @@ p {
 }
 
 .tab-content-container .description {
-    display: block;
-    margin-top: 5px;
+    width: calc(100% - 90px);
 }
 
 .download {
@@ -119,8 +118,8 @@ p {
 }
 
 .hamburger img {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
 }
 
 .hamburger img:first-child {
@@ -140,6 +139,10 @@ p {
 
 .logo a {
     display: inline-block;
+}
+
+.logo img {
+    max-width: 80%;
 }
 
 .link-content {
@@ -174,7 +177,7 @@ p {
 }
 
 .notification li:first-child {
-    margin-right: 30px;
+    margin-right: 8px;
 }
 
 .primary-heading {
@@ -352,7 +355,7 @@ p {
 }
 
 .tab-content-container {
-    text-align: center;
+    /* text-align: center; */
 }
 
 .tab-content-container li a:link, .tab-content-container li a:visited {
@@ -393,7 +396,7 @@ p {
 .user-links li a {
     color: black;
     height: 16px;
-    padding: 12px 15px;
+    padding: 12px 8px;
     text-align: center;
     text-decoration: none;
 }
@@ -436,6 +439,10 @@ p {
 
     .heading {
         text-align: left;
+    }
+
+    .logo img {
+        max-width: 100%;
     }
 
     .video-tutorials {
@@ -532,9 +539,17 @@ p {
 
 @media (min-width: 992px){
 
+    .notification li:first-child {
+        margin-right: 30px;
+    }
+    
     .search-btn {
         display: inline-block;
         vertical-align: top;
+    }
+
+    .user-links li a {
+        padding: 12px 15px;
     }
       
 }
