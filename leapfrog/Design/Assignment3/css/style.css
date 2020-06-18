@@ -53,7 +53,7 @@ img {
 }
 
 .nav li {
-    line-height: 75%;
+    line-height: 71.4%;
     list-style-type: none;
     text-align: center;
     text-transform: uppercase;
@@ -65,7 +65,7 @@ img {
 
 .nav li a {
     display: block;
-    padding: 17px 0 13px 0;
+    padding: 17px 0 10px 0;
     text-decoration: none;
 }
 
@@ -80,6 +80,68 @@ img {
 
 .nav li a:link, .nav li a:visited, .nav li a:focus {
     color: inherit;
+}
+
+/* Main Slider */
+
+.btn {
+    background-color: #555;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 72.2%;
+    padding: 11px 16.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #fafafa;
+    color: #777;
+}
+
+.main-slider {
+    background-color: #7a7878;
+}
+
+.main-slider li {
+    list-style-type: none;
+}
+
+.slider-content {
+    float: right;
+    margin: 35.1246% 0 32.6966% 0;
+}
+
+.slider-content .shades {
+    color: #e6e6e6;
+}
+
+.slider-content .life {
+    color: #3baafe;
+}
+
+.slider-content p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 70.8%;
+    margin-bottom: 13px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.slider-content p:last-child {
+    margin-bottom: 10.5px;
+}
+
+.slider-content-buttons {
+    float: right;
+}
+
+.slider-content-buttons .btn:first-child {
+    margin-right: 10px;
 }
 
 /* Media Quries  */
@@ -106,6 +168,27 @@ img {
         margin-right: 0;
     }
 
+    /* Main Slider  */
+    .btn {
+        font-size: 14px;
+        line-height: 72.2%;
+        padding: 22px 33px;
+    }
+
+    .slider-content p {
+        font-size: 32px;
+        line-height: 70.8%;
+        margin-bottom: 26px;
+    }
+    
+    .slider-content p:last-child {
+        margin-bottom: 21px;
+    }
+
+    .slider-content-buttons .btn:first-child {
+        margin-right: 20px;
+    }
+        
 }
 
 @media(min-width: 992px) {
@@ -117,5 +200,23 @@ img {
     .nav li {
         margin-right: 36px;
     }
+
+    /* Main Slider  */
+    .btn {
+        font-size: 18px;
+        line-height: 72.2%;
+        padding: 22px 33px;
+    }
+    
+    .slider-content {
+        margin: 217px 0 202px 0;
+    }
+        
+    .slider-content p {
+        font-size: 48px;
+        line-height: 70.8%;
+        margin-bottom: 26px;
+    }
+    
 
 }
