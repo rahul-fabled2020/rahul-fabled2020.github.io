@@ -3,5 +3,89 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
     font-weight: 400;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+/* Header */
+
+.hamburger {
+    float: right;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+.hamburger button {
+    padding: 5px 10px;
+}
+
+.logo {
+    float: left;
+    margin: 10px 0 12px 0;
+}
+
+.logo img {
+    max-width: 80%;
+}
+
+.nav {
+    display: none;
+    margin-top: 10px;
+    float: right;
+}
+
+.nav li {
+    float: left;
+    line-height: 75%;
+    list-style-type: none;
+    margin-right: 36px;
+    padding: 17px 0 13px 0;
+    text-transform: uppercase;
+}
+
+.nav li:last-child {
+    margin-right: 0;
+}
+
+/* Media Quries  */
+
+@media(min-width: 768px){
+
+    .hamburger {
+        display: none;
+    }
+
+    .nav {
+        display: block;
+        margin-top: 10px;
+        float: right;
+    }
+    .nav li {
+        float: left;
+        margin-right: 12px;
+        padding: 17px 0 13px 0;
+    }
+    
+    .nav li:last-child {
+        margin-right: 0;
+    }
+
+}
+
+@media(min-width: 992px) {
+    
+    .logo img {
+        max-width: 100%;
+    }
+        
+    .nav li {
+        margin-right: 36px;
+        padding: 17px 0 13px 0;
+    }
+
 }

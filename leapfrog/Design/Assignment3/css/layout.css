@@ -1,0 +1,18 @@
+.container {
+    margin: 0 auto;
+    width: 83.5714%;
+}
+
+.header {
+    background-color: #fafafa;
+}
+
+.main-wrapper {
+    width: 100%; /* 1400px */
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px;
+    }    
+}
