@@ -9,6 +9,10 @@
     display: table;
 }
 
+.hide {
+    display: none !important;
+}
+
 .pull-left {
     float: left;
 }
