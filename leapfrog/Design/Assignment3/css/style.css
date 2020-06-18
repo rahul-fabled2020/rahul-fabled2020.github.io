@@ -34,17 +34,16 @@ img {
 }
 
 .nav {
+    clear: left;
     display: none;
     margin-top: 10px;
-    float: right;
 }
 
 .nav li {
-    float: left;
     line-height: 75%;
     list-style-type: none;
-    margin-right: 36px;
     padding: 17px 0 13px 0;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -61,6 +60,7 @@ img {
     }
 
     .nav {
+        clear: none;
         display: block;
         margin-top: 10px;
         float: right;
@@ -69,6 +69,7 @@ img {
         float: left;
         margin-right: 12px;
         padding: 17px 0 13px 0;
+        text-align: center;
     }
     
     .nav li:last-child {
