@@ -11,6 +11,27 @@
     width: 100%; /* 1400px */
 }
 
+/* Top features */
+.col {
+    width: 100%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .row {
+        margin: 0 -15px;
+    }
+    
+    .col {
+        width: 33.33%;
+    }    
+}
+
+@media (min-width: 992px) {
+
+}
+
+
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
