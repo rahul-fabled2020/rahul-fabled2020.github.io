@@ -181,16 +181,10 @@ img {
 
 .feature {
     background-color: #f5f5f5;
-    float: left;
-    margin: 119px 0;
-    margin-right: 30px;
-    padding: 55px 32px 24px 29px;
+    margin: 60px auto;
+    padding: 55px 13px 24px 10px;
     position: relative;
-    width: 309px;
-}
-
-.feature:nth-child(3) {
-    margin-right: 0;
+    width: calc(100% - 32px);
 }
 
 .feature .circle-icon {
