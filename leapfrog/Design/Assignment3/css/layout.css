@@ -17,15 +17,28 @@
     float: left;
 }
 
-@media (min-width: 768px) {
-    .row {
-        margin: 0 -15px;
-    }
+/* Why choose Us? */
+.why-choose-us .row {
     
+}
+
+.why-choose-us .col {
+    float: left;
+    width: 100%;
+}
+
+@media (min-width: 768px) {    
     .col {
         width: 33.33%;
-    }    
+    }
+    /* Why choose Us? */
+    .why-choose-us .col {
+        float: left;
+        width: 50%;
+    }
+
 }
+
 
 @media (min-width: 992px) {
 
