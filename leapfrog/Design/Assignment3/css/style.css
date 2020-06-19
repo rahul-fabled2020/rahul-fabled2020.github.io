@@ -200,15 +200,7 @@ img {
 .feature p {
     color: #999;
     line-height: 20px;
-    -webkit-hyphens: manual;
-    -ms-hyphens: manual;
-    hyphens: manual;    
     vertical-align: top;
-}
-
-.wrapper {
-    display: inline-block;
-    margin: 0 auto;
 }
 
 /* Media Quries  */
@@ -287,12 +279,10 @@ img {
 
     /* Top features */
     .feature {
-        float: left;
         margin: 119px 0;
         margin-right: 20px;
-        min-width: 235px;
+        min-width: 230px;
         padding: 55px 14px 24px 14px;
-        width: 24.3480%;
     }
     
     .feature:nth-child(3) {
