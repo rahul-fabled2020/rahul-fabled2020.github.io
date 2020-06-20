@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
+a {
+    text-decoration: none;
+}
+
 body {
     color: #999;
     font-family: 'Open Sans', sans-serif;
@@ -157,7 +161,7 @@ img {
     position: relative;
 }
 
-.border-bottom:before {
+.border {
     border-bottom: 3px solid #fff;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     content : "";
@@ -170,8 +174,8 @@ img {
 
   .circle-icon {
     background-color: #555;
-    border: 5px solid #fff;
     color: #fff;
+    display: inline-block;
     font-size: 30px;
     width: 40px;
     height: 40px;
@@ -180,6 +184,10 @@ img {
     line-height: 40px;
     vertical-align: middle;
     padding: 10px;
+}
+
+.top-features .circle-icon {
+    border: 5px solid #fff;
 }
 
 .feature {
@@ -261,15 +269,133 @@ img {
     margin-bottom: 35px;
 }
 
-.why-choose-us .border-bottom::before {
+.why-choose-us .border {
     border-bottom: 3px solid #3baafe;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    content : "";
-    position: absolute;
-    right    : 0;
-    bottom  : 0;
-    height  : 0;
-    width   : 50px;    
+}
+
+/* What we do? */
+
+.heading {
+    color: #3baafe;;
+    text-align: center;
+}
+
+.heading .border {
+    border-bottom: 3px solid #b6b6b6;
+}
+
+.what-we-do .heading {
+    margin-bottom: 73px;
+    text-align: center;
+}
+
+.what-we-do .circle-icon {
+    font-size: 18px;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+}
+
+.what-we-do .wrapper {
+    padding: 85px 0;
+}
+
+.works .row {
+    margin-bottom: 30px;
+}
+
+.works .row:last-child {
+    margin-bottom: 0;
+}
+
+/* How we work? */
+
+.how-we-work {
+    background-color: #7a7878;
+}
+
+.how-we-work .container {
+    padding: 84px 0;
+}
+
+.how-we-work .heading {
+    color: #777;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.procedure {
+    max-width: 196px;
+}
+
+.procedure, .icon {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.how-we-work .icon {
+    font-size: 18px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+.how-we-work .wrapper {
+    background-color: #ebebeb;
+    max-width: 786px;
+    padding: 46px 42px;
+}
+
+.work-procedures {
+    margin-top: 30px;
+}
+
+/* Meet our Team */
+.team .container {
+    padding: 84px 0;
+}
+
+.team .circle-icon {
+    background-color: #fff;
+    color: #555;
+    font-size: 20px;
+    line-height: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.member-name {
+    font-weight: bold;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.member-name:hover text{
+    fill: #3baafe;
+}
+
+.member-image {
+    background-color: #7a7878;
+    border: 10px solid #e6e6e6;
+    height: 180px;
+    width: 135px;
+}
+
+.member-info {
+    display: inline-block;
+    position: relative;
+}
+
+.member-info .wrapper {
+    display: inline-block;
+}
+
+.member-social-links {
+    padding: 5px 0;
+    text-align: center;
+}
+
+.member-social-links .circle-icon:hover {
+    background-color: #3baafe;
 }
 
 /* Media Quries  */

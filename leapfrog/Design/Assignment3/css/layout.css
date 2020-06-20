@@ -37,10 +37,17 @@
         width: 50%;
     }
 
+    .what-we-do .col {
+        width: 50%;
+    }
 }
 
 
 @media (min-width: 992px) {
+
+.what-we-do .col {
+    width: 25%;
+}
 
 }
 
