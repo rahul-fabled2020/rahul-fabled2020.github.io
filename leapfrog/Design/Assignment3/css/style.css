@@ -837,6 +837,88 @@ a.price-table-footer:hover {
     background-color: #777;
 }
 
+/* Fun Facts */
+.fun-facts {
+    background-color: #2a2929;
+    color: #fff;
+    text-align: center;
+}
+
+.fun-facts .container {
+    padding: 40px 0;
+}
+
+.facts {
+    padding: 98px 0 calc(85px - 40px) 0;
+    text-transform: uppercase;
+}
+
+.fact-icon, .fact {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.fact-icon {
+    border-right: 2px solid #fff;
+    font-size: 36px;
+    padding-right: 20px;
+}
+
+.fact {
+    padding: 0 9px;
+    margin-right: 80px;
+}
+
+.fact:last-child {
+    margin-right: 0;
+}
+
+.fact p:first-child {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* Our Partners */
+
+.partners {
+
+}
+
+.partners .container {
+    padding: 78px 0;
+    padding-bottom: calc(78px - 49px);
+}
+
+.partner-images {
+    padding: 49px 0;
+}
+
+.partner-image {
+    background-color: #7a7878;
+    height: 115px;
+    width: 270px;
+}
+
+/* Footer */
+
+.footer {
+    background-color: #555;
+    padding-top: 40px;
+}
+
+.copyright {
+    padding: 18px 0;
+    text-align: center;
+}
+
+.footer-contents {
+    padding-bottom: 29px;
+}
+
+.footer-contents li {
+    list-style-type: none;
+}
+
 /* Media Quries  */
 
 @media(min-width: 768px){
