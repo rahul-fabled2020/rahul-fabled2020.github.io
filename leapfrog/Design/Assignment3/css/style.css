@@ -1107,6 +1107,63 @@ a.price-table-footer:hover {
 }
 
 
+
+/* Images  */
+.main-banner {
+    background-image: url(../images/banner.jpg);
+    background-size: cover;
+}
+
+.testimonial-main {
+    background-image: url(../images/testimonial.jpg);
+    background-size: cover;
+}
+
+.other-authors .author:nth-child(1) {
+    background-image: url(../images/author1.jpg);
+    background-size: cover;
+}
+
+.other-authors .author:nth-child(2) {
+    background-image: url(../images/author2.jpg);
+    background-size: cover;
+}
+
+.why-choose-us {
+    background-image: url(../images/environment.jpg);
+    background-size: cover;
+}
+
+.work-environment {
+    background-image: url(../images/nature.jpg);
+    background-size: cover;
+}
+
+.col-4:nth-child(1) .portfolio-image {
+    background-image: url(../images/portfolio.jpg);
+    background-size: cover;
+}
+
+.col-4:nth-child(2) .portfolio-image {
+    background-image: url(../images/cristina.jpg);
+    background-size: cover;
+}
+
+.col-4:nth-child(3) .portfolio-image {
+    background-image: url(../images/neil.jpg);
+    background-size: cover;
+}
+
+.col-4:nth-child(4) .portfolio-image {
+    background-image: url(../images/slider2.jpg);
+    background-size: cover;
+}
+
+.how-we-work {
+    background-image: url(../images/work.jpg);
+    background-size: cover;
+}
+
 /* Media Quries  */
 
 @media(min-width: 375px) {
