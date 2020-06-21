@@ -1418,6 +1418,11 @@ a.price-table-footer:hover {
         max-width: 469px;
     }
 
+    .contact-form input[type=submit]:hover {
+        cursor: pointer;
+        color: #fff;
+    }
+
     /* Quality of Work */
 
     .quality-of-work .wrapper {
