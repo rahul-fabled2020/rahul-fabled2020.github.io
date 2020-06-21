@@ -263,6 +263,10 @@ img {
     width: 50px;
 }
 
+.reason:hover .reason-icon {
+    color: #3baafe;
+}
+
 .why-choose-us {
     background-color: #7a7878;
 }
@@ -312,6 +316,9 @@ img {
     width: 25px;
     line-height: 25px;
 }
+.work:hover .circle-icon {
+    background-color: #3baafe;
+}
 
 .what-we-do .wrapper {
     padding: 85px 0;
@@ -329,6 +336,10 @@ img {
 
 .how-we-work {
     background-color: #7a7878;
+}
+
+.how-we-work .border {
+    border-bottom: 3px solid #3baafe;
 }
 
 .how-we-work .container {
@@ -561,7 +572,12 @@ img {
     background-color: #7a7878;
 }
 
+.work-environment h1 {
+    color: #fff;
+}
+
 .work-environment h2 {
+    color: #fff;
     font-size: 14px;
 }
 
@@ -1019,6 +1035,14 @@ a.price-table-footer:hover {
 .quality-of-work {
     display: none;
     position: relative;
+}
+
+.quality-of-work h1 {
+    color: #fff;
+}
+
+.quality-of-work .border {
+    border-bottom: 3px solid #3baafe;
 }
 
 .quality-work {
