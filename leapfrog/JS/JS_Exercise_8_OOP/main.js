@@ -114,20 +114,20 @@ function Container(width, height, points) {
     });
 
     document.body.appendChild(box);
-  };
+  }
 }
 
 points = [];
-DIAMETER = 10;
-
-for (let i = 0; i < 100; i++) {
+RADIUS = 10;
+POINT_COUNT = 100
+for (let i = 0; i < POINT_COUNT; i++) {
   x = Math.random() * 600;
   y = Math.random() * 600;
   red = Math.floor(Math.random() * 255);
   green = Math.floor(Math.random() * 255);
   blue = Math.floor(Math.random() * 255);
   color = "rgb(" + red + "," + green + "," + blue + ")";
-  point = new Point(x, y, DIAMETER, color);
+  point = new Point(x, y, RADIUS, color);
 
   points.push(point);
 }
