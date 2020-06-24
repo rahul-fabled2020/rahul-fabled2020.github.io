@@ -1,10 +1,13 @@
 // Point class
 function Point(x, y, radius, color) {
+  // Properties
   this.x = x;
   this.y = y;
   this.radius = radius;
   this.color = color;
+  this.point = document.createElement("div");
 
+  // Methods
   this.getX = function () {
     return this.x;
   };
@@ -36,12 +39,26 @@ function Point(x, y, radius, color) {
   this.setColor = function (color) {
     this.color = color;
   };
+
+  this.getDomNode = function() {
+    return this.point;
+  }
+
+  this.applyStyles = function(domPoint) {
+    domPoint.style.top = this.y + "px";
+    domPoint.style.left = this.x + "px";
+    domPoint.style.height = 2 * this.radius + "px";
+    domPoint.style.width = 2 * this.radius + "px";
+    domPoint.style.borderRadius = "50%";
+    domPoint.style.position = "absolute";
+    domPoint.style.backgroundColor = this.color;
+  }
+
+  this.applyStyles(this.point);
 }
 
 // Container class
 function Container(width, height, points) {
-  self = this;
-
   // Properties
   this.height = height;
   this.width = width;
@@ -64,17 +81,21 @@ function Container(width, height, points) {
     this.width = width;
   };
 
-  renderPoint = function (point, container) {
-    coordinate = document.createElement("div");
-    coordinate.style.top = point.y + "px";
-    coordinate.style.left = point.x + "px";
-    coordinate.style.height = 2 * point.radius + "px";
-    coordinate.style.width = 2 * point.radius + "px";
-    coordinate.style.borderRadius = "50%";
-    coordinate.style.position = "absolute";
-    coordinate.style.backgroundColor = point.color;
+  addClickEvent = function(point){
+    // Adding Event Listener
+    point.getDomNode().addEventListener('click', function(){
+      red = Math.floor(Math.random() * 255);
+      green = Math.floor(Math.random() * 255);
+      blue = Math.floor(Math.random() * 255);
+      color = "rgb(" + red + "," + green + "," + blue + ")";  
+      point.setColor(color);
+      point.applyStyles(this);
+    });
+  };
 
-    container.appendChild(coordinate);
+  renderPoint = function (point, container) {
+    // Attaching the point to the container
+    container.appendChild(point.getDomNode());
   };
 
   this.render = function (x, y) {
@@ -88,6 +109,7 @@ function Container(width, height, points) {
     box.style.overflow = "hidden";
 
     this.points.forEach(function (point) {
+      addClickEvent(point);
       renderPoint(point, box);
     });
 
@@ -96,14 +118,16 @@ function Container(width, height, points) {
 }
 
 points = [];
+DIAMETER = 10;
+
 for (let i = 0; i < 100; i++) {
   x = Math.random() * 600;
   y = Math.random() * 600;
-  red = Math.random() * 255;
-  green = Math.random() * 255;
-  blue = Math.random() * 255;
+  red = Math.floor(Math.random() * 255);
+  green = Math.floor(Math.random() * 255);
+  blue = Math.floor(Math.random() * 255);
   color = "rgb(" + red + "," + green + "," + blue + ")";
-  point = new Point(x, y, 5, color);
+  point = new Point(x, y, DIAMETER, color);
 
   points.push(point);
 }
