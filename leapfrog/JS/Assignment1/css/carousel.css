@@ -6,6 +6,7 @@
 .carousel-image-wrapper {
     left: 0;
     position: relative;
+    transition: 1s;
 }
 
 .carousel-image-wrapper::after {

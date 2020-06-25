@@ -9,6 +9,7 @@ IMAGE_WIDTH = carousel.childNodes[1].clientWidth;
 while (carousel.childNodes.length > 0) {
     var element = carousel.childNodes[0];
     if(element.nodeType === ELEMENT_NODE){
+        element.style.width = IMAGE_WIDTH +'px';
         imagesCount++;
     }
     wrapper.appendChild(element);
@@ -24,20 +25,13 @@ LEFT  = -1;
 RIGHT = +1;
 SLIDE_TIME = 100;
 FPS = 60;
-var x = wrapper.style.left;
 
-function animateSlide() {    
-    x--;
-    wrapper.style.left = x +'px';
-}
+
 
 var slideImage = function(direction) {
     index = (index+direction+imagesCount) % imagesCount;
     var shiftBy= -index * IMAGE_WIDTH;
-
-    // while(){
-    //     setTimeout(animateSlide, 1000/(FPS*SLIDE_TIME));
-    // }
+    var x = wrapper.style.left;
     
     wrapper.style.left = shiftBy +'px';
 }
