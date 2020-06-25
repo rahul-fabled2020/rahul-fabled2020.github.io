@@ -1,0 +1,19 @@
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-image-wrapper {
+    left: 0;
+    position: relative;
+}
+
+.carousel-image-wrapper::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.carousel-image-wrapper > * {
+    float: left;
+}
