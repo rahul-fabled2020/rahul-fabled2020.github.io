@@ -90,7 +90,6 @@ function Ball(x, y, radius, color) {
 
     this.applyStyles(this.getDomNode());
 
-    console.log(this);
     requestAnimationFrame(() => {
       this.animateBall(container, speed);
     }, 1000 / 60);
@@ -124,9 +123,9 @@ function Container(width, height, balls) {
     this.width = width;
   };
 
-  addClickEvent = function (ball) {
+  addMouseEvent = function (ball) {
     // Adding Event Listener
-    ball.getDomNode().addEventListener("click", function () {
+    ball.getDomNode().addEventListener("mouseenter", function () {
       red = Math.floor(Math.random() * 255);
       green = Math.floor(Math.random() * 255);
       blue = Math.floor(Math.random() * 255);
@@ -144,17 +143,18 @@ function Container(width, height, balls) {
   };
 
   this.render = function (x, y) {
+    DEFAULT = 0
     var box = this.containerDom;
     box.style.height = this.height + "px";
     box.style.width = this.width + "px";
     box.style.border = "1px solid black";
     box.style.position = "absolute";
-    box.style.top = (y || 0) + "px";
-    box.style.left = (x || 0) + "px";
+    box.style.top = (y || DEFAULT) + "px";
+    box.style.left = (x || DEFAULT) + "px";
     box.style.overflow = "hidden";
 
     this.balls.forEach(function (ball) {
-      addClickEvent(ball);
+      addMouseEvent(ball);
       renderBall(ball, box);
     });
 
