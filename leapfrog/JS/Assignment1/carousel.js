@@ -33,7 +33,7 @@ ul.setAttribute("class", "indicator-dot");
 
 for (var i = 0; i < imagesCount; i++) {
   li = document.createElement("li");
-  li.setAttribute("data-slide-to", i);
+  li.setAttribute("data-slideTo", i);
   ul.appendChild(li);
 }
 
@@ -106,6 +106,7 @@ RIGHT_BUTTON.setAttribute("class", "button next");
 carousel.appendChild(LEFT_BUTTON);
 carousel.appendChild(RIGHT_BUTTON);
 
+//Adding Click events to control and indicator buttons
 LEFT_BUTTON.addEventListener("click", function () {
   nextIndex = getNextIndex(index);
   slideImage(index, nextIndex);
@@ -115,3 +116,14 @@ RIGHT_BUTTON.addEventListener("click", function () {
   nextIndex = getPreviousIndex(index);
   slideImage(index, nextIndex);
 });
+
+for(var i = 0; i< ul.childNodes.length; i++){
+    childLi = ul.childNodes[i];
+    
+    childLi.addEventListener('click', function(){
+        var childIndex = this.getAttribute('data-slideTo');
+        if(index!=childIndex){
+            slideImage(index, childIndex);
+        }
+    });
+}
