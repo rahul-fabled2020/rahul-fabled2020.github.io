@@ -1,0 +1,73 @@
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-image-wrapper {
+    left: 0;
+    position: relative;
+    /* transition: 1s; */
+}
+
+.carousel-image-wrapper::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.carousel-image-wrapper > * {
+    float: left;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    opacity: 0.3;
+    cursor: pointer;;
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+.previous {
+    left: 5px;
+}
+
+.next {
+    right: 5px;
+}
+
+.indicator-dot {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.indicator-dot::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.indicator-dot li {
+    float: left;
+    list-style-type: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: 1px solid maroon;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.indicator-dot li:hover {
+    border-color: green;
+}
+
+.active {
+    background-color: green !important;
+}
