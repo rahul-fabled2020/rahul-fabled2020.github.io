@@ -9,6 +9,7 @@ function Carousel(configuration) {
   var li;
   var imageWidth;
   var slideTime = 1000; //number of milliseconds
+  var autoSlide = true;
 
   var ELEMENT_NODE = 1;
   var LEFT = -1;
@@ -18,7 +19,15 @@ function Carousel(configuration) {
   var DEFAULT_START_POSITION = 0;
 
   this.initCarousel = function () {
-    carousel = document.querySelector(".carousel-container");
+    var DEFAULT_CONTAINER_CLASS= ".carousel-container";
+    var carouselName = DEFAULT_CONTAINER_CLASS;
+
+    if(configuration){
+      carouselName = configuration.container || DEFAULT_CONTAINER_CLASS;
+    }
+
+    carousel = document.querySelector(carouselName);
+    carousel.classList.add('carousel-container-wrapper');
     imageWidth = carousel.childNodes[1].clientWidth;
 
     wrapper = document.createElement("div");
@@ -33,6 +42,7 @@ function Carousel(configuration) {
     console.log(carousel);
   };
 
+  //Sets the transition delay time in milliseconds
   this.setTransitionTime= function(time){
     slideTime = time;
   }
