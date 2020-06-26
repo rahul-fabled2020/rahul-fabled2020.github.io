@@ -12,11 +12,9 @@ function Carousel(configuration) {
   var autoSlide = true;
 
   var ELEMENT_NODE = 1;
-  var LEFT = -1;
-  var RIGHT = 1;
   var FPS = 60;
 
-  var DEFAULT_START_POSITION = 0;
+  var currentPosition = 0;
 
   this.initCarousel = function () {
     var DEFAULT_CONTAINER_CLASS = ".carousel-container";
@@ -38,8 +36,6 @@ function Carousel(configuration) {
     createIndicatorDots();
     createNavigationButtons();
     addClickEventsToControls();
-
-    console.log(carousel);
   };
 
   //Sets the transition delay time in milliseconds
@@ -67,7 +63,7 @@ function Carousel(configuration) {
     carousel.style.width = imageWidth + "px";
 
     wrapper.style.width = imagesCount * imageWidth + "px";
-    wrapper.style.left = DEFAULT_START_POSITION + "px";
+    wrapper.style.left = currentPosition + "px";
   }
 
   //Indicator Dots
@@ -111,36 +107,29 @@ function Carousel(configuration) {
   //Animates the slide from given index to desired index
   function slideImage(currentIndex, nextIndex) {
     if (!isMoving) {
-      var direction;
-      if (currentIndex < nextIndex) {
-        direction = RIGHT;
-      } else {
-        direction = LEFT;
-      }
-
-      var currentPosition = getPosition(currentIndex);
       var nextPosition = getPosition(nextIndex);
       var distance = Math.abs(nextPosition - currentPosition);
+      var sign = nextPosition >= currentPosition ? 1: -1;
       var speed = (1000 * distance) / slideTime / FPS;
-      var x = 0;
 
       //Animation using setInterval()
       var intervalId = setInterval(function () {
         isMoving = true;
-        x += speed;
+        currentPosition += (speed*sign);
+        
+        if ((currentPosition >= nextPosition && sign==1) || (currentPosition <= nextPosition && sign==-1)) {
+          currentPosition = nextPosition;
 
-        if (x >= distance) {
-          x = distance;
           isMoving = false;
           setIndex(nextIndex);
 
-          wrapper.style.left = currentPosition + x * direction + "px";
+          wrapper.style.left = currentPosition + "px";
           ul.childNodes[currentIndex].classList.remove("active");
           ul.childNodes[nextIndex].classList.add("active");
           clearInterval(intervalId);
         }
 
-        wrapper.style.left = currentPosition - x * direction + "px";
+        wrapper.style.left = currentPosition + "px";
       }, 1000 / FPS);
     }
   }
