@@ -8,8 +8,8 @@ function Carousel(configuration) {
   var ul;
   var li;
   var imageWidth = 100;
-  var slideTime = 1000; //number of milliseconds
-  var HoldTime = 5000; //number of milliseconds
+  var slideTime = 500; //number of milliseconds
+  var holdTime = 1000; //number of milliseconds
 
   var autoPlayIntervalId;
   var autoSlide = true;
@@ -25,6 +25,14 @@ function Carousel(configuration) {
 
     if (configuration) {
       carouselName = configuration.container || DEFAULT_CONTAINER_CLASS;
+      
+      if(configuration.transitionTime > 0){
+        slideTime = configuration.transitionTime;
+      }
+
+      if(configuration.holdTime > 0){
+        holdTime = configuration.holdTime;
+      }
     }
 
     carousel = document.querySelector(carouselName);
@@ -42,9 +50,16 @@ function Carousel(configuration) {
   };
 
   //Sets the transition delay time in milliseconds
-  this.setTransitionTime = function (time) {
-    slideTime = time;
+  this.setTransitionTime = function (timeInMilliSeconds) {
+    slideTime = timeInMilliSeconds;
   };
+
+  //Sets the hold delay time in milliseconds
+  this.setHoldTime = function(timeInMilliSeconds){
+    clearInterval(autoPlayIntervalId);
+    holdTime = timeInMilliSeconds;
+    autoPlaySlide();
+  }
 
   this.initCarousel();
 
@@ -137,12 +152,13 @@ function Carousel(configuration) {
     }
   }
 
+  // Delays autoplay for hold time duration
   function autoPlaySlide(){
     autoPlayIntervalId = setInterval(function(){
       if(autoSlide){
         slideImage(index, getNextIndex(index));
       }
-    }, HoldTime+slideTime);
+    }, holdTime+slideTime);
   }
 
   autoPlaySlide();
