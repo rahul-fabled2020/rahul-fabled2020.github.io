@@ -33,6 +33,10 @@ function Carousel(configuration) {
     console.log(carousel);
   };
 
+  this.setTransitionTime= function(time){
+    slideTime = time;
+  }
+
   this.initCarousel();
 
   //Moves all images from main container to newly created container
