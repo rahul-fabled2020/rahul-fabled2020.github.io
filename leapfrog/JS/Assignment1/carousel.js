@@ -130,12 +130,12 @@ carousel.appendChild(RIGHT_BUTTON);
 
 //Adding Click events to control and indicator buttons
 LEFT_BUTTON.addEventListener('click', function () {
-  nextIndex = getNextIndex(index);
+  nextIndex = getPreviousIndex(index);
   slideImage(index, nextIndex);
 });
 
 RIGHT_BUTTON.addEventListener('click', function () {
-  nextIndex = getPreviousIndex(index);
+  nextIndex = getNextIndex(index);
   slideImage(index, nextIndex);
 });
 
