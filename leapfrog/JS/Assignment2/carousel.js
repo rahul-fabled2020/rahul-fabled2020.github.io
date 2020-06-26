@@ -9,6 +9,9 @@ function Carousel(configuration) {
   var li;
   var imageWidth = 100;
   var slideTime = 1000; //number of milliseconds
+  var HoldTime = 5000; //number of milliseconds
+
+  var autoPlayIntervalId;
   var autoSlide = true;
 
   var ELEMENT_NODE = 1;
@@ -134,6 +137,16 @@ function Carousel(configuration) {
     }
   }
 
+  function autoPlaySlide(){
+    autoPlayIntervalId = setInterval(function(){
+      if(autoSlide){
+        slideImage(index, getNextIndex(index));
+      }
+    }, HoldTime+slideTime);
+  }
+
+  autoPlaySlide();
+
   //Creates Navigation Buttons
   function createNavigationButtons() {
     LEFT_BUTTON = document.createElement("img");
@@ -153,12 +166,16 @@ function Carousel(configuration) {
     //Navigation Buttons
     LEFT_BUTTON.addEventListener("click", function () {
       nextIndex = getPreviousIndex(index);
+      clearInterval(autoPlayIntervalId);
       slideImage(index, nextIndex);
+      autoPlaySlide();
     });
 
     RIGHT_BUTTON.addEventListener("click", function () {
       nextIndex = getNextIndex(index);
+      clearInterval(autoPlayIntervalId);
       slideImage(index, nextIndex);
+      autoPlaySlide();
     });
 
     //Indicator  Buttons
