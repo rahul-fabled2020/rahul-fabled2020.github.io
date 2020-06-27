@@ -1,4 +1,7 @@
-//Carousel Class
+/**
+ * Carousel Class
+ * @param {object} configuration 
+ */
 function Carousel(configuration) {
   var index = 0;
   var isMoving = false;
@@ -19,6 +22,9 @@ function Carousel(configuration) {
 
   var currentPosition = 0;
 
+  /**
+   * Initializes the Carousel; Constructor
+   */
   var initCarousel = function () {
     var DEFAULT_CONTAINER_CLASS = ".carousel-container";
     var carouselName = DEFAULT_CONTAINER_CLASS;
@@ -61,24 +67,35 @@ function Carousel(configuration) {
 
   initCarousel();
   
-  //Sets the transition delay time in milliseconds
+  /**
+   * Sets the transition time in milliseconds
+   * @param {number} timeInMilliSeconds
+   */
   this.setTransitionTime = function (timeInMilliSeconds) {
     slideTime = timeInMilliSeconds;
   };
 
-  //Sets the hold delay time in milliseconds
+  /**
+   * Sets the hold time in milliseconds
+   * @param {number} timeInMilliSeconds
+   */
   this.setHoldTime = function (timeInMilliSeconds) {
     clearInterval(autoPlayIntervalId);
     holdTime = timeInMilliSeconds;
     autoPlaySlide();
   };
 
-  //Sets autoSlide to true or false
+  /**
+   * Sets autoSlide to true or false
+   * @param {boolean} boolean
+   */
   this.setAutoPlay = function (boolean) {
     autoSlide = boolean;
   };
 
-  //Moves all images from main container to newly created container
+  /**
+   * Moves all images from main container to newly created container 
+   */
   function moveFromContainerToWrapper() {
     while (carousel.childNodes.length > 0) {
       var element = carousel.childNodes[0];
@@ -90,7 +107,9 @@ function Carousel(configuration) {
     }
   }
 
-  //Resize images
+  /**
+   * Resize images
+   */
   function resizeImages() {
     wrapper.childNodes.forEach(function (slideItem) {
       
@@ -101,12 +120,16 @@ function Carousel(configuration) {
     });
   }
 
-  //Resizes wrapper
+  /**
+   * Resizes wrapper
+   */
   function resizeWrapper() {
     wrapper.style.width = imagesCount * imageWidth + "px";
   }
 
-  //Rendering wrapper (newly created container)
+  /**
+   * Rendering wrapper (newly created container)
+   */
   function renderWrapper() {
     carousel.appendChild(wrapper);
     carousel.style.width = imageWidth + "px";
@@ -115,7 +138,9 @@ function Carousel(configuration) {
     wrapper.style.left = currentPosition + "px";
   }
 
-  //Indicator Dots
+  /**
+   * Indicator Dots
+   */
   function createIndicatorDots() {
     ul = document.createElement("ul");
     ul.setAttribute("class", "indicator-dot");
@@ -131,29 +156,46 @@ function Carousel(configuration) {
     carousel.appendChild(ul);
   }
 
-  //Returns the Position of the given index of image
+  /**
+   * Returns the Position of the given index of image
+   * @param {number} index 
+   * @return {number} Position of container for the given index
+   */
   function getPosition(index) {
     return -index * imageWidth;
   }
 
-  //Returns the next adjacent index of image (The next index of last index is 0)
+  /**
+   * Returns the next adjacent index of image (The next index of last index is 0)
+   * @param {number} index 
+   * @return {number} next index
+   */
   function getNextIndex(index) {
     return (index + 1) % imagesCount;
   }
 
-  //Returns the previous adjacent index of image (The previous index of 0 index is last index)
+  /**
+   * Returns the previous adjacent index of image (The previous index of 0 index is last index)
+   * @param {number} index
+   * @return {number} previous index
+   */
   function getPreviousIndex(index) {
     return (index - 1 + imagesCount) % imagesCount;
   }
 
-  //Sets the index to new index
+  /**
+   * Sets the index to new index
+   * @param {number} nextIndex 
+   */
   function setIndex(nextIndex) {
     index = nextIndex;
-
-    return;
   }
 
-  //Animates the slide from given index to desired index
+  /**
+   * Animates the slide from current position to desired position given by nextIndex
+   * @param {number} currentIndex 
+   * @param {number} nextIndex 
+   */
   function slideImage(currentIndex, nextIndex) {
     if (!isMoving) {
       var nextPosition = getPosition(nextIndex);
@@ -186,7 +228,9 @@ function Carousel(configuration) {
     }
   }
 
-  // Delays autoplay for hold time duration
+  /**
+   * Delays autoplay for hold time duration
+   */
   function autoPlaySlide() {
     autoPlayIntervalId = setInterval(function () {
       if (autoSlide) {
@@ -197,7 +241,9 @@ function Carousel(configuration) {
 
   autoPlaySlide();
 
-  //Creates Navigation Buttons
+  /**
+   * Creates Navigation Buttons
+   */
   function createNavigationButtons() {
     LEFT_BUTTON = document.createElement("img");
     LEFT_BUTTON.src = "carousel_images/previous.svg";
@@ -211,7 +257,9 @@ function Carousel(configuration) {
     carousel.appendChild(RIGHT_BUTTON);
   }
 
-  //Adds click event to control and indicator buttons
+  /**
+   * Adds click event to control and indicator buttons
+   */
   function addClickEventsToControls() {
     //Navigation Buttons
     LEFT_BUTTON.addEventListener("click", function () {
