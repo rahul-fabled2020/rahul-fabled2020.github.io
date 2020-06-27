@@ -3,6 +3,46 @@
     padding: 0;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form {
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type=number] {
+    width: 60px;
+}
+
+table {
+    border-spacing: 5px;
+    border: 1px solid black;
+}
+
+td {
+    padding: 5px;
+}
+
+td:first-child {
+    text-align: right;
+}
+
+hr {
+    margin-bottom: 40px;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
 .wrapper > div {
     margin: 0 auto;
 }

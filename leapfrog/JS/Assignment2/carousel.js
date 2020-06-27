@@ -25,13 +25,17 @@ function Carousel(configuration) {
 
     if (configuration) {
       carouselName = configuration.container || DEFAULT_CONTAINER_CLASS;
-      
-      if(configuration.transitionTime > 0){
+
+      if (configuration.transitionTime > 0) {
         slideTime = configuration.transitionTime;
       }
 
-      if(configuration.holdTime > 0){
+      if (configuration.holdTime > 0) {
         holdTime = configuration.holdTime;
+      }
+
+      if (configuration.autoPlay === false) {
+        autoSlide = false;
       }
     }
 
@@ -55,11 +59,16 @@ function Carousel(configuration) {
   };
 
   //Sets the hold delay time in milliseconds
-  this.setHoldTime = function(timeInMilliSeconds){
+  this.setHoldTime = function (timeInMilliSeconds) {
     clearInterval(autoPlayIntervalId);
     holdTime = timeInMilliSeconds;
     autoPlaySlide();
-  }
+  };
+
+  //Sets autoSlide to true or false
+  this.setAutoPlay = function (boolean) {
+    autoSlide = boolean;
+  };
 
   this.initCarousel();
 
@@ -127,15 +136,18 @@ function Carousel(configuration) {
     if (!isMoving) {
       var nextPosition = getPosition(nextIndex);
       var distance = Math.abs(nextPosition - currentPosition);
-      var sign = nextPosition >= currentPosition ? 1: -1;
+      var sign = nextPosition >= currentPosition ? 1 : -1;
       var speed = (1000 * distance) / slideTime / FPS;
 
       //Animation using setInterval()
       var intervalId = setInterval(function () {
         isMoving = true;
-        currentPosition += (speed*sign);
-        
-        if ((currentPosition >= nextPosition && sign==1) || (currentPosition <= nextPosition && sign==-1)) {
+        currentPosition += speed * sign;
+
+        if (
+          (currentPosition >= nextPosition && sign == 1) ||
+          (currentPosition <= nextPosition && sign == -1)
+        ) {
           currentPosition = nextPosition;
 
           isMoving = false;
@@ -153,12 +165,12 @@ function Carousel(configuration) {
   }
 
   // Delays autoplay for hold time duration
-  function autoPlaySlide(){
-    autoPlayIntervalId = setInterval(function(){
-      if(autoSlide){
+  function autoPlaySlide() {
+    autoPlayIntervalId = setInterval(function () {
+      if (autoSlide) {
         slideImage(index, getNextIndex(index));
       }
-    }, holdTime+slideTime);
+    }, holdTime + slideTime);
   }
 
   autoPlaySlide();
