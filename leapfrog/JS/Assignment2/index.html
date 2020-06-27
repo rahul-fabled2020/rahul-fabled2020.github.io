@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/carousel.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Image Slider Automatic with hold time and transition time</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Image Slider 1 -->
+      <h1>Image Carousel 1</h1>
+      <div class="carousel-container">
+        <img src="images/image1.jpg" alt="Image" />
+        <img src="images/image2.jpg" alt="Image" />
+        <img src="images/image3.jpg" alt="Image" />
+        <img src="images/image4.jpg" alt="Image" />
+      </div>
+
+      <div>
+        <form action="#"">
+          <table>
+            <caption>Configuration for Carousel 1</caption>
+            <tr>
+              <td>Transition Time: </td>
+              <td><input type="number" name="transitionTime" min="100" max="5000"/></td>
+            </tr>
+  
+            <tr>
+              <td>Hold Time: </td>
+              <td><input type="number" name="holdTime" min="100" max="5000"/></td>
+            </tr>
+  
+            <tr>
+              <td><input type="checkbox" name="autoPlay" checked></td>
+              <td>Auto Play</td>
+              <tr>
+                <td></td>
+                <td><input type="submit" value="Apply"></td>
+              </tr>
+            </tr>
+          </table>
+          
+          <input type="hidden" name="hidden" value="1">
+        </form>
+      </div>      
+      
+      <hr>
+      <!-- Image Slider 2 -->
+      <h1>Image Carousel 2</h1>
+      <div class="carousel-container2">
+        <img src="images/image3.jpg" alt="Image" />
+        <img src="images/image2.jpg" alt="Image" />
+        <img src="images/image1.jpg" alt="Image" />
+      </div>
+
+      <div>
+        <form action="#"">
+          <table>
+            <caption>Configuration for Carousel 2</caption>
+            <tr>
+              <td>Transition Time: </td>
+              <td><input type="number" name="transitionTime" min="100" max="5000"/></td>
+            </tr>
+  
+            <tr>
+              <td>Hold Time: </td>
+              <td><input type="number" name="holdTime" min="100" max="5000"/></td>
+            </tr>
+  
+            <tr>
+              <td><input type="checkbox" name="autoPlay" checked></td>
+              <td>Auto Play</td>
+              <tr>
+                <td></td>
+                <td><input type="submit" value="Apply"></td>
+              </tr>
+            </tr>
+          </table>
+          
+          <input type="hidden" name="hidden" value="2">
+        </form>
+      </div>      
+
+      <hr>
+      <!-- Image Slider 3 -->
+      <h1>Image Carousel 3</h1>
+      <div id="myCarousel">
+        <img src="images/image6.jpg" alt="Image" />
+        <img src="images/image5.jpg" alt="Image" />
+      </div>
+    </div>
+
+    <div>
+      <form action="#"">
+        <table>
+          <caption>Configuration for Carousel 3</caption>
+          <tr>
+            <td>Transition Time: </td>
+            <td><input type="number" name="transitionTime" min="100" max="5000"/></td>
+          </tr>
+
+          <tr>
+            <td>Hold Time: </td>
+            <td><input type="number" name="holdTime" min="100" max="5000"/></td>
+          </tr>
+
+          <tr>
+            <td><input type="checkbox" name="autoPlay"></td>
+            <td>Auto Play</td>
+            <tr>
+              <td></td>
+              <td><input type="submit" value="Apply"></td>
+            </tr>
+          </tr>
+        </table>
+        
+        <input type="hidden" name="hidden" value="3">
+      </form>
+    </div>
+    <hr>
+    
+    <script src="carousel.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
