@@ -46,6 +46,12 @@ function Carousel(configuration) {
     wrapper = document.createElement("div");
     wrapper.setAttribute("class", "carousel-image-wrapper");
 
+    window.addEventListener("resize", function () {
+      imageWidth = carousel.clientWidth;
+      resizeImages();
+      resizeWrapper();
+    });
+
     moveFromContainerToWrapper();
     renderWrapper();
     createIndicatorDots();
@@ -82,6 +88,22 @@ function Carousel(configuration) {
       }
       wrapper.appendChild(element);
     }
+  }
+
+  //Resize images
+  function resizeImages() {
+    wrapper.childNodes.forEach(function (slideItem) {
+      
+      if(slideItem.nodeType == ELEMENT_NODE){
+        slideItem.style.width = imageWidth + "px";
+      }
+      
+    });
+  }
+
+  //Resizes wrapper
+  function resizeWrapper() {
+    wrapper.style.width = imagesCount * imageWidth + "px";
   }
 
   //Rendering wrapper (newly created container)
