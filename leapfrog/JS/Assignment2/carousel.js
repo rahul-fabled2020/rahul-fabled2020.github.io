@@ -19,7 +19,7 @@ function Carousel(configuration) {
 
   var currentPosition = 0;
 
-  this.initCarousel = function () {
+  var initCarousel = function () {
     var DEFAULT_CONTAINER_CLASS = ".carousel-container";
     var carouselName = DEFAULT_CONTAINER_CLASS;
 
@@ -59,6 +59,8 @@ function Carousel(configuration) {
     addClickEventsToControls();
   };
 
+  initCarousel();
+  
   //Sets the transition delay time in milliseconds
   this.setTransitionTime = function (timeInMilliSeconds) {
     slideTime = timeInMilliSeconds;
@@ -75,8 +77,6 @@ function Carousel(configuration) {
   this.setAutoPlay = function (boolean) {
     autoSlide = boolean;
   };
-
-  this.initCarousel();
 
   //Moves all images from main container to newly created container
   function moveFromContainerToWrapper() {
