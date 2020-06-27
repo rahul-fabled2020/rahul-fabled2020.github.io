@@ -1,6 +1,6 @@
 /**
  * Carousel Class
- * @param {object} configuration 
+ * @param {object} configuration
  */
 function Carousel(configuration) {
   var index = 0;
@@ -15,7 +15,7 @@ function Carousel(configuration) {
   var holdTime = 1000; //number of milliseconds
 
   var autoPlayIntervalId;
-  var autoSlide = true;
+  var isAutoSliding = true;
 
   var ELEMENT_NODE = 1;
   var FPS = 60;
@@ -41,7 +41,7 @@ function Carousel(configuration) {
       }
 
       if (configuration.autoPlay === false) {
-        autoSlide = false;
+        isAutoSliding = false;
       }
     }
 
@@ -54,8 +54,13 @@ function Carousel(configuration) {
 
     window.addEventListener("resize", function () {
       imageWidth = carousel.clientWidth;
+
       resizeImages();
       resizeWrapper();
+
+      if (!isAutoSliding) {
+        wrapper.style.left = getPosition(index) + "px";
+      }
     });
 
     moveFromContainerToWrapper();
@@ -66,7 +71,7 @@ function Carousel(configuration) {
   };
 
   initCarousel();
-  
+
   /**
    * Sets the transition time in milliseconds
    * @param {number} timeInMilliSeconds
@@ -86,15 +91,15 @@ function Carousel(configuration) {
   };
 
   /**
-   * Sets autoSlide to true or false
+   * Sets isAutoSliding to true or false
    * @param {boolean} boolean
    */
   this.setAutoPlay = function (boolean) {
-    autoSlide = boolean;
+    isAutoSliding = boolean;
   };
 
   /**
-   * Moves all images from main container to newly created container 
+   * Moves all images from main container to newly created container
    */
   function moveFromContainerToWrapper() {
     while (carousel.childNodes.length > 0) {
@@ -112,11 +117,9 @@ function Carousel(configuration) {
    */
   function resizeImages() {
     wrapper.childNodes.forEach(function (slideItem) {
-      
-      if(slideItem.nodeType == ELEMENT_NODE){
+      if (slideItem.nodeType == ELEMENT_NODE) {
         slideItem.style.width = imageWidth + "px";
       }
-      
     });
   }
 
@@ -158,7 +161,7 @@ function Carousel(configuration) {
 
   /**
    * Returns the Position of the given index of image
-   * @param {number} index 
+   * @param {number} index
    * @return {number} Position of container for the given index
    */
   function getPosition(index) {
@@ -167,7 +170,7 @@ function Carousel(configuration) {
 
   /**
    * Returns the next adjacent index of image (The next index of last index is 0)
-   * @param {number} index 
+   * @param {number} index
    * @return {number} next index
    */
   function getNextIndex(index) {
@@ -185,7 +188,7 @@ function Carousel(configuration) {
 
   /**
    * Sets the index to new index
-   * @param {number} nextIndex 
+   * @param {number} nextIndex
    */
   function setIndex(nextIndex) {
     index = nextIndex;
@@ -193,8 +196,8 @@ function Carousel(configuration) {
 
   /**
    * Animates the slide from current position to desired position given by nextIndex
-   * @param {number} currentIndex 
-   * @param {number} nextIndex 
+   * @param {number} currentIndex
+   * @param {number} nextIndex
    */
   function slideImage(currentIndex, nextIndex) {
     if (!isMoving) {
@@ -233,7 +236,7 @@ function Carousel(configuration) {
    */
   function autoPlaySlide() {
     autoPlayIntervalId = setInterval(function () {
-      if (autoSlide) {
+      if (isAutoSliding) {
         slideImage(index, getNextIndex(index));
       }
     }, holdTime + slideTime);
