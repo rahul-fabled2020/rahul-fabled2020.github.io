@@ -54,7 +54,7 @@
 }
 
 .indicator-dot li {
-    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
     float: left;
     list-style-type: none;
     height: 15px;
