@@ -7,7 +7,7 @@ function Carousel(configuration) {
   var wrapper;
   var ul;
   var li;
-  var imageWidth = 100;
+  var imageWidth = 400;
   var slideTime = 500; //number of milliseconds
   var holdTime = 1000; //number of milliseconds
 
