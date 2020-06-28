@@ -1,6 +1,8 @@
 window.onload = loadCarousel
 
 function loadCarousel(){
+  document.querySelector('.loader').style.display = "none";
+
   carousel1 = new Carousel();
 
   carousel2 = new Carousel({
