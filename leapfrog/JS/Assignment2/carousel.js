@@ -284,7 +284,7 @@ function Carousel(configuration) {
       childLi = ul.childNodes[i];
 
       childLi.addEventListener("click", function () {
-        var childIndex = this.getAttribute("data-slideTo");
+        var childIndex = parseInt(this.getAttribute("data-slideTo"));
         if (index != childIndex) {
           slideImage(index, childIndex);
         }
