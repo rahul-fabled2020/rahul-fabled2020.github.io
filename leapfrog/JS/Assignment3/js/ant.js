@@ -4,6 +4,8 @@ function BallCanvas(id) {
   var ONE_THOUSANDTH_SECOND = 0.001;
   var canvasHeight = 700;
   var canvasWidth = 1400;
+  var score = 0;
+  var self = this;
 
   canvas.height = canvasHeight;
   canvas.width = canvasWidth;
@@ -12,7 +14,7 @@ function BallCanvas(id) {
   var t0;
   var dt;
   var animationId;
-  var numOfBalls = 5;
+  var numOfBalls = 50;
   var DENSITY = 0.01;
   var MINIMUM_RADIUS = 20;
   var MINIMUM_VELOCITY = 40;
@@ -94,7 +96,7 @@ function BallCanvas(id) {
 
   function move() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    for (var i = 0; i < numOfBalls; i++) {
+    for (var i = 0; i < balls.length; i++) {
       var ball = balls[i];
       ball.position = ball.position.addScaled(ball.velocity, dt);
       ball.render(context);
@@ -183,20 +185,36 @@ function BallCanvas(id) {
 
   function attachEventHandler(elements, context) {
     canvas.addEventListener(
-      "click",
+      "mousedown",
       function (event) {
         mouse = new Vector(event.clientX, event.clientY);
         for (var i = 0; i < elements.length; i++) {
-          if (Vector.distance(elements[i].position, mouse) < elements[i].radius) {
-              console.log("hello")
-            elements = elements.filter((items, index) => elements[i] !== index)
+          if (
+            Vector.distance(elements[i].position, mouse) <
+            elements[i].radius * 2
+          ) {
+            elements.splice(i, 1);
+            score++;
+            document.getElementById("score").textContent = "Score: " + score;
+            if (score == numOfBalls) {
+              alert("You won!!! Game Over!!!");
+              cancelAnimationFrame(animationId);
+              restartGame();
+            }
           }
         }
       },
       false
     );
   }
+
+  function restartGame() {
+    self.init();
+  }
 }
+
+var img = new Image();
+img.src = "images/ant.gif";
 
 Ball.prototype.render = function (context) {
   context.save();
@@ -204,9 +222,6 @@ Ball.prototype.render = function (context) {
   context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
   context.closePath();
   context.clip();
-
-  var img = new Image();
-  img.src = "images/ant.gif";
 
   context.drawImage(
     img,
@@ -221,6 +236,7 @@ Ball.prototype.render = function (context) {
   context.clip();
   context.closePath();
   context.restore();
+  context.stroke();
 };
 
 canvas1 = new BallCanvas("antSmasher");

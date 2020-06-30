@@ -1,3 +1,25 @@
+a {
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: maroon;
+}
+
+a:hover {
+    color: red;
+}
+
 canvas {
     border: 1px solid black;
+}
+
+#score {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
 }
