@@ -16,8 +16,8 @@ function BallCanvas(id) {
   var animationId;
   var numOfBalls = 50;
   var DENSITY = 0.01;
-  var MINIMUM_RADIUS = 20;
-  var MINIMUM_VELOCITY = 40;
+  var MINIMUM_RADIUS = 10;
+  var MINIMUM_VELOCITY = 80;
   var colors = ["red", "green", "blue", "#111", "maroon", "black"];
 
   this.init = function () {
