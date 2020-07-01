@@ -50,6 +50,8 @@ function init() {
     playerCar.moveRight(lanes);
   });
 
+  window.addEventListener('mousedown',fireBullet);
+
   canvas.height = 744;
   canvas.width = 474;
 
