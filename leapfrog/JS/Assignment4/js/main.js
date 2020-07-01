@@ -237,7 +237,10 @@ function resetGame() {
     replenishBullets();
     replenishBullets();
   }
-
+  
+  if (localStorage.getItem("highScore") != null) {
+    document.querySelector(".game-info h3").style.display = "block";
+  }
   initializeAmmo();
 }
 
