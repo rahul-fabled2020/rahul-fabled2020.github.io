@@ -1,0 +1,91 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+}
+
+.wrapper {
+    position: absolute;
+    width: 474px;
+    height: 744px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-info {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.game-info h1 {
+    display: none;
+    font-size: 50px;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+}
+
+.game-info h2 {
+    display: none;
+}
+
+.game-info button {
+    cursor: pointer;
+    color: #111;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.info {
+    background-color: #fff;
+    color: maroon;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.info span {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+#scoreBoard, #bulletBoard, #elapsedTimeBoard {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    top: 5%;
+    z-index: 10;
+}
+
+#scoreBoard {
+    left: 5px;
+}
+
+#bulletBoard {
+    right: 5px;
+}
+
+#elapsedTimeBoard {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+}

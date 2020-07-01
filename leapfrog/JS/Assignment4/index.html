@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Lane Car Game with bullets</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/utils.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/car.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <canvas id="carGame"></canvas>
+
+    <div class="wrapper">
+        <div class="game-info">
+            <h1>Game Over</h1>
+            <h2>Score: <span id="finalScore">0</span></h2>
+            <h3>Hightest Score: <span id="highScore">0</span></h3>
+            <button id="gameButton">Start Game</button>
+        </div>
+        <div class="info">
+            Press <span>Up Arrow</span> key to fire bullets<br>
+            Press <span>Left/Right Arrow</span> key to move left/right<br>
+        </div>
+    
+        <div id="scoreBoard">Score: <span id="score">0</span></div>
+        <div id="bulletBoard">Bullets: <span id="bullets">0</span></div>
+        <div id="elapsedTimeBoard">Time Laps: <span id="elapsedTime">00 : 00 : 00</span></div>
+    </div>
+</body>
+</html>
