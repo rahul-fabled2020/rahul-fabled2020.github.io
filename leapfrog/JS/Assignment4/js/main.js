@@ -22,7 +22,6 @@ var score = 0;
 var speedUpdateDelay = 5; //in seconds
 var speedUpdateTime = 0;
 var timestamp = 0;
-var numOfBullets = 8;
 var bullets = [];
 var BULLETS_PER_REPLENISHMENT = 4;
 var bulletImage = new Image();
@@ -54,9 +53,6 @@ function init() {
 
   generateEnemies();
   setImageLoadTrue();
-  replenishBullets();
-  replenishBullets();
-  document.getElementById("bullets").textContent = bullets.length;
 }
 
 function handleKeyEvent(e) {
@@ -223,13 +219,15 @@ function resetGame() {
   }
   scoreBoard.textContent = score;
   playerCar.speed = speed;
+  replenishBullets();
+  replenishBullets();
 }
 
 function randomizeEnemyPosition() {
-  if (enemies.length < 3) {
+  if (enemies.length < 2) {
     generateEnemies();
   }
-  
+
   for (var i = 0; i < enemies.length; i++) {
     if (enemies[i].y > canvas.height) {
       updateScore();
@@ -286,10 +284,12 @@ function replenishBullets() {
     bullet.y = canvas.height - 2 * playerCar.height - bullet.height;
     bullets.push(bullet);
   }
+
+  document.getElementById("bullets").textContent = bullets.length;
 }
 
 function fireBullet() {
-  console.log("Firing bullets");
+
   if (bullets.length > 0) {
     var bullet = bullets.pop();
     bullet.move(lanes, playerCar.laneIndex, enemies);

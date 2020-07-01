@@ -31,7 +31,7 @@ Car.prototype.render = function () {
 };
 
 Car.prototype.assignDefaultDimension = function () {
-    console.log(this)
+    
   if (typeof this.width === "undefined") {
     this.width = this.carImage.width;
   }
