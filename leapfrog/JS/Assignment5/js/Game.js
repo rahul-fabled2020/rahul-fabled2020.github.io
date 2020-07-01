@@ -23,6 +23,10 @@ Game.prototype.handleKeyEvent = function (e) {
     }
     this.bird.flap();
   }
+
+  if(this.gameState.current == GET_READY) {
+      this.gameState.current = GAME;
+  }
 };
 
 Game.prototype.handleClickEvent = function (e) {
