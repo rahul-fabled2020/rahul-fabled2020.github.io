@@ -262,8 +262,9 @@ function randomizeEnemyPosition() {
 
       for (var j = 0; j < enemies.length; j++) {
         if (enemies[i].laneIndex == enemies[j].laneIndex) {
-          if (Math.abs(enemies[i].y - enemies[j].y) < GAP) {
+          if (enemies[i].y - enemies[j].y+enemies[j].height < GAP) {
             enemies[i].y -= GAP;
+
           }
         }
       }
