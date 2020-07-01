@@ -25,7 +25,12 @@ var timestamp = 0;
 var bullets = [];
 var BULLETS_PER_REPLENISHMENT = 4;
 var bulletImage = new Image();
+var ammos = [];
+var ammoImage = new Image();
+var MAX_BULLET_LENGTH = 20;
+
 bulletImage.src = "images/bullet.png";
+ammoImage.src = "images/weapon.png";
 
 function init() {
   canvas = document.getElementById("carGame");
@@ -53,6 +58,12 @@ function init() {
 
   generateEnemies();
   setImageLoadTrue();
+
+  var numOfAmmos = 3;
+  for (var i = 0; i < numOfAmmos; i++) {
+    var ammo = new Ammo(ammoImage);
+    ammos.push(ammo);
+  }
 }
 
 function handleKeyEvent(e) {
@@ -102,6 +113,8 @@ function gameLoop() {
 
   if (gameStart) {
     increaseSpeed();
+    placeAmmo();
+    updateBullte();
     gameLoopId = window.requestAnimationFrame(gameLoop);
   }
 }
@@ -219,10 +232,12 @@ function resetGame() {
   }
   scoreBoard.textContent = score;
   playerCar.speed = speed;
-  if(bullets.length < BULLETS_PER_REPLENISHMENT){
+  if (bullets.length < BULLETS_PER_REPLENISHMENT) {
     replenishBullets();
-    replenishBullets();  
+    replenishBullets();
   }
+
+  initializeAmmo();
 }
 
 function randomizeEnemyPosition() {
@@ -240,9 +255,9 @@ function randomizeEnemyPosition() {
 
       for (var j = 0; j < enemies.length; j++) {
         if (enemies[i].laneIndex == enemies[j].laneIndex) {
-            if(Math.abs(enemies[i].y - enemies[j].y)< GAP){
-                enemies[i].y -= GAP;
-            }
+          if (Math.abs(enemies[i].y - enemies[j].y) < GAP) {
+            enemies[i].y -= GAP;
+          }
         }
       }
     }
@@ -294,11 +309,42 @@ function replenishBullets() {
 }
 
 function fireBullet() {
-
   if (bullets.length > 0) {
     var bullet = bullets.pop();
     bullet.move(lanes, playerCar.laneIndex, enemies);
     document.getElementById("bullets").textContent = bullets.length;
+  }
+}
+
+function placeAmmo() {
+  for (var i = 0; i < ammos.length; i++) {
+    ammos[i].y += playerCar.speed - enemies[0].speed;
+    ammos[i].render();
+  }
+}
+
+function initializeAmmo() {
+  var OFFSET = 15;
+  ammos[0].x = lanes[0] + OFFSET;
+  ammos[1].x = lanes[1] + OFFSET;
+  ammos[2].x = lanes[2] + OFFSET;
+
+  ammos[0].y = -2 * canvas.height;
+  ammos[1].y = -4 * canvas.height;
+  ammos[2].y = -8 * canvas.height;
+}
+
+function updateBullte() {
+  for (var i = 0; i < ammos.length; i++) {
+    var distance = playerCar.y - (ammos[i].y + ammos[i].height);
+    if (distance <= 0 && ammos[i].y < playerCar.y + playerCar.height) {
+      if (bullets.length < MAX_BULLET_LENGTH - BULLETS_PER_REPLENISHMENT) {
+        replenishBullets();
+      }
+
+      var randomPositiion = -parseInt(Math.random() * 4 + 4) * canvas.height;
+      ammos[i].y = randomPositiion;
+    }
   }
 }
 
