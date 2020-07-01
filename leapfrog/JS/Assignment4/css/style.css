@@ -89,3 +89,7 @@ canvas {
     transform: translateX(-50%);
     text-transform: uppercase;
 }
+
+.game-info h3 {
+    display: none;
+}
