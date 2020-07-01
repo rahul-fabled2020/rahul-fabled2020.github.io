@@ -28,6 +28,7 @@ var bulletImage = new Image();
 var ammos = [];
 var ammoImage = new Image();
 var MAX_BULLET_LENGTH = 20;
+var previousLaneIndex = 0;
 
 bulletImage.src = "images/bullet.png";
 ammoImage.src = "images/weapon.png";
@@ -247,9 +248,15 @@ function randomizeEnemyPosition() {
 
   for (var i = 0; i < enemies.length; i++) {
     if (enemies[i].y > canvas.height) {
-      updateScore();
-      var randomIndex = parseInt(Math.random() * 3);
       var randomLane = parseInt(Math.random() * 3);
+      updateScore();
+
+      while(randomLane == previousLaneIndex){
+        randomLane = parseInt(Math.random() * 3);
+      }
+
+      previousLaneIndex = randomLane;
+      var randomIndex = parseInt(Math.random() * 3);
       enemies[i].y = -GAP * randomIndex;
       enemies[i].laneIndex = randomLane;
 
