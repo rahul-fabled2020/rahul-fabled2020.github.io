@@ -42,6 +42,14 @@ function init() {
   timeElapsedBoard = document.getElementById("elapsedTime");
   scoreBoard = document.getElementById("score");
 
+  document.getElementById("left").addEventListener("click", function () {
+    playerCar.moveLeft(lanes);
+  });
+
+  document.getElementById("right").addEventListener("click", function () {
+    playerCar.moveRight(lanes);
+  });
+
   canvas.height = 744;
   canvas.width = 474;
 
@@ -237,7 +245,7 @@ function resetGame() {
     replenishBullets();
     replenishBullets();
   }
-  
+
   if (localStorage.getItem("highScore") != null) {
     document.querySelector(".game-info h3").style.display = "block";
   }
@@ -254,7 +262,7 @@ function randomizeEnemyPosition() {
       var randomLane = parseInt(Math.random() * 3);
       updateScore();
 
-      while(randomLane == previousLaneIndex){
+      while (randomLane == previousLaneIndex) {
         randomLane = parseInt(Math.random() * 3);
       }
 
@@ -265,18 +273,17 @@ function randomizeEnemyPosition() {
 
       for (var j = 0; j < enemies.length; j++) {
         if (enemies[i].laneIndex == enemies[j].laneIndex) {
-          if (enemies[i].y - enemies[j].y+enemies[j].height < GAP) {
+          if (enemies[i].y - enemies[j].y + enemies[j].height < GAP) {
             enemies[i].y -= GAP;
-
           }
         }
       }
-      var k=1;
-      for(var l=0; l<enemies.length; l++){
-          if(enemies[l].y - enemies[l].height < -GAP) {
-              enemies[l].y = -GAP*k;
-              k++;
-          }
+      var k = 1;
+      for (var l = 0; l < enemies.length; l++) {
+        if (enemies[l].y - enemies[l].height < -GAP) {
+          enemies[l].y = -GAP * k;
+          k++;
+        }
       }
     }
   }
