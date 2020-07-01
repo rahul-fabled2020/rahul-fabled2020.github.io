@@ -1,3 +1,7 @@
+/**Game Class
+ * Takes  id of the canvas as parameter
+ * @param {string} canvasId
+ */
 function Game(canvasId) {
   var self = this;
   var canvas = document.getElementById(canvasId);
@@ -16,6 +20,9 @@ function Game(canvasId) {
   this.score = new Score();
 }
 
+/**
+ * Handles Key Event
+ */
 Game.prototype.handleKeyEvent = function (e) {
   if (this.gameState.current == GAME) {
     if (this.bird.y - this.bird.radius <= 0) {
@@ -29,6 +36,9 @@ Game.prototype.handleKeyEvent = function (e) {
   }
 };
 
+/**
+ * Handles Click Event
+ */
 Game.prototype.handleClickEvent = function (e) {
   switch (this.gameState.current) {
     case GET_READY:
@@ -61,6 +71,9 @@ Game.prototype.handleClickEvent = function (e) {
   }
 };
 
+/**
+ * Renders or draws the overall game play
+ */
 Game.prototype.render = function () {
   var self = this;
 
@@ -76,6 +89,9 @@ Game.prototype.render = function () {
   this.score.render(self.context, self.gameState.current);
 };
 
+/**
+ * Updates the different components of the game
+ */
 Game.prototype.update = function () {
   var self = this;
   this.bird.update(self.gameState, self.foreground, self.context, self.frames);
@@ -89,6 +105,9 @@ Game.prototype.update = function () {
   );
 };
 
+/**
+ * Animates the game
+ */
 Game.prototype.gameLoop = function () {
   this.update();
   this.render();
@@ -97,5 +116,6 @@ Game.prototype.gameLoop = function () {
   requestAnimationFrame(this.gameLoop.bind(this));
 };
 
+//Game instances
 game = new Game("canvas");
 game.gameLoop.bind(game)();
