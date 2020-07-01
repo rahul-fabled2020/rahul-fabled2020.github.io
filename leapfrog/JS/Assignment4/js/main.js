@@ -219,8 +219,10 @@ function resetGame() {
   }
   scoreBoard.textContent = score;
   playerCar.speed = speed;
-  replenishBullets();
-  replenishBullets();
+  if(bullets.length < BULLETS_PER_REPLENISHMENT){
+    replenishBullets();
+    replenishBullets();  
+  }
 }
 
 function randomizeEnemyPosition() {
@@ -238,6 +240,9 @@ function randomizeEnemyPosition() {
 
       for (var j = 0; j < enemies.length; j++) {
         if (enemies[i].laneIndex == enemies[j].laneIndex) {
+            if(Math.abs(enemies[i].y - enemies[j].y)< GAP){
+                enemies[i].y -= GAP;
+            }
         }
       }
     }
