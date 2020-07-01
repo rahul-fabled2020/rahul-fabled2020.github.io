@@ -23,11 +23,11 @@ var speedUpdateDelay = 5; //in seconds
 var speedUpdateTime = 0;
 var timestamp = 0;
 var bullets = [];
-var BULLETS_PER_REPLENISHMENT = 4;
+var BULLETS_PER_REPLENISHMENT = 2;
 var bulletImage = new Image();
 var ammos = [];
 var ammoImage = new Image();
-var MAX_BULLET_LENGTH = 20;
+var MAX_BULLET_LENGTH = 12;
 var previousLaneIndex = 0;
 
 bulletImage.src = "images/bullet.png";
