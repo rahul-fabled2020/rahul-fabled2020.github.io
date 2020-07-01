@@ -14,7 +14,7 @@ var numOfEnemies = 5;
 var enemies = [];
 var lanes = [132, 204, 276];
 var FPS = 60;
-var GAP = 300;
+var GAP = 250;
 var timeElapsedBoard;
 var scoreBoard;
 var gameLoopId;
@@ -268,6 +268,13 @@ function randomizeEnemyPosition() {
           }
         }
       }
+      var k=1;
+      for(var l=0; l<enemies.length; l++){
+          if(enemies[l].y - enemies[l].height < -GAP) {
+              enemies[l].y = -GAP*k;
+              k++;
+          }
+      }
     }
   }
 }
@@ -346,7 +353,7 @@ function updateBullte() {
   for (var i = 0; i < ammos.length; i++) {
     var distance = playerCar.y - (ammos[i].y + ammos[i].height);
     if (distance <= 0 && ammos[i].y < playerCar.y + playerCar.height) {
-      if (bullets.length < MAX_BULLET_LENGTH - BULLETS_PER_REPLENISHMENT) {
+      if (bullets.length <= MAX_BULLET_LENGTH - BULLETS_PER_REPLENISHMENT) {
         replenishBullets();
       }
 
