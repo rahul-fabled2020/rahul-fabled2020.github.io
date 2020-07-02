@@ -6,10 +6,12 @@ function Game(canvasId) {
   var self = this;
   var canvas = document.getElementById(canvasId);
   this.context = canvas.getContext("2d");
+  this.isKeyDown = false;
 
   this.frames = 0;
-  canvas.addEventListener("click", this.handleClickEvent.bind(self));
-  window.addEventListener("keydown", this.handleKeyEvent.bind(self));
+  canvas.addEventListener("click", this.handleClickEvent.bind(self), true);
+  document.addEventListener("keydown", this.handleKeyEvent.bind(self), true);
+  document.addEventListener("keyup", this.resetKeyDownBoolean.bind(self), true);
 
   //Instantiating Objects
   this.gameState = new GameState(this.context);
@@ -24,50 +26,52 @@ function Game(canvasId) {
  * Handles Key Event
  */
 Game.prototype.handleKeyEvent = function (e) {
-  if (this.gameState.current == GAME) {
-    if (this.bird.y - this.bird.radius <= 0) {
-      return;
-    }
-    this.bird.flap();
-  }
+  if (e.target == this.context.canvas) {
+    if (!this.isKeyDown) {
+      if (this.gameState.current == GAME) {
+        if (this.bird.y - this.bird.radius <= 0) {
+          return;
+        }
+        this.bird.flap();
+        this.isKeyDown = true;
+      }
 
-  if(this.gameState.current == GET_READY) {
-      this.gameState.current = GAME;
+      if (this.gameState.current == GET_READY) {
+        this.gameState.current = GAME;
+        this.isKeyDown = true;
+      }
+    }
   }
 };
+
+Game.prototype.resetKeyDownBoolean = function(e) {
+  if(e.target==this.context.canvas) {
+    this.isKeyDown = false;
+  }
+}
 
 /**
  * Handles Click Event
  */
 Game.prototype.handleClickEvent = function (e) {
-  switch (this.gameState.current) {
-    case GET_READY:
-      this.gameState.current = GAME;
-      break;
-    case GAME:
-      if (this.bird.y - this.bird.radius <= 0) {
-        return;
-      }
-      this.bird.flap();
-      break;
-    case OVER:
-      let rect = canvas.getBoundingClientRect();
-      let clickX = e.clientX - rect.left;
-      let clickY = e.clientY - rect.top;
-
-      //Check if start button is clicked
-      if (
-        clickX >= START_BUTTON.x &&
-        clickX <= START_BUTTON.x + START_BUTTON.width &&
-        clickY >= START_BUTTON.y &&
-        clickY <= START_BUTTON.y + START_BUTTON.height
-      ) {
+  if (e.target == this.context.canvas) {
+    switch (this.gameState.current) {
+      case GET_READY:
+        this.gameState.current = GAME;
+        break;
+      case GAME:
+        if (this.bird.y - this.bird.radius <= 0) {
+          return;
+        }
+        this.bird.flap();
+        break;
+      case OVER:
         this.pipe.reset();
         this.bird.resetSpeed();
         this.score.reset();
         this.gameState.current = GET_READY;
-      }
-      break;
+        break;
+    }
   }
 };
 
@@ -119,3 +123,6 @@ Game.prototype.gameLoop = function () {
 //Game instances
 game = new Game("canvas");
 game.gameLoop.bind(game)();
+
+game2 = new Game("canvas2");
+game2.gameLoop.bind(game2)();
