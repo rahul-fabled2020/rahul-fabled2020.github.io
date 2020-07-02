@@ -1,0 +1,3 @@
+const START_ANGLE = 0;
+const DEGREE_MAX = 180;
+const VIBRATION_AMPLITUDE = 55;
