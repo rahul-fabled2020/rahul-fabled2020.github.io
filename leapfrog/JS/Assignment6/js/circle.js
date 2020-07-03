@@ -9,7 +9,6 @@ function Circle(isUpperStrand) {
 
   this.currentX;
   this.currentY = 100;
-  this.amplitude = 55;
   this.speed = 2;
 
   if (isUpperStrand) {
@@ -40,7 +39,7 @@ Circle.prototype.update = function () {
 
   if (this.currentX <= DEGREE_MAX) {
     this.currentX++;
-    this.y = this.amplitude * Math.sin(tempX + this.phase) + this.currentY;
+    this.y = VIBRATION_AMPLITUDE * Math.sin(tempX + this.phase) + this.currentY;
     this.radius =
       (this.radiusAmp / 2) * Math.cos(tempX + this.phase) + this.radiusAmp / 2;
   } else {
