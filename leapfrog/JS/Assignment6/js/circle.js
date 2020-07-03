@@ -9,7 +9,6 @@ function Circle(isUpperStrand) {
 
   this.currentX;
   this.currentY = 100;
-  this.degree = 180;
   this.amplitude = 55;
   this.speed = 2;
 
@@ -35,11 +34,11 @@ Circle.prototype.render = function (context) {
  * Updates circle position
  */
 Circle.prototype.update = function () {
-  var tempX = (this.speed * this.currentX * Math.PI) / this.degree;
+  var tempX = (this.speed * this.currentX * Math.PI) / DEGREE_MAX;
 
-  this.currentX = ++this.currentX % this.degree;
+  this.currentX = ++this.currentX % DEGREE_MAX;
 
-  if (this.currentX <= this.degree) {
+  if (this.currentX <= DEGREE_MAX) {
     this.currentX++;
     this.y = this.amplitude * Math.sin(tempX + this.phase) + this.currentY;
     this.radius =
