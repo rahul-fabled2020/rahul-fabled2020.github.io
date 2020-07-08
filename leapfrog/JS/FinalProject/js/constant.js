@@ -1,2 +1,0 @@
-const FPS = 60;
-const ONE_THOUSANDTH_SECOND = 1/1000;
