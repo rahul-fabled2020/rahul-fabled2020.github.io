@@ -29,64 +29,45 @@ class Floor extends Entity {
       Math.floor(entity.position.y + entity.hitbox.y)
     );
 
-    //Detecting overlap of two hitboxes
-    //Horizontal Overlap
-    if (
-      !(
-        hitboxPositionFloor.x > hitBoxPositionEntity.x + entity.hitbox.width ||
-        hitboxPositionFloor.x + this.hitbox.width < hitBoxPositionEntity.x
-      )
-    ) {
-      //Vertical Overlap
-      if (
-        !(
-          hitboxPositionFloor.y > hitBoxPositionEntity.y ||
-          hitboxPositionFloor.y + this.hitbox.height < hitBoxPositionEntity.y
-        )
-      ) {
-        if (!this.isStanding) {
-          entity.bump();
-        } else {
-          let center = hitBoxPositionEntity.x + entity.hitbox.width / 2;
+    let entityHLeft = entity.position.x + entity.hitbox.x;
+    let entityHTop = entity.position.y + entity.hitbox.y;
+    let entityHCenter = new Vector(entityHLeft + entity.hitbox.width /2, entityHTop + entity.hitbox.height /2);
 
-          // console.log(hitboxPositionFloor.y - entity.hitbox.height - entity.hitbox.y);
-          // console.log(entity.position.y)
-          entity.velocity.y = 0;
-          entity.position.y =
-            hitboxPositionFloor.y - entity.hitbox.height - entity.hitbox.y;
-          entity.isStanding = true;
+    let thisHLeft = this.position.x + this.hitbox.x;
+    let thisHTop = this.position.y + this.hitbox.y;
+    let thisHCenter = new Vector(thisHLeft + this.hitbox.width /2, thisHTop + this.hitbox.height /2);
 
-          if (
-            Math.abs(
-              hitBoxPositionEntity.y +
-                entity.hitbox.height -
-                hitboxPositionFloor.y
-            ) <= entity.velocity.y
-          ) {
-            console.log("Collide vayo", this.position.x, this.position.y);
-            if (level.statics[this.position.y / 16 - 1][this.position.x / 16]) {
-              return;
-            }
+    let displacement = entityHCenter.subtract(thisHCenter);
 
-            entity.velocity.y = 0;
-            entity.position.y =
-              hitboxPositionFloor - entity.hitbox.height - entity.hitbox.y;
-            entity.isStanding = true;
+    if(displacement.y * displacement.y > displacement.x * displacement.x){
+      //Collision is from top or bottom
+      if(displacement.y > 0) {
+        //Collision is from bottom
+        entity.velocity.y = 0;
+        entity.position.y = this.position.y + this.hitbox.height;
 
-          } else if (
-            Math.abs(
-              hitBoxPositionEntity.y -
-                hitboxPositionFloor.y -
-                this.hitbox.height
-            ) > entity.velocity.y &&
-            center + 2 >= hitboxPositionFloor.x &&
-            center - 2 <= hitboxPositionFloor.x + this.hitbox.width
-          ) {
-            entity.velocity.y = 0;
-            entity.position.y = hitboxPositionFloor.y + this.hitbox.height;
-          }
-        }
+        console.log("Bottom Collision")
+      } else {
+        //Collision is from top
+        entity.velocity.y = 0;
+        entity.position.y = this.position.y - entity.hitbox.height;
+        entity.isStanding = true;
+        console.log("Top Collision")
+      }
+    } else {
+      //Collision is from left or right
+      if(displacement.x> 0) {
+        //Collision is from right
+        entity.velocity.x = 0;
+        entity.position.x = this.position.x + this.hitbox.width;
+        console.log("Right collision")
+      } else {
+        //Collision is from left
+        entity.velocity.x = 0;
+        entity.position.x = this.position.x - entity.hitbox.width;        
+        console.log("Left Collision")
       }
     }
+
   }
 }

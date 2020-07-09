@@ -1,7 +1,7 @@
 class Level12 extends Level {
   constructor() {
     super({
-      playerPosition: new Vector(0, 112),
+      playerPosition: new Vector(0, 96),
       background: "#000",
       scrolling: true,
       exit: 204,
