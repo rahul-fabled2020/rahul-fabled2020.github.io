@@ -67,12 +67,16 @@ class Floor extends Entity {
         //Collision is from left or right
         if (displacement.x > 0) {
           //Collision is from right
-          entity.velocity.x = 0;
+          entity.velocity.x = Math.max(0, entity.velocity.x);
+          entity.acceleration.x = Math.max(0, entity.acceleration.x);
+
           entity.position.x = this.position.x + this.hitbox.width;
           console.log("Right collision");
         } else {
-          //Collision is from left
-          entity.velocity.x = 0;
+          //Collision is from left          
+          entity.velocity.x = Math.min(0, entity.velocity.x);
+          entity.acceleration.x = Math.min(0, entity.acceleration.x);
+
           entity.position.x = this.position.x - entity.hitbox.width;
           console.log("Left Collision");
         }
