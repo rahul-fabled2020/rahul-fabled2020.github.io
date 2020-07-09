@@ -6,7 +6,7 @@ class Game {
     this.previousTime = 0;
     this.gameTime = 0;
     this.updateables = [];
-    this.currentLevelIndex = 0;
+    this.currentLevelIndex = 1;
 
     this.player = new Mario(new Vector(0, 0));
     this.levels = [new Level11(), new Level12()];
@@ -61,7 +61,7 @@ class Game {
     this.renderImmovables();
     this.renderEntity(this.player);
 
-    if(this.player.position.x > 3200) {
+    if(this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
   }
