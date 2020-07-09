@@ -44,6 +44,8 @@ class Level11 extends Level {
         [0, 0, 0, 0, 1, 2, 1]
       ),
     });
+
+    this.levelEndPosition = 3200;
   }
 
   loadLevel(player, camera) {

@@ -1,7 +1,7 @@
 class Level12 extends Level {
   constructor() {
     super({
-      playerPosition: new Vector(48, 192),
+      playerPosition: new Vector(0, 112),
       background: "#000",
       scrolling: true,
       exit: 204,
@@ -44,39 +44,82 @@ class Level12 extends Level {
         [0, 0, 0, 0, 1, 2, 1]
       ),
     });
+
+    this.levelEndPosition = 2448;
   }
 
-  putFloor(start, end) {
-    for (let i = start; i < end; i++) {
-      // this.statics[13][i] = new Floor(
-      //   new Vector(16 * i, 208),
-      //   this.floorSprite
-      // );
-      
-      this.statics[14][i] = new Floor(
-        new Vector(16 * i, 224),
-        this.floorSprite
-      );
+  putFloor(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
+
+    for(let col = hStart; col < hEnd; col++){
+      for(let row = vStart; row< vEnd; row++){
+        this.statics[row][col] = new Floor(
+          new Vector(16*col, 16*row),
+          this.floorSprite
+        );
+      }
+    }
+  }
+
+  putCeiling(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
+
+    for(let col = hStart; col < hEnd; col++){
+      for(let row = vStart; row< vEnd; row++){
+        this.statics[row][col] = new Floor(
+          new Vector(16*col, 16*row),
+          this.floorSprite
+        );
+      }
     }
   }
 
   loadLevel(player, camera) {
     let ground = [
-      [0, 32],
-      [35, 79],
-      [84, 151],
-      [153, 176],
-      [180, 183],
-      [186, 193],
-      [196, 238],
+      {horizontalPosition: [0,3], VerticalPosition: [7,8]},
+      {horizontalPosition: [0,4], VerticalPosition: [8,9]},
+      {horizontalPosition: [0,5], VerticalPosition: [9,10]},
+      {horizontalPosition: [0,13], VerticalPosition: [10,15]},
+      {horizontalPosition: [15,26], VerticalPosition: [10,15]},
+      {horizontalPosition: [29,32], VerticalPosition: [10,15]},
+      {horizontalPosition: [35,104], VerticalPosition: [10,15]},
+      {horizontalPosition: [35,73], VerticalPosition: [9,10]},
+      {horizontalPosition: [104,116], VerticalPosition: [13,15]},
+      {horizontalPosition: [116,120], VerticalPosition: [10,15]},
+      {horizontalPosition: [120,123], VerticalPosition: [13,15]},
+      {horizontalPosition: [123,128], VerticalPosition: [10,15]},
+      {horizontalPosition: [141,143], VerticalPosition: [9,15]},
+      {horizontalPosition: [143,159], VerticalPosition: [13,15]},
     ];
+
+    let ceiling = [
+      {horizontalPosition: [0,238], VerticalPosition: [2,3]},
+      {horizontalPosition: [0,24], VerticalPosition: [3,5]},
+      {horizontalPosition: [38,73], VerticalPosition: [3,6]},
+      {horizontalPosition: [81,82], VerticalPosition: [3,4]},
+      {horizontalPosition: [89,90], VerticalPosition: [3,4]},
+      {horizontalPosition: [98,104], VerticalPosition: [3,5]}
+    ]
+
     player.position = this.playerPosition;
+    
     camera.x = 0;
 
-    //Ground building
+    //Floor building
     ground.forEach((tilePosition) => {
-      this.putFloor(tilePosition[0], tilePosition[1]);
+      this.putFloor(tilePosition.horizontalPosition, tilePosition.VerticalPosition);
     });
+
+    //Ceiling building
+    ceiling.forEach(tilePosition => {
+      this.putCeiling(tilePosition.horizontalPosition, tilePosition.VerticalPosition)
+    })
 
     this.putQBlock(16, 9, null);
     this.putBrick(20, 9, null);
@@ -119,35 +162,9 @@ class Level12 extends Level {
     this.putQBlock(130, 5, null);
     this.putBrick(130, 9, null);
     this.putBrick(131, 5, null);
-    this.putWall(134, 13, 1);
-    this.putWall(135, 13, 2);
-    this.putWall(136, 13, 3);
-    this.putWall(137, 13, 4);
-    this.putWall(140, 13, 4);
-    this.putWall(141, 13, 3);
-    this.putWall(142, 13, 2);
-    this.putWall(143, 13, 1);
-    this.putWall(148, 13, 1);
-    this.putWall(149, 13, 2);
-    this.putWall(150, 13, 3);
-    this.putWall(151, 13, 4);
-    this.putWall(152, 13, 4);
-    this.putWall(155, 13, 4);
-    this.putWall(156, 13, 3);
-    this.putWall(157, 13, 2);
-    this.putWall(158, 13, 1);
     this.putBrick(168, 9, null);
     this.putBrick(169, 9, null);
     this.putQBlock(170, 9, null);
     this.putBrick(171, 9, null);
-    this.putWall(181, 13, 1);
-    this.putWall(182, 13, 2);
-    this.putWall(183, 13, 3);
-    this.putWall(184, 13, 4);
-    this.putWall(185, 13, 5);
-    this.putWall(186, 13, 6);
-    this.putWall(187, 13, 7);
-    this.putWall(188, 13, 8);
-    this.putWall(189, 13, 8);
   }
 }
