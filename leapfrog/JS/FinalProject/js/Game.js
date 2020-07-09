@@ -6,6 +6,7 @@ class Game {
     this.previousTime = 0;
     this.gameTime = 0;
     this.updateables = [];
+    this.currentLevelIndex = 0;
 
     this.player = new Mario(new Vector(0, 0));
     this.levels = [new Level11(), new Level12()];
@@ -24,7 +25,7 @@ class Game {
 
   init() {
     console.log("Image Loaded");
-    this.level = this.levels[1];
+    this.level = this.levels[this.currentLevelIndex];
     this.level.loadLevel(this.player, this.camera);
     this.previousTime = Date.now();
 
@@ -59,6 +60,10 @@ class Game {
 
     this.renderImmovables();
     this.renderEntity(this.player);
+
+    if(this.player.position.x > 3200) {
+      this.switchLevel();
+    }
   }
 
   renderImmovables() {
@@ -123,6 +128,15 @@ class Game {
 
   detectCollision() {
       this.player.detectCollision(this.level);
+  }
+
+  switchLevel() {
+    let index = (this.currentLevelIndex+1) % this.levels.length;
+    this.currentLevelIndex = index;
+
+    this.player.position.x = 0;
+    this.level = this.levels[index];
+    this.level.loadLevel(this.player, this.camera);
   }
 }
 
