@@ -8,7 +8,7 @@ class Level12 extends Level {
   
         floorSprite: new Sprite(
           "images/tiles.png",
-          new Vector(0, 0),
+          new Vector(32, 80),
           { width: 16, height: 16 },
           0
         ),
