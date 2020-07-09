@@ -19,55 +19,64 @@ class Floor extends Entity {
   }
 
   isCollidingWith(entity, level) {
-    let hitboxPositionFloor = new Vector(
-      Math.floor(this.position.x + this.hitbox.x),
-      Math.floor(this.position.y + this.hitbox.y)
-    );
-
-    let hitBoxPositionEntity = new Vector(
-      Math.floor(entity.position.x + entity.hitbox.x),
-      Math.floor(entity.position.y + entity.hitbox.y)
-    );
-
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
-    let entityHCenter = new Vector(entityHLeft + entity.hitbox.width /2, entityHTop + entity.hitbox.height /2);
+    let entityHCenter = new Vector(
+      entityHLeft + entity.hitbox.width / 2,
+      entityHTop + entity.hitbox.height / 2
+    );
 
     let thisHLeft = this.position.x + this.hitbox.x;
     let thisHTop = this.position.y + this.hitbox.y;
-    let thisHCenter = new Vector(thisHLeft + this.hitbox.width /2, thisHTop + this.hitbox.height /2);
+    let thisHCenter = new Vector(
+      thisHLeft + this.hitbox.width / 2,
+      thisHTop + this.hitbox.height / 2
+    );
 
-    let displacement = entityHCenter.subtract(thisHCenter);
+    let entityRight = entityHLeft + entity.hitbox.width;
+    let entityBottom = entityHTop + entity.hitbox.height;
 
-    if(displacement.y * displacement.y > displacement.x * displacement.x){
-      //Collision is from top or bottom
-      if(displacement.y > 0) {
-        //Collision is from bottom
-        entity.velocity.y = 0;
-        entity.position.y = this.position.y + this.hitbox.height;
+    let thisRight = thisHLeft + this.hitbox.width;
+    let thisBottom = thisHTop + this.hitbox.height;
 
-        console.log("Bottom Collision")
+    if (
+      entityRight > thisHLeft &&
+      entityHLeft < thisRight &&
+      entityBottom > thisHTop &&
+      entityHTop < thisBottom
+    ) {
+      //The hitboxes are overlapping
+      console.log("Collision Detected");
+      let displacement = entityHCenter.subtract(thisHCenter);
+      if (displacement.y * displacement.y > displacement.x * displacement.x) {
+        //Collision is from top or bottom
+        if (displacement.y > 0) {
+          //Collision is from bottom
+          entity.velocity.y = 0;
+          entity.position.y = this.position.y + this.hitbox.height;
+
+          console.log("Bottom Collision");
+        } else {
+          //Collision is from top
+          entity.velocity.y = 0;
+          entity.position.y = this.position.y - entity.hitbox.height;
+          entity.isStanding = true;
+          console.log("Top Collision");
+        }
       } else {
-        //Collision is from top
-        entity.velocity.y = 0;
-        entity.position.y = this.position.y - entity.hitbox.height;
-        entity.isStanding = true;
-        console.log("Top Collision")
-      }
-    } else {
-      //Collision is from left or right
-      if(displacement.x> 0) {
-        //Collision is from right
-        entity.velocity.x = 0;
-        entity.position.x = this.position.x + this.hitbox.width;
-        console.log("Right collision")
-      } else {
-        //Collision is from left
-        entity.velocity.x = 0;
-        entity.position.x = this.position.x - entity.hitbox.width;        
-        console.log("Left Collision")
+        //Collision is from left or right
+        if (displacement.x > 0) {
+          //Collision is from right
+          entity.velocity.x = 0;
+          entity.position.x = this.position.x + this.hitbox.width;
+          console.log("Right collision");
+        } else {
+          //Collision is from left
+          entity.velocity.x = 0;
+          entity.position.x = this.position.x - entity.hitbox.width;
+          console.log("Left Collision");
+        }
       }
     }
-
   }
 }
