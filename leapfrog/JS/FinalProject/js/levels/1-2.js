@@ -101,6 +101,7 @@ class Level12 extends Level {
     let ceiling = [
       {horizontalPosition: [0,238], VerticalPosition: [2,3]},
       {horizontalPosition: [0,24], VerticalPosition: [3,5]},
+      {horizontalPosition: [23,24], VerticalPosition: [5,6]},
       {horizontalPosition: [38,73], VerticalPosition: [3,6]},
       {horizontalPosition: [81,82], VerticalPosition: [3,4]},
       {horizontalPosition: [89,90], VerticalPosition: [3,4]},
@@ -121,50 +122,7 @@ class Level12 extends Level {
       this.putCeiling(tilePosition.horizontalPosition, tilePosition.VerticalPosition)
     })
 
-    this.putQBlock(16, 9, null);
-    this.putBrick(20, 9, null);
-    this.putQBlock(21, 9, null);
-    this.putBrick(22, 9, null);
-    this.putQBlock(22, 5, null);
-    this.putQBlock(23, 9, null);
-    this.putBrick(24, 9, null);
-
-    this.putBrick(77, 9, null);
-    this.putQBlock(78, 9, null);
-    this.putBrick(79, 9, null);
-    this.putBrick(80, 5, null);
-    this.putBrick(81, 5, null);
-    this.putBrick(82, 5, null);
-    this.putBrick(83, 5, null);
-    this.putBrick(84, 5, null);
-    this.putBrick(85, 5, null);
-    this.putBrick(86, 5, null);
-    this.putBrick(87, 5, null);
-    this.putBrick(91, 5, null);
-    this.putBrick(92, 5, null);
-    this.putBrick(93, 5, null);
-    this.putQBlock(94, 5, null);
-    this.putBrick(94, 9, null);
-    this.putBrick(100, 9, null);
-    this.putBrick(101, 9, null);
-    this.putQBlock(105, 9, null);
-    this.putQBlock(108, 9, null);
-    this.putQBlock(108, 5, null);
-    this.putQBlock(111, 9, null);
-    this.putBrick(117, 9, null);
-    this.putBrick(120, 5, null);
-    this.putBrick(121, 5, null);
-    this.putBrick(122, 5, null);
-    this.putBrick(123, 5, null);
-    this.putBrick(128, 5, null);
-    this.putQBlock(129, 5, null);
-    this.putBrick(129, 9, null);
-    this.putQBlock(130, 5, null);
-    this.putBrick(130, 9, null);
-    this.putBrick(131, 5, null);
-    this.putBrick(168, 9, null);
-    this.putBrick(169, 9, null);
+    //Others
     this.putQBlock(170, 9, null);
-    this.putBrick(171, 9, null);
   }
 }
