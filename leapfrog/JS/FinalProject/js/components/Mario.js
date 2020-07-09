@@ -186,7 +186,7 @@ class Mario extends Entity {
   }
 
   detectCollision(level) {
-    let h = 1;
+    let h = 2;
     let w = 1;
 
     if (this.position.y % TILE_SIZE !== 0) {

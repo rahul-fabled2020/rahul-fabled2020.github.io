@@ -77,10 +77,12 @@ class Floor extends Entity {
         entity.velocity.y = 0;
         entity.position.y = this.position.y - entity.hitbox.height;
         entity.isStanding = true;
+
       } else {
         //Entity is colliding from the bottom
         entity.velocity.y = 0;
         entity.position.y = this.position.y + this.hitbox.height;
+        
       }
     }
   }
