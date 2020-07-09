@@ -14,7 +14,7 @@ class Sprite {
     this.imageUrl = imageUrl;
     this.animationFrames = animationFrames;
 
-    this.animationFrameIndex = 0;
+    this.animationFrameCounter = 0;
   }
 
   /**
@@ -24,8 +24,9 @@ class Sprite {
    */
   update(dt, gameTime) {
     if (gameTime && gameTime == this.previousUpdateTime) {
-      this.animationFrameIndex += this.animationSpeed * dt;
+      return;
     }
+      this.animationFrameCounter += this.animationSpeed * dt;
 
     if (gameTime) {
       this.previousUpdateTime = gameTime;
@@ -37,7 +38,7 @@ class Sprite {
    * @param {number} frame; animationFrameIndex
    */
   setAnimationFrame(frame) {
-    this.animationFrameIndex = frame;
+    this.animationFrameCounter = frame;
   }
 
   /**
@@ -51,7 +52,7 @@ class Sprite {
 
     if (this.animationSpeed > 0) {
       let numberOfFrames = this.animationFrames.length;
-      let index = Math.floor(this.animationFrameIndex);
+      let index = Math.floor(this.animationFrameCounter);
 
       animationFrameIndex = this.animationFrames[index % numberOfFrames];
     } else {

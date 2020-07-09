@@ -49,7 +49,7 @@ class Game {
   update(dt) {
     this.gameTime += dt;
     this.onKeyboardInput(dt);
-    this.updateEntities(dt, this.gameTime);
+    this.updateEntities(dt);
     this.detectCollision();
   }
 
@@ -118,7 +118,7 @@ class Game {
   }
 
   updateEntities(dt) {
-    this.player.update(dt, this.camera);
+    this.player.update(dt, this.camera, this.gameTime);
 
     const OFFSET_FROM_LEFT = 5*TILE_SIZE;
     if (this.level.scrolling && this.player.position.x > this.camera.x + OFFSET_FROM_LEFT) {
