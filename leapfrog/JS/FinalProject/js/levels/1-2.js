@@ -2,7 +2,7 @@ class Level12 extends Level {
     constructor() {
       super({
         playerPosition: new Vector(48, 192),
-        background: "#7974FF",
+        background: "#000",
         scrolling: true,
         exit: 204,
   
