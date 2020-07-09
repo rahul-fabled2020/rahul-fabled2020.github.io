@@ -6,8 +6,8 @@ class Block extends Entity {
             hitbox: {
                 x: 0,
                 y: 0,
-                width: 16,
-                height: 16
+                width: TILE_SIZE,
+                height: TILE_SIZE
             }
         });
 

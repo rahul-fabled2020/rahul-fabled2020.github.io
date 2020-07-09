@@ -2,12 +2,12 @@ class Mario extends Entity {
   constructor(position) {
     super({
       position: position,
-      sprite: new Sprite("images/mario.png", new Vector(80, 32), {width: 16, height:16}, 0),
+      sprite: new Sprite("images/mario.png", new Vector(5*TILE_SIZE, 2*TILE_SIZE), {width: TILE_SIZE, height:TILE_SIZE}, 0),
       hitbox: {
         x: 0, //offSetX
         y: 0, //offSetY
-        width: 16,
-        height: 16,
+        width: TILE_SIZE,
+        height: TILE_SIZE,
       },
     });
 
@@ -164,9 +164,9 @@ class Mario extends Entity {
 
     //Delete this
     this.acceleration.y = 0.25;
-    if(this.position.y > 224) {
+    if(this.position.y > 14*TILE_SIZE) {
       this.velocity.y = 0;
-      this.position.y = 64;
+      this.position.y = 4*TILE_SIZE;
       this.isStanding = true;
     }
     //Delete Above
@@ -181,16 +181,16 @@ class Mario extends Entity {
     let h=1;
     let w=1;
 
-    if(this.position.y % 16 !== 0) {
+    if(this.position.y % TILE_SIZE !== 0) {
       h++;
     }
 
-    if(this.position.x %16 !== 0) {
+    if(this.position.x %TILE_SIZE !== 0) {
       w++;
     }
 
-    let baseX = Math.floor(this.position.x /16);
-    let baseY = Math.floor(this.position.y / 16);
+    let baseX = Math.floor(this.position.x /TILE_SIZE);
+    let baseY = Math.floor(this.position.y / TILE_SIZE);
 
     for(let i=0; i<h; i++){
       if(baseY +i < 0 || baseY +i >=15) {

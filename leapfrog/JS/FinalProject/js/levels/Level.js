@@ -4,7 +4,6 @@ class Level {
         this.scrolling = configuration.scrolling;
         
         this.background = configuration.background;
-        this.exit = configuration.exit;
 
         this.floorSprite = configuration.floorSprite;
         this.wallSprite = configuration.wallSprite;

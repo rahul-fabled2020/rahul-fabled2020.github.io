@@ -4,48 +4,47 @@ class Level12 extends Level {
       playerPosition: new Vector(0, 96),
       background: "#000",
       scrolling: true,
-      exit: 204,
 
       floorSprite: new Sprite(
         "images/tiles.png",
-        new Vector(32, 80),
-        { width: 16, height: 16 },
+        new Vector(2*TILE_SIZE, 5*TILE_SIZE),
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       wallSprite: new Sprite(
         "images/tiles.png",
-        new Vector(0, 16),
-        { width: 16, height: 16 },
+        new Vector(0, TILE_SIZE),
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickSprite: new Sprite(
         "images/tiles.png",
-        new Vector(16, 0),
-        { width: 16, height: 16 },
+        new Vector(TILE_SIZE, 0),
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickBounceSprite: new Sprite(
         "images/tiles.png",
-        new Vector(32, 0),
-        { width: 16, height: 16 },
+        new Vector(2*TILE_SIZE, 0),
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       uBlockSprite: new Sprite(
         "images/tiles.png",
-        new Vector(48, 0),
-        { width: 16, height: 16 },
+        new Vector(3*TILE_SIZE, 0),
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       qBlockSprite: new Sprite(
         "images/tiles.png",
-        new Vector(384, 0),
-        { width: 16, height: 16 },
+        new Vector(24*TILE_SIZE, 0),
+        { width: TILE_SIZE, height: TILE_SIZE },
         8,
         [0, 0, 0, 0, 1, 2, 1]
       ),
     });
 
-    this.levelEndPosition = 2448;
+    this.levelEndPosition = 153*TILE_SIZE;
   }
 
   putFloor(horizontalPosition, VerticalPosition) {
@@ -57,7 +56,7 @@ class Level12 extends Level {
     for(let col = hStart; col < hEnd; col++){
       for(let row = vStart; row< vEnd; row++){
         this.statics[row][col] = new Floor(
-          new Vector(16*col, 16*row),
+          new Vector(TILE_SIZE*col, TILE_SIZE*row),
           this.floorSprite
         );
       }
@@ -73,7 +72,7 @@ class Level12 extends Level {
     for(let col = hStart; col < hEnd; col++){
       for(let row = vStart; row< vEnd; row++){
         this.statics[row][col] = new Floor(
-          new Vector(16*col, 16*row),
+          new Vector(TILE_SIZE*col, TILE_SIZE*row),
           this.floorSprite
         );
       }
