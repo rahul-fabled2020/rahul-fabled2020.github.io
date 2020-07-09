@@ -69,8 +69,8 @@ class Game {
   renderImmovables() {
     for (let i = 0; i < 15; i++) {
         for (
-          let j = Math.floor(this.camera.x / 16) - 1;
-          j < Math.floor(this.camera.x / 16) + 20;
+          let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
+          j < Math.floor(this.camera.x / TILE_SIZE) + 20;
           j++
         ) {
           if (this.level.statics[i][j]) {
@@ -120,7 +120,7 @@ class Game {
   updateEntities(dt) {
     this.player.update(dt, this.camera);
 
-    const OFFSET_FROM_LEFT = 80;
+    const OFFSET_FROM_LEFT = 5*TILE_SIZE;
     if (this.level.scrolling && this.player.position.x > this.camera.x + OFFSET_FROM_LEFT) {
       this.camera.x = this.player.position.x - OFFSET_FROM_LEFT;
     }

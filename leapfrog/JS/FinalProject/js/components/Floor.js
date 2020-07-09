@@ -12,8 +12,8 @@ class Floor extends Entity {
       hitbox: {
         x: 0, //offSetX
         y: 0, //offSetY
-        width: 16,
-        height: 16,
+        width: TILE_SIZE,
+        height: TILE_SIZE,
       },
     });
   }
