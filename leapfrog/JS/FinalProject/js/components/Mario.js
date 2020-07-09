@@ -164,10 +164,9 @@ class Mario extends Entity {
 
     //Delete this
     this.acceleration.y = 0.25;
-    if(this.position.y > 192) {
-      this.acceleration.y = 0;
+    if(this.position.y > 224) {
       this.velocity.y = 0;
-      this.position.y = 192;
+      this.position.y = 64;
       this.isStanding = true;
     }
     //Delete Above
