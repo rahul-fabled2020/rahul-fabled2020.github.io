@@ -17,12 +17,13 @@ class Level {
     this.statics = [];
     this.scenery = [];
     this.blocks = [];
+    this.obstacles = [];
 
     this.enemies = [];
     this.items = [];
     this.pipes = [];
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
       this.statics[i] = [];
       this.scenery[i] = [];
       this.blocks[i] = [];
@@ -78,7 +79,7 @@ class Level {
       for (let row = vStart; row < vEnd; row++) {
         let sprite = this.fireBackgroundSprites[1];
 
-        if(row==vStart) sprite = this.fireBackgroundSprites[0];
+        if (row == vStart) sprite = this.fireBackgroundSprites[0];
 
         this.scenery[row][col] = new Floor(
           new Vector(TILE_SIZE * col, TILE_SIZE * row),
@@ -93,7 +94,7 @@ class Level {
       position: new Vector(x * 16, y * 16),
       item: item,
       sprite: this.qBlockSprite,
-      usedSprite: this.ublockSprite
+      usedSprite: this.ublockSprite,
     });
   }
 
@@ -106,5 +107,16 @@ class Level {
       usedSprite: this.uBlockSprite,
       breakable: !item,
     });
+  }
+
+  putRotatingFire(x, y) {
+    this.obstacles.push(
+      [new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x+0.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x+1) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x+1.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x+2) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x+2.5) * TILE_SIZE, y * TILE_SIZE))]
+    );
   }
 }

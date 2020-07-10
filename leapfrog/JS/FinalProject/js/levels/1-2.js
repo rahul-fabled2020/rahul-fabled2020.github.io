@@ -142,5 +142,12 @@ class Level12 extends Level {
 
     //Others
     this.putQBlock(30, 6, null);
+    this.putRotatingFire(30,10);
+    this.putRotatingFire(49,6);
+    this.putRotatingFire(60,6);
+    this.putRotatingFire(67,6);
+    this.putRotatingFire(76,9);
+    this.putRotatingFire(84,9);
+    this.putRotatingFire(89,4);
   }
 }
