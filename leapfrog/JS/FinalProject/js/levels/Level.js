@@ -1,64 +1,110 @@
 class Level {
-    constructor(configuration) {
-        this.playerPosition = configuration.playerPosition;
-        this.scrolling = configuration.scrolling;
-        
-        this.background = configuration.background;
+  constructor(configuration) {
+    this.playerPosition = configuration.playerPosition;
+    this.scrolling = configuration.scrolling;
 
-        this.floorSprite = configuration.floorSprite;
-        this.wallSprite = configuration.wallSprite;
-        this.brickSprite = configuration.brickSprite;
-        this.uBlockSprite = configuration.ublockSprite;
-        this.qBlockSprite = configuration.qBlockSprite;
-        this.brickBounceSprite = configuration.brickBounceSprite;
+    this.background = configuration.background;
 
-        this.statics = [];
-        this.scenery = [];
-        this.blocks = [];
-        
-        this.enemies = [];
-        this.items = [];
-        this.pipes = [];
+    this.floorSprite = configuration.floorSprite;
+    this.wallSprite = configuration.wallSprite;
+    this.brickSprite = configuration.brickSprite;
+    this.uBlockSprite = configuration.ublockSprite;
+    this.qBlockSprite = configuration.qBlockSprite;
+    this.brickBounceSprite = configuration.brickBounceSprite;
 
-        for(let i=0; i<15; i++) {
-            this.statics[i] = [];
-            this.scenery[i] = [];
-            this.blocks[i] = [];
-        }
+    this.fireBackgroundSprites = configuration.fireBackgroundSprites;
 
+    this.statics = [];
+    this.scenery = [];
+    this.blocks = [];
+
+    this.enemies = [];
+    this.items = [];
+    this.pipes = [];
+
+    for (let i = 0; i < 15; i++) {
+      this.statics[i] = [];
+      this.scenery[i] = [];
+      this.blocks[i] = [];
     }
-    
-    putFloor(start, end) {
-        for(let i = start; i< end; i++) {
-            this.statics[13][i] = new Floor(new Vector(16*i, 208), this.floorSprite);
-            this.statics[14][i] = new Floor(new Vector(16*i, 224), this.floorSprite);
-        }
-    }
+  }
 
-    putWall(x, y, height) {
-        // y = bottom of the wall
-        for(let i= y-height; i<y; i++) {
-            this.statics[i][x] = new Floor(new Vector(16*x, 16*i), this.wallSprite);
-        }
-    }
+  putCeiling(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
 
-    putQBlock(x, y, item) {
-        this.blocks[y][x] = new Block({
-            position: new Vector(x*16, y*16),
-            item: item,
-            sprite: this.qBlockSprite
-        });
+    for (let col = hStart; col < hEnd; col++) {
+      for (let row = vStart; row < vEnd; row++) {
+        this.statics[row][col] = new Floor(
+          new Vector(TILE_SIZE * col, TILE_SIZE * row),
+          this.floorSprite
+        );
+      }
     }
+  }
 
-    putBrick(x, y, item) {
-        this.blocks[y][x] = new Block({
-            position: new Vector(x*16, y*16),
-            item: item,
-            sprite: this.brickSprite,
-            bounceSprite: this.brickBounceSprite,
-            usedSprite: this.uBlockSprite,
-            breakable: !item
-        });
+  putFloor(start, end) {
+    for (let i = start; i < end; i++) {
+      this.statics[13][i] = new Floor(
+        new Vector(16 * i, 208),
+        this.floorSprite
+      );
+      this.statics[14][i] = new Floor(
+        new Vector(16 * i, 224),
+        this.floorSprite
+      );
     }
+  }
 
+  putWall(x, y, height) {
+    // y = bottom of the wall
+    for (let i = y - height; i < y; i++) {
+      this.statics[i][x] = new Floor(
+        new Vector(16 * x, 16 * i),
+        this.wallSprite
+      );
+    }
+  }
+
+  putFireBackground(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
+
+    for (let col = hStart; col < hEnd; col++) {
+      for (let row = vStart; row < vEnd; row++) {
+        let sprite = this.fireBackgroundSprites[1];
+
+        if(row==vStart) sprite = this.fireBackgroundSprites[0];
+
+        this.scenery[row][col] = new Floor(
+          new Vector(TILE_SIZE * col, TILE_SIZE * row),
+          sprite
+        );
+      }
+    }
+  }
+
+  putQBlock(x, y, item) {
+    this.blocks[y][x] = new Block({
+      position: new Vector(x * 16, y * 16),
+      item: item,
+      sprite: this.qBlockSprite,
+      usedSprite: this.ublockSprite
+    });
+  }
+
+  putBrick(x, y, item) {
+    this.blocks[y][x] = new Block({
+      position: new Vector(x * 16, y * 16),
+      item: item,
+      sprite: this.brickSprite,
+      bounceSprite: this.brickBounceSprite,
+      usedSprite: this.uBlockSprite,
+      breakable: !item,
+    });
+  }
 }

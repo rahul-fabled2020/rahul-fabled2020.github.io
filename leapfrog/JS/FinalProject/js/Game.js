@@ -49,7 +49,7 @@ class Game {
   update(dt) {
     this.gameTime += dt;
     this.onKeyboardInput(dt);
-    this.updateEntities(dt, this.gameTime);
+    this.updateEntities(dt);
     this.detectCollision();
   }
 
@@ -58,12 +58,28 @@ class Game {
     this.context.fillStyle = this.level.background;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.renderBackgroundScenes();
     this.renderImmovables();
     this.renderEntity(this.player);
 
     if(this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
+  }
+
+  renderBackgroundScenes() {
+    //i refers to row number i.e. vertical position of the tile
+    for (let i = 0; i < 15; i++) {
+      for (
+        let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
+        j < Math.floor(this.camera.x / TILE_SIZE) + 20;
+        j++
+      ) {
+        if (this.level.scenery[i][j]) {
+          this.renderEntity(this.level.scenery[i][j]);
+        }
+      }
+    }    
   }
 
   renderImmovables() {
@@ -118,7 +134,7 @@ class Game {
   }
 
   updateEntities(dt) {
-    this.player.update(dt, this.camera);
+    this.player.update(dt, this.camera, this.gameTime);
 
     const OFFSET_FROM_LEFT = 5*TILE_SIZE;
     if (this.level.scrolling && this.player.position.x > this.camera.x + OFFSET_FROM_LEFT) {

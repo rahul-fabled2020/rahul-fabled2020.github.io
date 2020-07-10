@@ -39,52 +39,50 @@ class Floor extends Entity {
     let thisRight = thisHLeft + this.hitbox.width;
     let thisBottom = thisHTop + this.hitbox.height;
 
+    let averageWidth = (entity.hitbox.width + this.hitbox.width) / 2;
+    let averageHeight = (entity.hitbox.height + this.hitbox.height) / 2;
+
+    let displacement = entityHCenter.subtract(thisHCenter);
+
+    //If either displacement.x or displacement.y is greater than the average dimension then there is no collision
     if (
-      entityRight > thisHLeft &&
-      entityHLeft < thisRight &&
-      entityBottom > thisHTop &&
-      entityHTop < thisBottom
+      Math.abs(displacement.x) > averageWidth ||
+      Math.abs(displacement.y) > averageHeight
+    )
+      return;
+
+    if (
+      Math.abs(displacement.x / this.hitbox.width) >
+      Math.abs(displacement.y / this.hitbox.height)
     ) {
-      //The hitboxes are overlapping
-      
-      let displacement = entityHCenter.subtract(thisHCenter);
-      
-      if (displacement.y * displacement.y > displacement.x * displacement.x) {
-        //Collision is from top or bottom
-        if(entity instanceof Mario) {
-          entity.jumping = 0;
-        }
+      if (displacement.x < 0) {
+        //Entity is colliding from the left
+        entity.velocity.x = Math.min(0, entity.velocity.x);
+        entity.acceleration.x = Math.min(0, entity.acceleration.x);
 
-        if (displacement.y > 0) {
-          //Collision is from bottom
-          entity.velocity.y = 0;
-          entity.position.y = this.position.y + this.hitbox.height;
-
-        } else {
-          //Collision is from top
-          entity.velocity.y = 0;
-          entity.position.y = this.position.y - entity.hitbox.height;
-          entity.isStanding = true;
-
-        }
+        entity.position.x = this.position.x - entity.hitbox.width;
       } else {
-        //Collision is from left or right
-        if (displacement.x > 0) {
-          //Collision is from right
+        //Entity is colliding from the right
+        entity.acceleration.x = Math.max(0, entity.acceleration.x);
 
-          // entity.velocity.x = Math.max(0, entity.velocity.x);
-          entity.acceleration.x = Math.max(0, entity.acceleration.x);
+        entity.position.x = this.position.x + this.hitbox.width;
+      }
+    } else {
+      if (entity instanceof Mario) {
+        entity.jumping = 0;
+      }
 
-          entity.position.x = this.position.x + this.hitbox.width;
-          
-        } else {
-          //Collision is from left          
-          entity.velocity.x = Math.min(0, entity.velocity.x);
-          entity.acceleration.x = Math.min(0, entity.acceleration.x);
+      if (displacement.y < 0) {
+        //Entity is colliding from the top
+        entity.velocity.y = 0;
+        entity.position.y = this.position.y - entity.hitbox.height;
+        entity.isStanding = true;
 
-          entity.position.x = this.position.x - entity.hitbox.width;
-          
-        }
+      } else {
+        //Entity is colliding from the bottom
+        entity.velocity.y = 0;
+        entity.position.y = this.position.y + this.hitbox.height;
+        
       }
     }
   }
