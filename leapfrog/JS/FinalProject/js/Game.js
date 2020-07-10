@@ -14,10 +14,12 @@ class Game {
     this.camera = new Camera(0, 0, 256, 240);
 
     Game.imageLoader.load([
-      "images/mario.png",
-      "images/items.png",
-      "images/tiles.png",
-      "images/enemies.png",
+      // PLAYER_LEFT,
+      PLAYER_RIGHT,
+      ITEMS,
+      TILES,
+      // ENEMIES_LEFT,
+      ENEMIES_RIGHT
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));

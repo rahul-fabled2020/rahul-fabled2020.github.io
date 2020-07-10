@@ -3,7 +3,7 @@ class Mario extends Entity {
     super({
       position: position,
       sprite: new Sprite(
-        "images/mario.png",
+        PLAYER_RIGHT,
         new Vector(6 * TILE_SIZE, 2 * TILE_SIZE),
         { width: TILE_SIZE, height: TILE_SIZE },
         0

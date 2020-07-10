@@ -6,37 +6,37 @@ class Level11 extends Level {
       scrolling: true,
 
       floorSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(0, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       wallSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(0, TILE_SIZE),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickBounceSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(2*TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       uBlockSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(3*TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       qBlockSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(24*TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         8,

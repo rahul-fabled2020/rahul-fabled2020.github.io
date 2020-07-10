@@ -3,7 +3,7 @@ class RotatingFire extends Entity {
     super({
       position: position,
       sprite: new Sprite(
-        "images/items.png",
+        ITEMS,
         new Vector(6 * TILE_SIZE, 9 * TILE_SIZE),
         { width: 8, height: 8 },
         5,
