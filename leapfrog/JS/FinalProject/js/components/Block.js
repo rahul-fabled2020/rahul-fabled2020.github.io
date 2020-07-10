@@ -27,6 +27,6 @@ class Block extends Entity {
     }
 
     update(dt, gameTime) {
-        console.log("Updating");
+        this.sprite.update(dt, gameTime);
     }
 }

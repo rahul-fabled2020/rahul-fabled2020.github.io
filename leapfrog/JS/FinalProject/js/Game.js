@@ -2,7 +2,7 @@ class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.context = this.canvas.getContext("2d");
-    this.context.scale(3,3);
+    this.context.scale(3, 3);
     this.previousTime = 0;
     this.gameTime = 0;
     this.updateables = [];
@@ -59,12 +59,49 @@ class Game {
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.renderBackgroundScenes();
+
+    this.renderRotatingObstacleGroup(this.renderEntity);
+
     this.renderImmovables();
     this.renderEntity(this.player);
 
-    if(this.player.position.x > this.level.levelEndPosition) {
+    if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
+  }
+
+  renderRotatingObstacleGroup(callback) {
+    this.level.obstacles.forEach((obstacleGroup) => {
+      let angle = obstacleGroup[0].rotation * DEGREE;
+      let halfHeight = obstacleGroup[0].hitbox.height / 2;
+      let halfWidth = obstacleGroup[0].hitbox.width / 2;
+      let obstaclePivot = obstacleGroup[0].position.add(
+        new Vector(halfWidth, halfHeight)
+      );
+
+      if (
+        !(
+          obstaclePivot.x - this.camera.x <= 15*TILE_SIZE
+        )
+      )
+        return;
+
+      this.context.save();
+      this.context.translate(obstaclePivot.x - this.camera.x + halfWidth, obstaclePivot.y + halfHeight);
+      this.context.rotate(angle);
+
+      obstacleGroup.forEach((obstacle, i) => {
+        obstacle.position.x = 2 * halfWidth * i - halfWidth + this.camera.x;
+        obstacle.position.y = 2 * halfHeight * i - halfHeight;
+        callback.call(this, obstacle);
+      });
+
+      this.context.restore();
+
+      obstacleGroup[0].position = obstaclePivot.subtract(
+        new Vector(halfWidth, halfHeight)
+      );
+    });
   }
 
   renderBackgroundScenes() {
@@ -79,26 +116,26 @@ class Game {
           this.renderEntity(this.level.scenery[i][j]);
         }
       }
-    }    
+    }
   }
 
   renderImmovables() {
     for (let i = 0; i < 15; i++) {
-        for (
-          let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
-          j < Math.floor(this.camera.x / TILE_SIZE) + 20;
-          j++
-        ) {
-          if (this.level.statics[i][j]) {
-            this.renderEntity(this.level.statics[i][j]);
-          }
+      for (
+        let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
+        j < Math.floor(this.camera.x / TILE_SIZE) + 20;
+        j++
+      ) {
+        if (this.level.statics[i][j]) {
+          this.renderEntity(this.level.statics[i][j]);
+        }
 
-          if (this.level.blocks[i][j]) {
-            this.renderEntity(this.level.blocks[i][j]);
-            this.updateables.push(this.level.blocks[i][j]);
-          }
+        if (this.level.blocks[i][j]) {
+          this.renderEntity(this.level.blocks[i][j]);
+          this.updateables.push(this.level.blocks[i][j]);
         }
       }
+    }
   }
 
   renderEntity(entity) {
@@ -112,10 +149,10 @@ class Game {
       this.player.noRun();
     }
 
-    if(this.controller.isDown("JUMP")) {
-        this.player.jump();
+    if (this.controller.isDown("JUMP")) {
+      this.player.jump();
     } else {
-        this.player.noJump();
+      this.player.noJump();
     }
 
     if (this.controller.isDown("DOWN")) {
@@ -136,18 +173,31 @@ class Game {
   updateEntities(dt) {
     this.player.update(dt, this.camera, this.gameTime);
 
-    const OFFSET_FROM_LEFT = 5*TILE_SIZE;
-    if (this.level.scrolling && this.player.position.x > this.camera.x + OFFSET_FROM_LEFT) {
+    this.updateables.forEach((entity) => {
+      entity.update(dt, this.gameTime);
+    });
+
+    this.level.obstacles.forEach((obstacleGroup) => {
+      obstacleGroup.forEach((obstacle) => {
+        obstacle.update(dt, this.gameTime);
+      });
+    });
+
+    const OFFSET_FROM_LEFT = 5 * TILE_SIZE;
+    if (
+      this.level.scrolling &&
+      this.player.position.x > this.camera.x + OFFSET_FROM_LEFT
+    ) {
       this.camera.x = this.player.position.x - OFFSET_FROM_LEFT;
     }
   }
 
   detectCollision() {
-      this.player.detectCollision(this.level);
+    this.player.detectCollision(this.level);
   }
 
   switchLevel() {
-    let index = (this.currentLevelIndex+1) % this.levels.length;
+    let index = (this.currentLevelIndex + 1) % this.levels.length;
     this.currentLevelIndex = index;
 
     this.player.position.x = 0;

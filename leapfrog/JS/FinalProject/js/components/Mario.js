@@ -170,9 +170,7 @@ class Mario extends Entity {
     //Delete this
     this.acceleration.y = 0.25;
     if (this.position.y > 14 * TILE_SIZE) {
-      this.velocity.y = 0;
-      this.position.y = 4 * TILE_SIZE;
-      this.isStanding = true;
+      this.killMario();
     }
     //Delete Above
 
@@ -183,6 +181,12 @@ class Mario extends Entity {
 
     this.animate();
     this.sprite.update(dt, gameTime);
+  }
+
+  killMario() {
+    this.velocity.y = 0;
+    this.position.y = 4 * TILE_SIZE;
+    this.isStanding = true;
   }
 
   detectCollision(level) {
