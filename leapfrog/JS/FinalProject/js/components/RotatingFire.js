@@ -21,7 +21,7 @@ class RotatingFire extends Entity {
   }
 
   update(dt, gameTime) {
-    let rotationSpeed = 200;
+    let rotationSpeed = 100;
     this.rotation = this.rotation + rotationSpeed * dt;
 
     if (this.rotation >= 360) {
