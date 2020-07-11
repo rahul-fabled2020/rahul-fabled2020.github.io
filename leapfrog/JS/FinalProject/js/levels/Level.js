@@ -13,21 +13,9 @@ class Level {
     this.brickBounceSprite = configuration.brickBounceSprite;
 
     this.fireBackgroundSprites = configuration.fireBackgroundSprites;
+    this.fireBridgeSprite = configuration.fireBridgeSprite;
 
-    this.statics = [];
-    this.scenery = [];
-    this.blocks = [];
-    this.obstacles = [];
-
-    this.enemies = [];
-    this.items = [];
-    this.pipes = [];
-
-    for (let i = 0; i < MAX_ROW_SIZE; i++) {
-      this.statics[i] = [];
-      this.scenery[i] = [];
-      this.blocks[i] = [];
-    }
+    this.initLevel();
   }
 
   putCeiling(horizontalPosition, VerticalPosition) {
@@ -127,11 +115,24 @@ class Level {
     ]);
   }
 
-  clearLevel() {
+  putFireBridge(x,y, length) {
+    let bridge = [];
+    for(let i = 0; i<length; i++) {
+      bridge.push(new FireBridge({
+        position: new Vector((x+i) * TILE_SIZE, y * TILE_SIZE),
+        sprite: this.fireBridgeSprite
+      }));
+    }
+
+    this.bridges.push(bridge);
+  }
+
+  initLevel() {
     this.statics = [];
     this.scenery = [];
     this.blocks = [];
     this.obstacles = [];
+    this.bridges = [];
 
     this.enemies = [];
     this.items = [];

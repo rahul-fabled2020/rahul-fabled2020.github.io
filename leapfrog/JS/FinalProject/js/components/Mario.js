@@ -223,6 +223,13 @@ class Mario extends Entity {
         }        
       }
     }
+
+    //With bridge
+    level.bridges.forEach((bridgeGroup)=>{
+      bridgeGroup.forEach((bridge => {
+        bridge.isCollidingWith(this, level);
+      }))
+    });
   }
 
   animate() {
