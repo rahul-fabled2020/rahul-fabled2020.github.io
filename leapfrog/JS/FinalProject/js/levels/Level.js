@@ -8,7 +8,7 @@ class Level {
     this.floorSprite = configuration.floorSprite;
     this.wallSprite = configuration.wallSprite;
     this.brickSprite = configuration.brickSprite;
-    this.uBlockSprite = configuration.ublockSprite;
+    this.uBlockSprite = configuration.uBlockSprite;
     this.qBlockSprite = configuration.qBlockSprite;
     this.brickBounceSprite = configuration.brickBounceSprite;
 
@@ -94,7 +94,7 @@ class Level {
       position: new Vector(x * 16, y * 16),
       item: item,
       sprite: this.qBlockSprite,
-      usedSprite: this.ublockSprite,
+      usedSprite: this.uBlockSprite,
     });
   }
 
@@ -106,6 +106,13 @@ class Level {
       bounceSprite: this.brickBounceSprite,
       usedSprite: this.uBlockSprite,
       breakable: !item,
+    });
+  }
+
+  putUsedBlock(x, y) {
+    this.blocks[y][x] = new Block({
+      position: new Vector(x *TILE_SIZE, y*TILE_SIZE),
+      sprite: this.uBlockSprite
     });
   }
 

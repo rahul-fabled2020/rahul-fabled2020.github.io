@@ -17,7 +17,7 @@ class RotatingFire extends Entity {
       },
     });
 
-    this.rotation = 0;
+    this.rotation = Math.random() * 360;
   }
 
   update(dt, gameTime) {
