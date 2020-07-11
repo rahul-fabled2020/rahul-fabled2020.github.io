@@ -196,6 +196,12 @@ class Game {
       });
     });
 
+    this.level.bridges.forEach(bridgeGroup => {
+      bridgeGroup.forEach(bridge => {
+        bridge.update(dt, this.gameTime);
+      });
+    });
+
     this.camera.move(this.level, this.player);
   }
 

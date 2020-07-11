@@ -7,7 +7,8 @@ class FireBridge extends Floor {
         height: TILE_SIZE,
       });
 
-      this.breakable = configuration.breakable;
+      this.isCollapsing = false;
+      this.gravity = 0.2;
     }
   
     break() {
@@ -15,7 +16,10 @@ class FireBridge extends Floor {
     }
     
     update(dt, gameTime) {
-        
+        if(this.isCollapsing){
+          this.position.y += this.velocity.y;
+          this.velocity.y += this.gravity;
+        }
     }
   }
   
