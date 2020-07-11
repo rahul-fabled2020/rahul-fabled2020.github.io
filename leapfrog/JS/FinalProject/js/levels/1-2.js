@@ -6,37 +6,37 @@ class Level12 extends Level {
       scrolling: true,
 
       floorSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       wallSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(0, TILE_SIZE),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       brickBounceSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(2 * TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       uBlockSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(3 * TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
       qBlockSprite: new Sprite(
-        "images/tiles.png",
+        TILES,
         new Vector(24 * TILE_SIZE, 0),
         { width: TILE_SIZE, height: TILE_SIZE },
         8,
@@ -44,13 +44,13 @@ class Level12 extends Level {
       ),
       fireBackgroundSprites: [
         new Sprite(
-          "images/tiles.png",
+          TILES,
           new Vector(3 * TILE_SIZE, 24 * TILE_SIZE),
           {width: TILE_SIZE, height: TILE_SIZE},
           0
         ),
         new Sprite(
-          "images/tiles.png",
+          TILES,
           new Vector(3 * TILE_SIZE, 25 * TILE_SIZE),
           {width: TILE_SIZE, height: TILE_SIZE},
           0
@@ -78,6 +78,8 @@ class Level12 extends Level {
   }
 
   loadLevel(player, camera) {
+    this.clearLevel();
+
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
       { horizontalPosition: [0, 4], VerticalPosition: [8, 9] },
@@ -149,5 +151,13 @@ class Level12 extends Level {
     this.putRotatingFire(76,9);
     this.putRotatingFire(84,9);
     this.putRotatingFire(89,4);
+
+    this.putUsedBlock(30,10);
+    this.putUsedBlock(49,6);
+    this.putUsedBlock(60,6);
+    this.putUsedBlock(67,6);
+    this.putUsedBlock(76,9);
+    this.putUsedBlock(84,9);
+    this.putUsedBlock(89,4);
   }
 }

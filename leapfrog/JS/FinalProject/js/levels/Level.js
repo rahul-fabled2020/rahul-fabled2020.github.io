@@ -8,7 +8,7 @@ class Level {
     this.floorSprite = configuration.floorSprite;
     this.wallSprite = configuration.wallSprite;
     this.brickSprite = configuration.brickSprite;
-    this.uBlockSprite = configuration.ublockSprite;
+    this.uBlockSprite = configuration.uBlockSprite;
     this.qBlockSprite = configuration.qBlockSprite;
     this.brickBounceSprite = configuration.brickBounceSprite;
 
@@ -94,7 +94,7 @@ class Level {
       position: new Vector(x * 16, y * 16),
       item: item,
       sprite: this.qBlockSprite,
-      usedSprite: this.ublockSprite,
+      usedSprite: this.uBlockSprite,
     });
   }
 
@@ -109,14 +109,38 @@ class Level {
     });
   }
 
+  putUsedBlock(x, y) {
+    this.blocks[y][x] = new Block({
+      position: new Vector(x *TILE_SIZE, y*TILE_SIZE),
+      sprite: this.uBlockSprite
+    });
+  }
+
   putRotatingFire(x, y) {
-    this.obstacles.push(
-      [new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+0.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+1) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+1.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+2) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+2.5) * TILE_SIZE, y * TILE_SIZE))]
-    );
+    this.obstacles.push([
+      new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 0.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 1) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 1.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 2) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 2.5) * TILE_SIZE, y * TILE_SIZE)),
+    ]);
+  }
+
+  clearLevel() {
+    this.statics = [];
+    this.scenery = [];
+    this.blocks = [];
+    this.obstacles = [];
+
+    this.enemies = [];
+    this.items = [];
+    this.pipes = [];
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
+      this.statics[i] = [];
+      this.scenery[i] = [];
+      this.blocks[i] = [];
+    }
   }
 }

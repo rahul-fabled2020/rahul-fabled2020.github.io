@@ -14,10 +14,12 @@ class Game {
     this.camera = new Camera(0, 0, 256, 240);
 
     Game.imageLoader.load([
-      "images/mario.png",
-      "images/items.png",
-      "images/tiles.png",
-      "images/enemies.png",
+      // PLAYER_LEFT,
+      PLAYER_RIGHT,
+      ITEMS,
+      TILES,
+      // ENEMIES_LEFT,
+      ENEMIES_RIGHT
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));
@@ -79,15 +81,13 @@ class Game {
         new Vector(halfWidth, halfHeight)
       );
 
-      if (
-        !(
-          obstaclePivot.x - this.camera.x <= 15*TILE_SIZE
-        )
-      )
-        return;
+      if (!(obstaclePivot.x - this.camera.x <= 15 * TILE_SIZE)) return;
 
       this.context.save();
-      this.context.translate(obstaclePivot.x - this.camera.x + halfWidth, obstaclePivot.y + halfHeight);
+      this.context.translate(
+        obstaclePivot.x - this.camera.x + halfWidth,
+        obstaclePivot.y + halfHeight
+      );
       this.context.rotate(angle);
 
       obstacleGroup.forEach((obstacle, i) => {
@@ -183,13 +183,7 @@ class Game {
       });
     });
 
-    const OFFSET_FROM_LEFT = 5 * TILE_SIZE;
-    if (
-      this.level.scrolling &&
-      this.player.position.x > this.camera.x + OFFSET_FROM_LEFT
-    ) {
-      this.camera.x = this.player.position.x - OFFSET_FROM_LEFT;
-    }
+    this.camera.move(this.level, this.player);
   }
 
   detectCollision() {
