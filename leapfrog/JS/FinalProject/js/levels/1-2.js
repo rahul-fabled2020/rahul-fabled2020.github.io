@@ -11,6 +11,14 @@ class Level12 extends Level {
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
+
+      fireBridgeSprite: new Sprite(
+        TILES,
+        new Vector(4 * TILE_SIZE, 24 * TILE_SIZE),
+        {width: TILE_SIZE, height: TILE_SIZE},
+        0
+      ),
+
       wallSprite: new Sprite(
         TILES,
         new Vector(0, TILE_SIZE),
@@ -78,7 +86,7 @@ class Level12 extends Level {
   }
 
   loadLevel(player, camera) {
-    this.clearLevel();
+    this.initLevel();
 
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
@@ -159,5 +167,7 @@ class Level12 extends Level {
     this.putUsedBlock(76,9);
     this.putUsedBlock(84,9);
     this.putUsedBlock(89,4);
+
+    this.putFireBridge(128, 10, 13);
   }
 }

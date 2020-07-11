@@ -64,11 +64,23 @@ class Game {
 
     this.renderImmovables();
     this.renderEntity(this.player);
+    this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
     
     if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
+  }
+
+  renderFireBridge() {
+    this.level.bridges.forEach(bridgeGroup => {
+      // if (!(bridgeGroup[0].x - this.camera.x <= MAX_ROW_SIZE * TILE_SIZE)) return;
+
+      bridgeGroup.forEach(bridge => {
+        
+        this.renderEntity(bridge);
+      });
+    });
   }
 
   renderRotatingObstacleGroup(callback) {
@@ -80,7 +92,7 @@ class Game {
         new Vector(halfWidth, halfHeight)
       );
 
-      if (!(obstaclePivot.x - this.camera.x <= 15 * TILE_SIZE)) return;
+      if (!(obstaclePivot.x - this.camera.x <= MAX_ROW_SIZE * TILE_SIZE)) return;
 
       this.context.save();
       this.context.translate(
@@ -105,10 +117,11 @@ class Game {
 
   renderBackgroundScenes() {
     //i refers to row number i.e. vertical position of the tile
-    for (let i = 0; i < 15; i++) {
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
       for (
-        let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
-        j < Math.floor(this.camera.x / TILE_SIZE) + 20;
+        let j = this.camera.CAMERA_POSITION_TILE - 1;
+        j < this.camera.CAMERA_POSITION_TILE + 20;
         j++
       ) {
         if (this.level.scenery[i][j]) {
@@ -119,10 +132,11 @@ class Game {
   }
 
   renderImmovables() {
-    for (let i = 0; i < 15; i++) {
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
       for (
-        let j = Math.floor(this.camera.x / TILE_SIZE) - 1;
-        j < Math.floor(this.camera.x / TILE_SIZE) + 20;
+        let j = this.camera.CAMERA_POSITION_TILE - 1;
+        j < this.camera.CAMERA_POSITION_TILE + 20;
         j++
       ) {
         if (this.level.statics[i][j]) {

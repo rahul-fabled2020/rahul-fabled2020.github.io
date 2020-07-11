@@ -48,6 +48,8 @@ class Level11 extends Level {
   }
 
   loadLevel(player, camera) {
+    this.initLevel();
+
     let ground = [
       [0, 69],
       [71, 86],
