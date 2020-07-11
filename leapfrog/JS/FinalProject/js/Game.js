@@ -62,11 +62,10 @@ class Game {
 
     this.renderBackgroundScenes();
 
-    this.renderRotatingObstacleGroup(this.renderEntity);
-
     this.renderImmovables();
     this.renderEntity(this.player);
-
+    this.renderRotatingObstacleGroup(this.renderEntity);
+    
     if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
