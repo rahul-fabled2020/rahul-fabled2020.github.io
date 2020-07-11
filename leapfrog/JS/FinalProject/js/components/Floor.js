@@ -55,6 +55,14 @@ class Floor extends Entity {
       Math.abs(displacement.x / this.hitbox.width) >
       Math.abs(displacement.y / this.hitbox.height)
     ) {
+      if(this instanceof FireBridge) return;
+
+      if(entity instanceof Goomba) {
+
+        entity.reverseHorizontalVelocity();
+        return;
+      }
+
       if (displacement.x < 0) {
         //Entity is colliding from the left
         entity.velocity.x = Math.min(0, entity.velocity.x);

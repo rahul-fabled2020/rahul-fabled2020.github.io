@@ -18,7 +18,7 @@ class Game {
       PLAYER_RIGHT,
       ITEMS,
       TILES,
-      // ENEMIES_LEFT,
+      ENEMIES_LEFT,
       ENEMIES_RIGHT
     ]);
 
@@ -63,6 +63,10 @@ class Game {
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.renderBackgroundScenes();
+
+    this.level.enemies.forEach(enemy => {
+      this.renderEntity(enemy);
+    });
 
     this.renderImmovables();
     this.renderEntity(this.player);
@@ -195,10 +199,18 @@ class Game {
     });
 
     this.camera.move(this.level, this.player);
+
+    this.level.enemies.forEach(enemy => {
+      enemy.update(dt, this.camera, this.level);
+    });
   }
 
   detectCollision() {
     this.player.detectCollision(this.level);
+
+    this.level.enemies.forEach(enemy => {
+      enemy.detectCollision(this.level, this.camera, this.player);
+    });
   }
 
   switchLevel() {

@@ -15,7 +15,7 @@ class Level12 extends Level {
       fireBridgeSprite: new Sprite(
         TILES,
         new Vector(4 * TILE_SIZE, 24 * TILE_SIZE),
-        {width: TILE_SIZE, height: TILE_SIZE},
+        { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
 
@@ -54,16 +54,24 @@ class Level12 extends Level {
         new Sprite(
           TILES,
           new Vector(3 * TILE_SIZE, 24 * TILE_SIZE),
-          {width: TILE_SIZE, height: TILE_SIZE},
+          { width: TILE_SIZE, height: TILE_SIZE },
           0
         ),
         new Sprite(
           TILES,
           new Vector(3 * TILE_SIZE, 25 * TILE_SIZE),
-          {width: TILE_SIZE, height: TILE_SIZE},
+          { width: TILE_SIZE, height: TILE_SIZE },
           0
         ),
       ],
+
+      goombaSprite: new Sprite(
+        ENEMIES_LEFT,
+        new Vector(0, TILE_SIZE),
+        { width: TILE_SIZE, height: TILE_SIZE },
+        3,
+        [0, 1]
+      ),
     });
 
     this.levelEndPosition = 153 * TILE_SIZE;
@@ -152,22 +160,30 @@ class Level12 extends Level {
 
     //Others
     this.putQBlock(30, 6, null);
-    this.putRotatingFire(30,10);
-    this.putRotatingFire(49,6);
-    this.putRotatingFire(60,6);
-    this.putRotatingFire(67,6);
-    this.putRotatingFire(76,9);
-    this.putRotatingFire(84,9);
-    this.putRotatingFire(89,4);
+    this.putRotatingFire(30, 10);
+    this.putRotatingFire(49, 6);
+    this.putRotatingFire(60, 6);
+    this.putRotatingFire(67, 6);
+    this.putRotatingFire(76, 9);
+    this.putRotatingFire(84, 9);
+    this.putRotatingFire(89, 4);
 
-    this.putUsedBlock(30,10);
-    this.putUsedBlock(49,6);
-    this.putUsedBlock(60,6);
-    this.putUsedBlock(67,6);
-    this.putUsedBlock(76,9);
-    this.putUsedBlock(84,9);
-    this.putUsedBlock(89,4);
+    this.putUsedBlock(30, 10);
+    this.putUsedBlock(49, 6);
+    this.putUsedBlock(60, 6);
+    this.putUsedBlock(67, 6);
+    this.putUsedBlock(76, 9);
+    this.putUsedBlock(84, 9);
+    this.putUsedBlock(89, 4);
 
     this.putFireBridge(128, 10, 13);
+
+    //Enemies
+    this.putGoomba(10, 5);
+    this.putGoomba(12, 5);
+    this.putGoomba(92, 9);
+    this.putGoomba(100, 9);
+    this.putGoomba(130, 9);
+    this.putGoomba(135, 9);
   }
 }
