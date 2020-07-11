@@ -8,5 +8,5 @@ const PLAYER_LEFT = "images/mario.png";
 const PLAYER_RIGHT = "images/mario.png";
 const ITEMS = "images/items.png";
 const TILES = "images/tiles.png";
-const ENEMIES_LEFT = "images/enemies.png";
-const ENEMIES_RIGHT = "images/enemies.png";
+const ENEMIES_LEFT = "images/enemiesLeft.png";
+const ENEMIES_RIGHT = "images/enemiesRight.png";

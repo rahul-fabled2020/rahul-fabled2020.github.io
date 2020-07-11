@@ -15,6 +15,9 @@ class Level {
     this.fireBackgroundSprites = configuration.fireBackgroundSprites;
     this.fireBridgeSprite = configuration.fireBridgeSprite;
 
+    //Enemies
+    this.goombaSprite = configuration.goombaSprite;
+
     this.initLevel();
   }
 
@@ -125,6 +128,10 @@ class Level {
     }
 
     this.bridges.push(bridge);
+  }
+
+  putGoomba(x, y) {
+    this.enemies.push(new Goomba(new Vector(x*TILE_SIZE, y*TILE_SIZE), this.goombaSprite, this));
   }
 
   initLevel() {
