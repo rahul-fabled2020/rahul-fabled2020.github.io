@@ -5,11 +5,11 @@
  * @param {Object} sprite
  */
 class Floor extends Entity {
-  constructor(position, sprite) {
+  constructor(position, sprite, hitbox) {
     super({
       position: position,
       sprite: sprite,
-      hitbox: {
+      hitbox: hitbox || {
         x: 0, //offSetX
         y: 0, //offSetY
         width: TILE_SIZE,

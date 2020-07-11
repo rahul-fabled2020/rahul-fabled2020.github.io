@@ -217,6 +217,10 @@ class Mario extends Entity {
         if (level.statics[baseY + i][baseX + j]) {
           level.statics[baseY + i][baseX + j].isCollidingWith(this, level);
         }
+
+        if (level.blocks[baseY + i][baseX + j]) {
+          level.blocks[baseY + i][baseX + j].isCollidingWith(this, level);
+        }        
       }
     }
   }

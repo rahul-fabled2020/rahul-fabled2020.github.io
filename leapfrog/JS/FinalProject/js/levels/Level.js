@@ -110,13 +110,30 @@ class Level {
   }
 
   putRotatingFire(x, y) {
-    this.obstacles.push(
-      [new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+0.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+1) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+1.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+2) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x+2.5) * TILE_SIZE, y * TILE_SIZE))]
-    );
+    this.obstacles.push([
+      new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 0.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 1) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 1.5) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 2) * TILE_SIZE, y * TILE_SIZE)),
+      new RotatingFire(new Vector((x + 2.5) * TILE_SIZE, y * TILE_SIZE)),
+    ]);
+  }
+
+  clearLevel() {
+    this.statics = [];
+    this.scenery = [];
+    this.blocks = [];
+    this.obstacles = [];
+
+    this.enemies = [];
+    this.items = [];
+    this.pipes = [];
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
+      this.statics[i] = [];
+      this.scenery[i] = [];
+      this.blocks[i] = [];
+    }
   }
 }

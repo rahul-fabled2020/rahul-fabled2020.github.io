@@ -78,6 +78,8 @@ class Level12 extends Level {
   }
 
   loadLevel(player, camera) {
+    this.clearLevel();
+
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
       { horizontalPosition: [0, 4], VerticalPosition: [8, 9] },
