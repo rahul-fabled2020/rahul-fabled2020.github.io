@@ -56,6 +56,8 @@ class Game {
   }
 
   render() {
+    this.updateables=[];
+
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.fillStyle = this.level.background;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -77,8 +79,9 @@ class Game {
       // if (!(bridgeGroup[0].x - this.camera.x <= MAX_ROW_SIZE * TILE_SIZE)) return;
 
       bridgeGroup.forEach(bridge => {
-        
         this.renderEntity(bridge);
+        this.updateables.push(bridge);
+
       });
     });
   }
@@ -105,6 +108,7 @@ class Game {
         obstacle.position.x = 2 * halfWidth * i - halfWidth + this.camera.x;
         obstacle.position.y = 2 * halfHeight * i - halfHeight;
         callback.call(this, obstacle);
+        this.updateables.push(obstacle);
       });
 
       this.context.restore();
@@ -188,18 +192,6 @@ class Game {
 
     this.updateables.forEach((entity) => {
       entity.update(dt, this.gameTime);
-    });
-
-    this.level.obstacles.forEach((obstacleGroup) => {
-      obstacleGroup.forEach((obstacle) => {
-        obstacle.update(dt, this.gameTime);
-      });
-    });
-
-    this.level.bridges.forEach(bridgeGroup => {
-      bridgeGroup.forEach(bridge => {
-        bridge.update(dt, this.gameTime);
-      });
     });
 
     this.camera.move(this.level, this.player);
