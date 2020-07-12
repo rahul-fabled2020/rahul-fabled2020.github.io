@@ -17,6 +17,7 @@ class Level {
 
     //Enemies
     this.goombaSprite = configuration.goombaSprite;
+    this.koopaSprite = configuration.koopaSprite;
 
     this.initLevel();
   }
@@ -132,6 +133,10 @@ class Level {
 
   putGoomba(x, y) {
     this.enemies.push(new Goomba(new Vector(x*TILE_SIZE, y*TILE_SIZE), this.goombaSprite, this));
+  }
+
+  putKoopa(x, y){
+    this.enemies.push(new Koopa(new Vector(x*TILE_SIZE, y*TILE_SIZE), this.koopaSprite, this));
   }
 
   initLevel() {

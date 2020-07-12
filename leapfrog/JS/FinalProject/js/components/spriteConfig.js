@@ -66,4 +66,12 @@ const SPRITES = {
     3,
     [0, 1]
   ),
+
+  koopaSprite: new Sprite(
+    ENEMIES_LEFT,
+    new Vector(6 * TILE_SIZE, 0),
+    { width: TILE_SIZE, height: 2 * TILE_SIZE },
+    3,
+    [0, 1]
+  ),
 };
