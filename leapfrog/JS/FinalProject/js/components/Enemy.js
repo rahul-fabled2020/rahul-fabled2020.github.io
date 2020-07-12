@@ -1,20 +1,15 @@
-class Goomba extends Enemy {
-  constructor(position, sprite, level) {
+class Enemy extends Entity {
+  constructor(configuration) {
     super({
-      position: position,
-      sprite: sprite,
-      hitbox: {
-        x: 0,
-        y: 0,
-        width: TILE_SIZE,
-        height: TILE_SIZE,
-      },
-      level: level
+      position: configuration.position,
+      sprite: configuration.sprite,
+      hitbox: configuration.hitbox,
     });
 
     this.isDyingCount = 0;
     this.velocity = new Vector(-0.5, 0);
-    this.index = level.enemies.length;
+    this.level = configuration.level;
+    this.index = this.level.enemies.length;
   }
 
   update(dt, camera, level) {
@@ -41,7 +36,7 @@ class Goomba extends Enemy {
     this.sprite.update(dt);
   }
 
-  detectCollision(level, camera, player) {
+  detectCollision(camera, player) {
     if (this.isFlipping) return;
 
     //Number of overlapping tiles = h*w
@@ -75,25 +70,25 @@ class Goomba extends Enemy {
           i++;
         }
 
-        if (level.statics[baseY + i][baseX + j]) {
-          level.statics[baseY + i][baseX + j].isCollidingWith(this, level);
+        if (this.level.statics[baseY + i][baseX + j]) {
+          this.level.statics[baseY + i][baseX + j].isCollidingWith(this, this.level);
         }
 
-        if (level.blocks[baseY + i][baseX + j]) {
-          level.blocks[baseY + i][baseX + j].isCollidingWith(this, level);
+        if (this.level.blocks[baseY + i][baseX + j]) {
+          this.level.blocks[baseY + i][baseX + j].isCollidingWith(this, this.level);
         }
       }
     }
 
     //With bridge
-    level.bridges.forEach((bridgeGroup) => {
+    this.level.bridges.forEach((bridgeGroup) => {
       bridgeGroup.forEach((bridge) => {
-        bridge.isCollidingWith(this, level);
+        bridge.isCollidingWith(this, this.level);
       });
     });
 
     //With other enemies
-    level.enemies.forEach((enemy) => {
+    this.level.enemies.forEach((enemy) => {
       if (enemy === this) return;
 
       if (enemy.position.x - camera.x > 21 * TILE_SIZE) return;
@@ -139,7 +134,7 @@ class Goomba extends Enemy {
         entity.killMario();
       }
     } else {
-        this.reverseHorizontalVelocity();
+      this.reverseHorizontalVelocity();
     }
   }
 

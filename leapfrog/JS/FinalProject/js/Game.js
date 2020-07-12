@@ -69,6 +69,8 @@ class Game {
     this.renderBackgroundScenes();
 
     this.level.enemies.forEach(enemy => {
+      if(enemy.level != this.level) return;
+      
       this.renderEntity(enemy);
     });
 
