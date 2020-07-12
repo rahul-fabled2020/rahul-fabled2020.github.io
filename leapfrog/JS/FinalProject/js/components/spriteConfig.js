@@ -1,4 +1,12 @@
 const SPRITES = {
+  axeSprite: new Sprite(
+    TILES,
+    new Vector(27 * TILE_SIZE, TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    8,
+    [0, 0, 0, 0, 1, 2, 1]
+  ),
+
   floorSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),

@@ -103,8 +103,8 @@ class Level {
 
   putUsedBlock(x, y) {
     this.blocks[y][x] = new Block({
-      position: new Vector(x *TILE_SIZE, y*TILE_SIZE),
-      sprite: this.uBlockSprite
+      position: new Vector(x * TILE_SIZE, y * TILE_SIZE),
+      sprite: this.uBlockSprite,
     });
   }
 
@@ -119,24 +119,42 @@ class Level {
     ]);
   }
 
-  putFireBridge(x,y, length) {
+  putFireBridge(x, y, length) {
     let bridge = [];
-    for(let i = 0; i<length; i++) {
-      bridge.push(new FireBridge({
-        position: new Vector((x+i) * TILE_SIZE, y * TILE_SIZE),
-        sprite: this.fireBridgeSprite
-      }));
+    for (let i = 0; i < length; i++) {
+      bridge.push(
+        new FireBridge({
+          position: new Vector((x + i) * TILE_SIZE, y * TILE_SIZE),
+          sprite: this.fireBridgeSprite,
+        })
+      );
     }
 
     this.bridges.push(bridge);
   }
 
-  putGoomba(x, y) {
-    this.enemies.push(new Goomba(new Vector(x*TILE_SIZE, y*TILE_SIZE), this.goombaSprite, this));
+  putAxe(x, y) {
+    this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE)));
   }
 
-  putKoopa(x, y){
-    this.enemies.push(new Koopa(new Vector(x*TILE_SIZE, y*TILE_SIZE), this.koopaSprite, this));
+  putGoomba(x, y) {
+    this.enemies.push(
+      new Goomba(
+        new Vector(x * TILE_SIZE, y * TILE_SIZE),
+        this.goombaSprite,
+        this
+      )
+    );
+  }
+
+  putKoopa(x, y) {
+    this.enemies.push(
+      new Koopa(
+        new Vector(x * TILE_SIZE, y * TILE_SIZE),
+        this.koopaSprite,
+        this
+      )
+    );
   }
 
   initLevel() {
