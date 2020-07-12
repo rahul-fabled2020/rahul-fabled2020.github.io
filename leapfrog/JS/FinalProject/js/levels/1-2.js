@@ -6,7 +6,7 @@ class Level12 extends Level {
       scrolling: true,
     };
 
-    var configuration = {...levelConfig, ...SPRITES}
+    var configuration = { ...levelConfig, ...SPRITES };
     super(configuration);
 
     this.levelEndPosition = 153 * TILE_SIZE;
@@ -31,7 +31,7 @@ class Level12 extends Level {
   loadLevel(player, camera) {
     this.initLevel();
     SPRITES.floorSprite.position = new Vector(2 * TILE_SIZE, 5 * TILE_SIZE);
-    
+
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
       { horizontalPosition: [0, 4], VerticalPosition: [8, 9] },
@@ -113,6 +113,7 @@ class Level12 extends Level {
     this.putUsedBlock(89, 4);
 
     this.putFireBridge(128, 10, 13);
+    this.putAxe(141.5, 8);
 
     //Enemies
     this.putGoomba(10, 5);

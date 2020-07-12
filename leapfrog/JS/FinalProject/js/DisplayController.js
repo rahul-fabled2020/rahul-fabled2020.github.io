@@ -16,6 +16,10 @@ class DisplayController {
     
         this.renderBackgroundScenes();
     
+        this.game.level.items.forEach((item) => {
+          this.renderEntity(item);
+        });
+
         this.game.level.enemies.forEach(enemy => {
           this.renderEntity(enemy);
         });
