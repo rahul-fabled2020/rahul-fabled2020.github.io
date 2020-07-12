@@ -15,4 +15,10 @@ class Camera {
       this.CAMERA_POSITION_TILE = Math.floor(this.x / TILE_SIZE);
     }
   }
+
+  reset() {
+    this.x = 0;
+    this.y = 0;
+    this.CAMERA_POSITION_TILE = 0;
+  }
 }

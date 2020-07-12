@@ -51,7 +51,6 @@ class Game {
   update(dt) {
     if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
-      this.camera.x = this.camera.y = 0;
     }
 
     this.gameTime += dt;
@@ -219,6 +218,8 @@ class Game {
     this.currentLevelIndex = index;
 
     this.player.position.x = 0;
+    this.camera.reset();
+
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);
   }
