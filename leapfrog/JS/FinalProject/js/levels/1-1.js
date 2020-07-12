@@ -112,11 +112,22 @@ class Level11 extends Level {
     this.putWall(189, 13, 8);
 
     //Enemies
-    this.putGoomba(10, 5);
-    this.putGoomba(12, 5);
-    this.putGoomba(92, 9);
-    this.putGoomba(100, 9);
-    this.putGoomba(130, 9);
-    this.putGoomba(135, 9);
+    this.putGoomba(22, 12);
+    this.putGoomba(40, 12);
+    this.putGoomba(50, 12);
+    this.putGoomba(51, 12);
+    this.putGoomba(82, 4);
+    this.putGoomba(84, 4);
+    this.putGoomba(100, 12);
+    this.putGoomba(102, 12);
+    this.putGoomba(114, 12);
+    this.putGoomba(115, 12);
+    this.putGoomba(122, 12);
+    this.putGoomba(123, 12);
+    this.putGoomba(125, 12);
+    this.putGoomba(126, 12);
+    this.putGoomba(170, 12);
+    this.putGoomba(172, 12);
+    this.putKoopa(35, 11);
   }
 }
