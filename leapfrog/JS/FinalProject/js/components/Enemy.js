@@ -12,8 +12,7 @@ class Enemy extends Entity {
     this.index = this.level.enemies.length;
   }
 
-  update(dt, camera, level) {
-    if (level !== this.level) return;
+  update(dt, camera) {
 
     if (this.position.x - camera.x > 21 * TILE_SIZE) return;
 

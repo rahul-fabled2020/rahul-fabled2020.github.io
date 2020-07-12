@@ -69,8 +69,6 @@ class Game {
     this.renderBackgroundScenes();
 
     this.level.enemies.forEach(enemy => {
-      if(enemy.level != this.level) return;
-      
       this.renderEntity(enemy);
     });
 
@@ -203,7 +201,7 @@ class Game {
     this.camera.move(this.level, this.player);
 
     this.level.enemies.forEach(enemy => {
-      enemy.update(dt, this.camera, this.level);
+      enemy.update(dt, this.camera);
     });
   }
 
@@ -211,7 +209,7 @@ class Game {
     this.player.detectCollision(this.level);
 
     this.level.enemies.forEach(enemy => {
-      enemy.detectCollision(this.level, this.camera, this.player);
+      enemy.detectCollision(this.camera, this.player);
     });
   }
 
