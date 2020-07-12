@@ -58,6 +58,10 @@ class Game {
   render() {
     this.updateables=[];
 
+    if (this.player.position.x > this.level.levelEndPosition) {
+      this.switchLevel();
+    }
+    
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.fillStyle = this.level.background;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -72,10 +76,6 @@ class Game {
     this.renderEntity(this.player);
     this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
-    
-    if (this.player.position.x > this.level.levelEndPosition) {
-      this.switchLevel();
-    }
   }
 
   renderFireBridge() {
