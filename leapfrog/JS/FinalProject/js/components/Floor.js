@@ -57,7 +57,7 @@ class Floor extends Entity {
     ) {
       if(this instanceof FireBridge) return;
 
-      if(entity instanceof Goomba) {
+      if(entity instanceof Enemy) {
 
         entity.reverseHorizontalVelocity();
         return;

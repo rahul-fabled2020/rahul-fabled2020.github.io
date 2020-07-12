@@ -1,78 +1,13 @@
 class Level12 extends Level {
   constructor() {
-    super({
+    var levelConfig = {
       playerPosition: new Vector(0, 96),
       background: "#000",
       scrolling: true,
+    };
 
-      floorSprite: new Sprite(
-        TILES,
-        new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-
-      fireBridgeSprite: new Sprite(
-        TILES,
-        new Vector(4 * TILE_SIZE, 24 * TILE_SIZE),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-
-      wallSprite: new Sprite(
-        TILES,
-        new Vector(0, TILE_SIZE),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      brickSprite: new Sprite(
-        TILES,
-        new Vector(TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      brickBounceSprite: new Sprite(
-        TILES,
-        new Vector(2 * TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      uBlockSprite: new Sprite(
-        TILES,
-        new Vector(3 * TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      qBlockSprite: new Sprite(
-        TILES,
-        new Vector(24 * TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        8,
-        [0, 0, 0, 0, 1, 2, 1]
-      ),
-      fireBackgroundSprites: [
-        new Sprite(
-          TILES,
-          new Vector(3 * TILE_SIZE, 24 * TILE_SIZE),
-          { width: TILE_SIZE, height: TILE_SIZE },
-          0
-        ),
-        new Sprite(
-          TILES,
-          new Vector(3 * TILE_SIZE, 25 * TILE_SIZE),
-          { width: TILE_SIZE, height: TILE_SIZE },
-          0
-        ),
-      ],
-
-      goombaSprite: new Sprite(
-        ENEMIES_LEFT,
-        new Vector(0, TILE_SIZE),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        3,
-        [0, 1]
-      ),
-    });
+    var configuration = {...levelConfig, ...SPRITES}
+    super(configuration);
 
     this.levelEndPosition = 153 * TILE_SIZE;
   }
@@ -95,7 +30,8 @@ class Level12 extends Level {
 
   loadLevel(player, camera) {
     this.initLevel();
-
+    SPRITES.floorSprite.position = new Vector(2 * TILE_SIZE, 5 * TILE_SIZE);
+    
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
       { horizontalPosition: [0, 4], VerticalPosition: [8, 9] },
@@ -185,5 +121,7 @@ class Level12 extends Level {
     this.putGoomba(100, 9);
     this.putGoomba(130, 9);
     this.putGoomba(135, 9);
+
+    return "Loaded";
   }
 }

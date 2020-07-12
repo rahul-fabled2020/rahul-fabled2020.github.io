@@ -1,54 +1,21 @@
 class Level11 extends Level {
   constructor() {
-    super({
-      playerPosition: new Vector(3*TILE_SIZE, 12*TILE_SIZE),
+    var levelConfig = {
+      playerPosition: new Vector(3 * TILE_SIZE, 12 * TILE_SIZE),
       background: "#7974FF",
       scrolling: true,
+    };
 
-      floorSprite: new Sprite(
-        TILES,
-        new Vector(0, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      wallSprite: new Sprite(
-        TILES,
-        new Vector(0, TILE_SIZE),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      brickSprite: new Sprite(
-        TILES,
-        new Vector(TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      brickBounceSprite: new Sprite(
-        TILES,
-        new Vector(2*TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      uBlockSprite: new Sprite(
-        TILES,
-        new Vector(3*TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        0
-      ),
-      qBlockSprite: new Sprite(
-        TILES,
-        new Vector(24*TILE_SIZE, 0),
-        { width: TILE_SIZE, height: TILE_SIZE },
-        8,
-        [0, 0, 0, 0, 1, 2, 1]
-      ),
-    });
+    var configuration = { ...levelConfig, ...SPRITES };
 
-    this.levelEndPosition = 204*TILE_SIZE;
+    super(configuration);
+
+    this.levelEndPosition = 204 * TILE_SIZE;
   }
 
   loadLevel(player, camera) {
     this.initLevel();
+    SPRITES.floorSprite.position = new Vector(0, 0);
 
     let ground = [
       [0, 69],
@@ -62,7 +29,7 @@ class Level11 extends Level {
       [363, 385],
       [389, 391],
       [395, 402],
-      [405, 446]
+      [405, 446],
     ];
     player.position = this.playerPosition;
     camera.x = 0;
@@ -143,5 +110,15 @@ class Level11 extends Level {
     this.putWall(187, 13, 7);
     this.putWall(188, 13, 8);
     this.putWall(189, 13, 8);
+
+    //Enemies
+    this.putGoomba(10, 5);
+    this.putGoomba(12, 5);
+    this.putGoomba(92, 9);
+    this.putGoomba(100, 9);
+    this.putGoomba(130, 9);
+    this.putGoomba(135, 9);
+
+    return "Loaded";
   }
 }
