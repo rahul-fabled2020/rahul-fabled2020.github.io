@@ -20,6 +20,12 @@ class Enemy extends Entity {
       delete this.level.enemies[this.index];
     }
 
+    if(!(this instanceof Goomba) && this.velocity.x >0) {
+        this.sprite.imageUrl = ENEMIES_RIGHT;
+    } else {
+        this.sprite.imageUrl = ENEMIES_LEFT;
+    }
+
     if (this.isDyingCount) {
       this.isDyingCount--;
 

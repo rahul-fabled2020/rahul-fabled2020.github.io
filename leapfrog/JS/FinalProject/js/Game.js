@@ -135,4 +135,3 @@ window.addEventListener("blur", function () {
   g.controller.pressedKeys = {};
 });
 
-let context = g.context;
