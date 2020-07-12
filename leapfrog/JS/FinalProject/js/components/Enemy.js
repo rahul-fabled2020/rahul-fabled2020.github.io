@@ -50,6 +50,8 @@ class Enemy extends Entity {
       w++;
     }
 
+    if(this instanceof Koopa) h++;
+
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
 

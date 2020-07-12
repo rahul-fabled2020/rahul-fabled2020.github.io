@@ -122,6 +122,9 @@ class Level12 extends Level {
     this.putGoomba(130, 9);
     this.putGoomba(135, 9);
 
-    return "Loaded";
+    this.putKoopa(8, 5);
+    this.putKoopa(102, 9);
+    this.putKoopa(132, 9);
+    this.putKoopa(137, 9);
   }
 }

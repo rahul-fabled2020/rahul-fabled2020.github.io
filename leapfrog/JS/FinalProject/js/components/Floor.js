@@ -83,13 +83,13 @@ class Floor extends Entity {
       if (displacement.y < 0) {
         //Entity is colliding from the top
         entity.velocity.y = 0;
-        entity.position.y = this.position.y - entity.hitbox.height;
+        entity.position.y = this.position.y - entity.hitbox.height - entity.hitbox.y;
         entity.isOnGround = true;
 
       } else {
         //Entity is colliding from the bottom
         entity.velocity.y = 0;
-        entity.position.y = this.position.y + this.hitbox.height;
+        entity.position.y = this.position.y + this.hitbox.height + this.hitbox.y;
         
       }
     }

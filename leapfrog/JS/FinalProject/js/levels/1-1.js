@@ -118,7 +118,5 @@ class Level11 extends Level {
     this.putGoomba(100, 9);
     this.putGoomba(130, 9);
     this.putGoomba(135, 9);
-
-    return "Loaded";
   }
 }
