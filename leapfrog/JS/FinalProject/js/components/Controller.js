@@ -68,7 +68,7 @@ class Controller {
     }
 
     this.pressedKeys[key] = isActive;
-    console.log(this.pressedKeys);
+  
   }
 
   /**

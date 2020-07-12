@@ -29,7 +29,7 @@ class Mario extends Entity {
   }
 
   run() {
-    console.log("Running");
+    
     this.maxSpeed = 2.5;
 
     if (this.state == 2 && !this.isRunHeld) {
@@ -40,7 +40,7 @@ class Mario extends Entity {
   }
 
   shoot() {
-    console.log("Shooting");
+    
   }
 
   noRun() {
@@ -118,12 +118,12 @@ class Mario extends Entity {
       this.isOnGround = false;
       this.velocity.y = -6;
 
-      console.log("Jumping");
+      
 
       if (this.state === 0) {
-        console.log("Fuchhe mario");
+        
       } else {
-        console.log("Thulo Mario");
+        
       }
     }
   }
