@@ -11,7 +11,7 @@ class Entity {
     this.velocity = new Vector(0, 0);
     this.acceleration = new Vector(0, 0);
 
-    this.isStanding = true;
+    this.isOnGround = true;
     this.position = configuration.position;
     this.sprite = configuration.sprite;
     this.hitbox = configuration.hitbox;
@@ -26,24 +26,6 @@ class Entity {
   render(context, camera) {
 
     this.sprite.render(context, this.position, camera);
-  }
-
-  /**
-   * Detects and Resolves wall collision
-   * @param {Object} wall 
-   */
-  collideWithWall(wall) {
-    if (this.position.x > wall.position.x) {
-      //Collision from the right
-      this.position.x = wall.position.x + wall.hitbox.width - this.hitbox.x;
-      this.velocity.x = Math.max(0, this.velocity.x);
-      this.acceleration.x = Math.max(0, this.acceleration.x);
-    } else {
-      this.position.x =
-        wall.position.x + wall.hitbox.x - this.hitbox.width - this.hitbox.x;
-      this.velocity.x = Math.min(0, this.velocity.x);
-      this.acceleration.x = Math.min(0, this.acceleration.x);
-    }
   }
 
   bump() {

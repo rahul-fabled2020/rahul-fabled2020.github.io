@@ -29,7 +29,7 @@ class Mario extends Entity {
   }
 
   run() {
-    console.log("Running");
+    
     this.maxSpeed = 2.5;
 
     if (this.state == 2 && !this.isRunHeld) {
@@ -40,7 +40,7 @@ class Mario extends Entity {
   }
 
   shoot() {
-    console.log("Shooting");
+    
   }
 
   noRun() {
@@ -50,7 +50,7 @@ class Mario extends Entity {
   }
 
   moveRight() {
-    if (this.velocity.y === 0 && this.isStanding) {
+    if (this.velocity.y === 0 && this.isOnGround) {
       if (this.isCrounching) {
         this.noWalk();
         return;
@@ -64,7 +64,7 @@ class Mario extends Entity {
   }
 
   moveLeft() {
-    if (this.velocity.y === 0 && this.isStanding) {
+    if (this.velocity.y === 0 && this.isOnGround) {
       if (this.isCrounching) {
         this.noWalk();
         return;
@@ -96,7 +96,7 @@ class Mario extends Entity {
       return;
     }
 
-    if (this.isStanding) {
+    if (this.isOnGround) {
       this.isCrounching = true;
     }
   }
@@ -112,18 +112,18 @@ class Mario extends Entity {
 
     if (this.jumping) {
       this.jumping -= 1;
-    } else if (this.isStanding && this.canJump) {
+    } else if (this.isOnGround && this.canJump) {
       this.jumping = 20;
       this.canJump = false;
-      this.isStanding = false;
+      this.isOnGround = false;
       this.velocity.y = -6;
 
-      console.log("Jumping");
+      
 
       if (this.state === 0) {
-        console.log("Fuchhe mario");
+        
       } else {
-        console.log("Thulo Mario");
+        
       }
     }
   }
@@ -153,7 +153,7 @@ class Mario extends Entity {
 
     if (this.bounce) {
       this.bounce = false;
-      this.isStanding = false;
+      this.isOnGround = false;
       this.velocity.y = -3;
     }
 
@@ -186,7 +186,7 @@ class Mario extends Entity {
   killMario() {
     this.velocity.y = 0;
     this.position.y = 4 * TILE_SIZE;
-    this.isStanding = true;
+    this.isOnGround = true;
   }
 
   detectCollision(level) {
@@ -240,7 +240,7 @@ class Mario extends Entity {
     if (this.jumping) {
       this.sprite.position.x = 9 * TILE_SIZE;
       this.sprite.animationSpeed = 0;
-    } else if (this.isStanding) {
+    } else if (this.isOnGround) {
       if (Math.abs(this.velocity.x) > 0) {
         if (this.velocity.x * this.acceleration.x >= 0) {
           this.sprite.position.x = 5 * TILE_SIZE;

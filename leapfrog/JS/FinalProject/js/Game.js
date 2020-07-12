@@ -49,6 +49,10 @@ class Game {
   }
 
   update(dt) {
+    if (this.player.position.x > this.level.levelEndPosition) {
+      this.switchLevel();
+    }
+
     this.gameTime += dt;
     this.onKeyboardInput(dt);
     this.updateEntities(dt);
@@ -72,10 +76,6 @@ class Game {
     this.renderEntity(this.player);
     this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
-    
-    if (this.player.position.x > this.level.levelEndPosition) {
-      this.switchLevel();
-    }
   }
 
   renderFireBridge() {
@@ -218,6 +218,8 @@ class Game {
     this.currentLevelIndex = index;
 
     this.player.position.x = 0;
+    this.camera.reset();
+
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);
   }
