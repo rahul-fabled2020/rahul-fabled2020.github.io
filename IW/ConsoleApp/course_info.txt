@@ -1,0 +1,104 @@
+About the program
+
+IW Academy was founded on the conviction that top software talent can be developed anywhere. By combining practical curriculum with experienced practitioners from Kathmandu, Silicon Valley & Europe, we prepare all-rounded developers in Nepal who can be part of high-performing distributed engineering teams globally.
+Software engineering requires more than just knowing how to code - it’s about building solutions that make a difference. Over the 12-week program, developers learn not only to code like a professional but also to think and solve problems like a leader.
+
+Our class size is small and supplemented with team collaborations, interactive labs, guest lectures, and real-world problem-solving exercises. Students get to complete modules with an array of small/medium projects following by a final capstone product. Upon graduation, our students will be ready to start their career as software engineers with best-in-class technical and professional skills.
+
+To learn more about the program, please get in touch.
+
+Details
+Time: Starts in August 24th, 2020
+Duration: 12 Weeks
+Apply before: August 18th, 2020
+Course Type: Online
+Fees: Free
+
+
+Course Curriculum Outline
+
+We have divided course curriculum into following modules.
+
+
+
+The Big Picture: Software Engineering
+This module aims to provide fundamental concepts in the software development ecosystem. It includes a basic introduction to tools and technologies along with various roles that engineers have: full-stack development, quality assurance & devops.
+
+Projects
+SEProject1SEProject2
+
+Estimated duration: 1 week
+Lectures: 4 Hrs
+Guest Lecture: 1 Hr
+Fundamentals of Web Development
+This module aims to build on the basic concepts to learn Python. It uses the ideas from the previous modules especially version control, project management devops.
+
+
+
+HTML fundamentals
+Designs with CSS
+Introduction to JS and ES6
+
+Projects
+WebProject1WebProject2
+
+Estimated duration: 2 weeks
+Lectures: 8 Hrs
+Guest Lectures: 1 Hr
+
+
+
+Python programming
+This module aims to build basic concepts to learn Python. It uses the ideas from the previous modules, especially version control, project management.
+
+Projects
+PyProject1PyProject2PyProject3
+
+Estimated duration: 2 weeks
+Lecturers: 8 Hrs
+Guest Lectures: 1 Hr
+
+
+
+Backend Framework: Django
+This module will introduce the use of Django framework in Python for web development. It includes setting up the framework, basic CRUD operations, authentication & other core elements of Django.
+
+Projects
+DJProject1DJProject2
+
+Estimated duration: 3 weeks
+Lectures: 12 Hrs
+Guest Lectures: 1 Hr
+
+
+
+Django REST framework
+This module will introduce REST framework in Django. It includes building a complex web application using advanced Django concepts.
+
+Projects
+DRF Project1DRF Project2
+Estimated duration: 1 week
+Lectures: 4 Hrs
+Guest Lectures: 1 Hr
+
+
+
+Frontend Library: React
+This module will introduce React.js as a Frontend library to create a single page application.
+
+Basic: Introduction, create-react-app cli.
+Advanced: Component States, Lifecycle and Hooks, JSX and Event bindings.
+API integrations and data management with React.js.
+Read More
+Projects
+ReactProject1ReactProject2
+Estimated duration: 1 week
+Lectures: 4 Hrs
+Guest Lectures: 1 Hr
+
+
+
+Capstone Project: Final Project
+During these final weeks, you will create a final project which includes every concept from the previous modules.
+
+Estimated duration: 2 weeks
