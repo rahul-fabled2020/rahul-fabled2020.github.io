@@ -7,6 +7,14 @@ const SPRITES = {
     [0, 0, 0, 0, 1, 2, 1]
   ),
 
+  coinSprite: new Sprite(
+    ITEMS,
+    new Vector(0, 6 * TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    6,
+    [0, 0, 0, 0, 1, 2, 1]
+  ),
+
   floorSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),

@@ -17,7 +17,7 @@ class Mario extends Entity {
     });
 
     this.state = 0;
-    this.coins = 0;
+    this.numberOfCoins = 0;
     this.powering = [];
     this.bounce = false;
     this.jumping = 0;

@@ -5,9 +5,8 @@ class Level12 extends Level {
       background: "#000",
       scrolling: true,
     };
-
-    var configuration = { ...levelConfig, ...SPRITES };
-    super(configuration);
+    
+    super(levelConfig);
 
     this.levelEndPosition = 153 * TILE_SIZE;
   }
@@ -22,7 +21,7 @@ class Level12 extends Level {
       for (let row = vStart; row < vEnd; row++) {
         this.statics[row][col] = new Floor(
           new Vector(TILE_SIZE * col, TILE_SIZE * row),
-          this.floorSprite
+          SPRITES.floorSprite
         );
       }
     }

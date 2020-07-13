@@ -6,9 +6,7 @@ class Level11 extends Level {
       scrolling: true,
     };
 
-    var configuration = { ...levelConfig, ...SPRITES };
-
-    super(configuration);
+    super(levelConfig);
 
     this.levelEndPosition = 204 * TILE_SIZE;
   }
