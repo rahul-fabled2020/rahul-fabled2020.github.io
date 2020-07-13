@@ -56,6 +56,11 @@ class Flower extends Entity {
         this.sprite.update(dt, gameTime);
     }
 
+    detectCollision(camera, player) {
+        if (this.spawningCount) return;
+        this.isCollidingWith(player);
+    }    
+    
     isCollidingWith(entity) {
         if(this.spawningCount) return;
 

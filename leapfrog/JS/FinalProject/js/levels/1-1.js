@@ -39,9 +39,9 @@ class Level11 extends Level {
       );
     });
 
-    this.putQBlock(16, 9, null);
+    this.putQBlock(16, 9, new Mushroom(new Vector(16 * TILE_SIZE, 9 *TILE_SIZE), this));
     this.putBrick(20, 9, null);
-    this.putQBlock(21, 9, null);
+    this.putQBlock(21, 9, new Mushroom(new Vector(21 * TILE_SIZE, 9 *TILE_SIZE), this));
     this.putBrick(22, 9, null);
     this.putQBlock(22, 5, null);
     this.putQBlock(23, 9, null);

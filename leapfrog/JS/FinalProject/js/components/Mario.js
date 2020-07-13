@@ -146,7 +146,7 @@ class Mario extends Entity {
     if (this.powering.length !== 0) {
       let next = this.powering.shift();
 
-      if (next == 5) {
+      if (next == 5) { //5 means no update
         return;
       }
       //Baaki xa garna ajha
@@ -281,5 +281,6 @@ class Mario extends Entity {
 
   powerUp(index) {
       console.log(index);
+      this.state = 1;
   }
 }
