@@ -8,6 +8,24 @@ class Level {
     this.initLevel();
   }
 
+  initLevel() {
+    this.statics = [];
+    this.scenery = [];
+    this.blocks = [];
+    this.obstacles = [];
+    this.bridges = [];
+
+    this.enemies = [];
+    this.items = [];
+    this.pipes = [];
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
+      this.statics[i] = [];
+      this.scenery[i] = [];
+      this.blocks[i] = [];
+    }
+  }
+
   putCeiling(horizontalPosition, VerticalPosition) {
     let hStart = horizontalPosition[0];
     let hEnd = horizontalPosition[1];
@@ -69,6 +87,14 @@ class Level {
         );
       }
     }
+  }
+
+  putCoin(x, y) {
+    this.items.push(new Coin(
+      new Vector(x *TILE_SIZE, y*TILE_SIZE),
+      SPRITES.coinSprite,
+      this
+    ));
   }
 
   putQBlock(x, y, item) {
@@ -147,21 +173,4 @@ class Level {
     );
   }
 
-  initLevel() {
-    this.statics = [];
-    this.scenery = [];
-    this.blocks = [];
-    this.obstacles = [];
-    this.bridges = [];
-
-    this.enemies = [];
-    this.items = [];
-    this.pipes = [];
-
-    for (let i = 0; i < MAX_ROW_SIZE; i++) {
-      this.statics[i] = [];
-      this.scenery[i] = [];
-      this.blocks[i] = [];
-    }
-  }
 }

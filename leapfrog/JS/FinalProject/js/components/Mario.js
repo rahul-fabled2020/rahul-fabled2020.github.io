@@ -4,7 +4,7 @@ class Mario extends Entity {
       position: position,
       sprite: new Sprite(
         PLAYER_RIGHT,
-        new Vector(6 * TILE_SIZE, 2 * TILE_SIZE),
+        new Vector(5 * TILE_SIZE, 2 * TILE_SIZE),
         { width: TILE_SIZE, height: TILE_SIZE },
         0
       ),
@@ -16,16 +16,16 @@ class Mario extends Entity {
       },
     });
 
-    this.state = 0;
+    this.state = 0; //0 means Small Mario, 1 means Big Mario, 2 means Fire Mario
     this.numberOfCoins = 0;
     this.powering = [];
     this.bounce = false;
-    this.jumping = 0;
+    this.jumpCount = 0;
     this.canJump = true;
     this.isCrounching = false;
     this.isRunHeld = false;
     this.noInput = false;
-    this.targetPosition = [];
+    this.targetPosition = new Vector(0, 0);
   }
 
   run() {
@@ -110,10 +110,10 @@ class Mario extends Entity {
       return;
     }
 
-    if (this.jumping) {
-      this.jumping -= 1;
+    if (this.jumpCount) {
+      this.jumpCount -= 1;
     } else if (this.isOnGround && this.canJump) {
-      this.jumping = 20;
+      this.jumpCount = 20;
       this.canJump = false;
       this.isOnGround = false;
       this.velocity.y = -6;
@@ -131,12 +131,12 @@ class Mario extends Entity {
   noJump() {
     this.canJump = true;
 
-    if (this.jumping) {
-      if (this.jumping <= 16) {
+    if (this.jumpCount) {
+      if (this.jumpCount <= 16) {
         this.velocity.y = 0;
-        this.jumping = 0;
+        this.jumpCount = 0;
       } else {
-        this.jumping -= 1;
+        this.jumpCount -= 1;
       }
     }
   }
@@ -238,16 +238,18 @@ class Mario extends Entity {
 
   animate() {
     if (this.isCrounching) {
-      this.sprite.position.x = 7 * TILE_SIZE;
+      this.sprite.position.x = 10 * TILE_SIZE;
+      this.sprite.animationSpeed = 0;
+      return;
     }
 
-    if (this.jumping) {
-      this.sprite.position.x = 9 * TILE_SIZE;
+    if (this.jumpCount) {
+      this.sprite.position.x = 10 * TILE_SIZE;
       this.sprite.animationSpeed = 0;
     } else if (this.isOnGround) {
       if (Math.abs(this.velocity.x) > 0) {
         if (this.velocity.x * this.acceleration.x >= 0) {
-          this.sprite.position.x = 5 * TILE_SIZE;
+          this.sprite.position.x = 6 * TILE_SIZE;
           this.sprite.animationFrames = [0, 1, 2];
 
           if (this.velocity.x < 0.2) {
@@ -260,15 +262,23 @@ class Mario extends Entity {
           (this.velocity.x > 0 && this.isFacingLeft) ||
           (this.velocity.x < 0 && !this.isFacingLeft)
         ) {
-          this.sprite.position.x = 11 * TILE_SIZE;
+          this.sprite.position.x = 9 * TILE_SIZE;
           this.sprite.animationSpeed = 0;
         }
       } else {
         this.sprite.animationSpeed = 0;
-        this.sprite.position.x = 6*TILE_SIZE;
+        this.sprite.position.x = 5*TILE_SIZE;
       }
     }
 
+    if(this.isFacingLeft) {
+      this.sprite.imageUrl = PLAYER_LEFT;
+    } else {
+      this.sprite.imageUrl = PLAYER_RIGHT;
+    }
+  }
 
+  powerUp(index) {
+      
   }
 }

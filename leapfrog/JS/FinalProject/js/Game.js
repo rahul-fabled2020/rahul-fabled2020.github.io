@@ -12,7 +12,7 @@ class Game {
     this.displayController = new DisplayController(this, canvasId, this.camera);
 
     Game.imageLoader.load([
-      // PLAYER_LEFT,
+      PLAYER_LEFT,
       PLAYER_RIGHT,
       ITEMS,
       TILES,

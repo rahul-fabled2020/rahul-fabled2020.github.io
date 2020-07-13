@@ -95,6 +95,8 @@ class Level12 extends Level {
     this.putUsedBlock(84, 9);
     this.putUsedBlock(89, 4);
 
+    this.putCoin(5, 8);
+
     this.putFireBridge(128, 10, 13);
     this.putAxe(141.5, 8);
 

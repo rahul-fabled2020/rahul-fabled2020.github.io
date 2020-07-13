@@ -77,7 +77,7 @@ class Floor extends Entity {
       }
     } else {
       if (entity instanceof Mario) {
-        entity.jumping = 0;
+        entity.jumpCount = 0;
       }
 
       if (displacement.y < 0) {
