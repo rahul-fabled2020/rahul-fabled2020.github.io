@@ -6,9 +6,7 @@ class Level11 extends Level {
       scrolling: true,
     };
 
-    var configuration = { ...levelConfig, ...SPRITES };
-
-    super(configuration);
+    super(levelConfig);
 
     this.levelEndPosition = 204 * TILE_SIZE;
   }
@@ -18,30 +16,32 @@ class Level11 extends Level {
     SPRITES.floorSprite.position = new Vector(0, 0);
 
     let ground = [
-      [0, 69],
-      [71, 86],
-      [89, 153],
-      [155, 212],
-
-      [212, 243],
-      [246, 289],
-      [394, 360],
-      [363, 385],
-      [389, 391],
-      [395, 402],
-      [405, 446],
+      { horizontalPosition: [0, 69], VerticalPosition: [13, 15] },
+      { horizontalPosition: [71, 86], VerticalPosition: [13, 15] },
+      { horizontalPosition: [89, 153], VerticalPosition: [13, 15] },
+      { horizontalPosition: [155, 212], VerticalPosition: [13, 15] },
+      { horizontalPosition: [212, 243], VerticalPosition: [13, 15] },
+      { horizontalPosition: [246, 289], VerticalPosition: [13, 15] },
+      { horizontalPosition: [394, 360], VerticalPosition: [13, 15] },
+      { horizontalPosition: [363, 385], VerticalPosition: [13, 15] },
+      { horizontalPosition: [389, 391], VerticalPosition: [13, 15] },
+      { horizontalPosition: [395, 402], VerticalPosition: [13, 15] },
+      { horizontalPosition: [405, 446], VerticalPosition: [13, 15] },
     ];
     player.position = this.playerPosition;
     camera.x = 0;
 
     //Ground building
     ground.forEach((tilePosition) => {
-      this.putFloor(tilePosition[0], tilePosition[1]);
+      this.putFloor(
+        tilePosition.horizontalPosition,
+        tilePosition.VerticalPosition
+      );
     });
 
-    this.putQBlock(16, 9, null);
+    this.putQBlock(16, 9, new Mushroom(new Vector(16 * TILE_SIZE, 9 *TILE_SIZE), this));
     this.putBrick(20, 9, null);
-    this.putQBlock(21, 9, null);
+    this.putQBlock(21, 9, new Mushroom(new Vector(21 * TILE_SIZE, 9 *TILE_SIZE), this));
     this.putBrick(22, 9, null);
     this.putQBlock(22, 5, null);
     this.putQBlock(23, 9, null);

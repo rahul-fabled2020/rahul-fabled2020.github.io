@@ -5,21 +5,25 @@ class Level {
 
     this.background = configuration.background;
 
-    this.floorSprite = configuration.floorSprite;
-    this.wallSprite = configuration.wallSprite;
-    this.brickSprite = configuration.brickSprite;
-    this.uBlockSprite = configuration.uBlockSprite;
-    this.qBlockSprite = configuration.qBlockSprite;
-    this.brickBounceSprite = configuration.brickBounceSprite;
-
-    this.fireBackgroundSprites = configuration.fireBackgroundSprites;
-    this.fireBridgeSprite = configuration.fireBridgeSprite;
-
-    //Enemies
-    this.goombaSprite = configuration.goombaSprite;
-    this.koopaSprite = configuration.koopaSprite;
-
     this.initLevel();
+  }
+
+  initLevel() {
+    this.statics = [];
+    this.scenery = [];
+    this.blocks = [];
+    this.obstacles = [];
+    this.bridges = [];
+
+    this.enemies = [];
+    this.items = [];
+    this.pipes = [];
+
+    for (let i = 0; i < MAX_ROW_SIZE; i++) {
+      this.statics[i] = [];
+      this.scenery[i] = [];
+      this.blocks[i] = [];
+    }
   }
 
   putCeiling(horizontalPosition, VerticalPosition) {
@@ -32,31 +36,35 @@ class Level {
       for (let row = vStart; row < vEnd; row++) {
         this.statics[row][col] = new Floor(
           new Vector(TILE_SIZE * col, TILE_SIZE * row),
-          this.floorSprite
+          SPRITES.floorSprite
         );
       }
     }
   }
 
-  putFloor(start, end) {
-    for (let i = start; i < end; i++) {
-      this.statics[13][i] = new Floor(
-        new Vector(16 * i, 208),
-        this.floorSprite
-      );
-      this.statics[14][i] = new Floor(
-        new Vector(16 * i, 224),
-        this.floorSprite
-      );
+  putFloor(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
+
+    for (let col = hStart; col < hEnd; col++) {
+      for (let row = vStart; row < vEnd; row++) {
+        this.statics[row][col] = new Floor(
+          new Vector(TILE_SIZE * col, TILE_SIZE * row),
+          SPRITES.floorSprite
+        );
+      }
     }
   }
+
 
   putWall(x, y, height) {
     // y = bottom of the wall
     for (let i = y - height; i < y; i++) {
       this.statics[i][x] = new Floor(
         new Vector(16 * x, 16 * i),
-        this.wallSprite
+        SPRITES.wallSprite
       );
     }
   }
@@ -69,9 +77,9 @@ class Level {
 
     for (let col = hStart; col < hEnd; col++) {
       for (let row = vStart; row < vEnd; row++) {
-        let sprite = this.fireBackgroundSprites[1];
+        let sprite = SPRITES.fireBackgroundSprites[1];
 
-        if (row == vStart) sprite = this.fireBackgroundSprites[0];
+        if (row == vStart) sprite = SPRITES.fireBackgroundSprites[0];
 
         this.scenery[row][col] = new Floor(
           new Vector(TILE_SIZE * col, TILE_SIZE * row),
@@ -81,12 +89,20 @@ class Level {
     }
   }
 
+  putCoin(x, y) {
+    this.items.push(new Coin(
+      new Vector(x *TILE_SIZE, y*TILE_SIZE),
+      SPRITES.coinSprite,
+      this
+    ));
+  }
+
   putQBlock(x, y, item) {
     this.blocks[y][x] = new Block({
       position: new Vector(x * 16, y * 16),
       item: item,
-      sprite: this.qBlockSprite,
-      usedSprite: this.uBlockSprite,
+      sprite: SPRITES.qBlockSprite,
+      usedSprite: SPRITES.uBlockSprite,
     });
   }
 
@@ -94,9 +110,9 @@ class Level {
     this.blocks[y][x] = new Block({
       position: new Vector(x * 16, y * 16),
       item: item,
-      sprite: this.brickSprite,
-      bounceSprite: this.brickBounceSprite,
-      usedSprite: this.uBlockSprite,
+      sprite: SPRITES.brickSprite,
+      bounceSprite: SPRITES.brickBounceSprite,
+      usedSprite: SPRITES.uBlockSprite,
       breakable: !item,
     });
   }
@@ -104,7 +120,7 @@ class Level {
   putUsedBlock(x, y) {
     this.blocks[y][x] = new Block({
       position: new Vector(x * TILE_SIZE, y * TILE_SIZE),
-      sprite: this.uBlockSprite,
+      sprite: SPRITES.uBlockSprite,
     });
   }
 
@@ -125,7 +141,7 @@ class Level {
       bridge.push(
         new FireBridge({
           position: new Vector((x + i) * TILE_SIZE, y * TILE_SIZE),
-          sprite: this.fireBridgeSprite,
+          sprite: SPRITES.fireBridgeSprite,
         })
       );
     }
@@ -134,14 +150,14 @@ class Level {
   }
 
   putAxe(x, y) {
-    this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE)));
+    this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE), this));
   }
 
   putGoomba(x, y) {
     this.enemies.push(
       new Goomba(
         new Vector(x * TILE_SIZE, y * TILE_SIZE),
-        this.goombaSprite,
+        SPRITES.goombaSprite,
         this
       )
     );
@@ -151,27 +167,10 @@ class Level {
     this.enemies.push(
       new Koopa(
         new Vector(x * TILE_SIZE, y * TILE_SIZE),
-        this.koopaSprite,
+        SPRITES.koopaSprite,
         this
       )
     );
   }
 
-  initLevel() {
-    this.statics = [];
-    this.scenery = [];
-    this.blocks = [];
-    this.obstacles = [];
-    this.bridges = [];
-
-    this.enemies = [];
-    this.items = [];
-    this.pipes = [];
-
-    for (let i = 0; i < MAX_ROW_SIZE; i++) {
-      this.statics[i] = [];
-      this.scenery[i] = [];
-      this.blocks[i] = [];
-    }
-  }
 }

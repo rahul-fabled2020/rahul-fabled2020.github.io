@@ -4,8 +4,8 @@ const DEGREE = Math.PI / 180;
 const OFFSET_FROM_LEFT = 5 * TILE_SIZE; //for camera
 
 //SpriteSheets
-const PLAYER_LEFT = "images/mario.png";
-const PLAYER_RIGHT = "images/mario.png";
+const PLAYER_LEFT = "images/marioLeft.png";
+const PLAYER_RIGHT = "images/marioRight.png";
 const ITEMS = "images/items.png";
 const TILES = "images/tiles.png";
 const ENEMIES_LEFT = "images/enemiesLeft.png";

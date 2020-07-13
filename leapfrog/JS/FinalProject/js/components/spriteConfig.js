@@ -7,9 +7,32 @@ const SPRITES = {
     [0, 0, 0, 0, 1, 2, 1]
   ),
 
+  coinSprite: new Sprite(
+    ITEMS,
+    new Vector(0, 6 * TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    6,
+    [0, 0, 0, 0, 1, 2, 1]
+  ),
+
   floorSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    0
+  ),
+
+  flowerSprite: new Sprite(
+    ITEMS,
+    new Vector(0, 4 * TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    20,
+    [0, 1, 2, 3]
+  ),
+
+  mushroomSprite: new Sprite(
+    ITEMS,
+    new Vector(0, 0),
     { width: TILE_SIZE, height: TILE_SIZE },
     0
   ),
@@ -27,24 +50,28 @@ const SPRITES = {
     { width: TILE_SIZE, height: TILE_SIZE },
     0
   ),
+
   brickSprite: new Sprite(
     TILES,
     new Vector(TILE_SIZE, 0),
     { width: TILE_SIZE, height: TILE_SIZE },
     0
   ),
+
   brickBounceSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 0),
     { width: TILE_SIZE, height: TILE_SIZE },
     0
   ),
+
   uBlockSprite: new Sprite(
     TILES,
     new Vector(3 * TILE_SIZE, 0),
     { width: TILE_SIZE, height: TILE_SIZE },
     0
   ),
+
   qBlockSprite: new Sprite(
     TILES,
     new Vector(24 * TILE_SIZE, 0),
@@ -52,6 +79,7 @@ const SPRITES = {
     8,
     [0, 0, 0, 0, 1, 2, 1]
   ),
+
   fireBackgroundSprites: [
     new Sprite(
       TILES,
@@ -59,6 +87,7 @@ const SPRITES = {
       { width: TILE_SIZE, height: TILE_SIZE },
       0
     ),
+
     new Sprite(
       TILES,
       new Vector(3 * TILE_SIZE, 25 * TILE_SIZE),

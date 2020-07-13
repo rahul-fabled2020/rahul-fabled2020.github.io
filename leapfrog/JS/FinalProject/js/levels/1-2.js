@@ -6,26 +6,9 @@ class Level12 extends Level {
       scrolling: true,
     };
 
-    var configuration = { ...levelConfig, ...SPRITES };
-    super(configuration);
+    super(levelConfig);
 
     this.levelEndPosition = 153 * TILE_SIZE;
-  }
-
-  putFloor(horizontalPosition, VerticalPosition) {
-    let hStart = horizontalPosition[0];
-    let hEnd = horizontalPosition[1];
-    let vStart = VerticalPosition[0];
-    let vEnd = VerticalPosition[1];
-
-    for (let col = hStart; col < hEnd; col++) {
-      for (let row = vStart; row < vEnd; row++) {
-        this.statics[row][col] = new Floor(
-          new Vector(TILE_SIZE * col, TILE_SIZE * row),
-          this.floorSprite
-        );
-      }
-    }
   }
 
   loadLevel(player, camera) {
@@ -95,7 +78,7 @@ class Level12 extends Level {
     });
 
     //Others
-    this.putQBlock(30, 6, null);
+    this.putQBlock(30, 6, new Mushroom(new Vector(30 * TILE_SIZE, 6 *TILE_SIZE), this));
     this.putRotatingFire(30, 10);
     this.putRotatingFire(49, 6);
     this.putRotatingFire(60, 6);
@@ -111,6 +94,8 @@ class Level12 extends Level {
     this.putUsedBlock(76, 9);
     this.putUsedBlock(84, 9);
     this.putUsedBlock(89, 4);
+
+    this.putCoin(5, 8);
 
     this.putFireBridge(128, 10, 13);
     this.putAxe(141.5, 8);

@@ -1,8 +1,8 @@
-class Axe extends Entity {
-  constructor(position, level) {
+class Coin extends Entity {
+  constructor(position, sprite, level) {
     super({
       position: position,
-      sprite: SPRITES.axeSprite,
+      sprite: sprite,
       hitbox: {
         x: 0,
         y: 0,
@@ -12,20 +12,14 @@ class Axe extends Entity {
     });
 
     this.level = level;
-    this.sprite = SPRITES.axeSprite;
-  }
-
-  update(dt, gameTime) {
-    this.sprite.update(dt, gameTime);
+    this.index = this.level.items.length;
   }
 
   detectCollision(camera, player) {
-    this.isCollidingWith(player);
+    this.isCollidingWith(player)
   }
 
   isCollidingWith(entity) {
-    if (!(entity instanceof Mario)) return;
-
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
     let entityHCenter = new Vector(
@@ -51,11 +45,18 @@ class Axe extends Entity {
       Math.abs(displacement.y) > averageHeight
     )
       return;
-    
-      this.level.bridges.forEach((bridgeGroup)=>{
-        bridgeGroup.forEach((bridge => {
-          bridge.isCollapsing = true;
-        }))
-      });
+
+    if (entity instanceof Mario) {
+      entity.numberOfCoins += 1;
+      delete this.level.items[this.index];
+    }
+  }
+
+  update(dt, gameTime) {
+    this.sprite.update(dt, gameTime);
+  }
+
+  render(context, camera) {
+    this.sprite.render(context, this.position, camera);
   }
 }
