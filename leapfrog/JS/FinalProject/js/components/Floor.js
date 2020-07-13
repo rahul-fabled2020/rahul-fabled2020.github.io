@@ -57,7 +57,7 @@ class Floor extends Entity {
     ) {
       if(this instanceof FireBridge) return;
 
-      if(entity instanceof Enemy) {
+      if(entity instanceof Enemy || entity instanceof Mushroom) {
 
         entity.reverseHorizontalVelocity();
         return;
@@ -90,6 +90,11 @@ class Floor extends Entity {
         //Entity is colliding from the bottom
         entity.velocity.y = 0;
         entity.position.y = this.position.y + this.hitbox.height + this.hitbox.y;
+
+        if(entity instanceof Mario && this instanceof Block) {
+          this.bonk(entity.state);
+          entity.jumpCount = 0;
+        }
         
       }
     }

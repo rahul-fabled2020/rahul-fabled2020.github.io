@@ -150,7 +150,7 @@ class Level {
   }
 
   putAxe(x, y) {
-    this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE)));
+    this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE), this));
   }
 
   putGoomba(x, y) {

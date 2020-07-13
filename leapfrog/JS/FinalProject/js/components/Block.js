@@ -10,15 +10,32 @@ class Block extends Floor {
     this.item = configuration.item;
     this.usedSprite = configuration.usedSprite;
     this.bounceSprite = configuration.bounceSprite;
-    this.breakable = configuration.breakable;
+    this.isBreakable = configuration.breakable;
   }
 
   break() {
     console.log("Break");
   }
 
-  bonk() {
-    console.log("Bonk");
+  bonk(marioState) {
+    if(marioState > 0 && this.isBreakable) {
+      this.break();
+    } else if(this.isOnGround) {
+      this.isOnGround = false;
+
+      if(this.item) {
+        this.item.spawn(marioState);
+        this.item = null;
+      }
+
+      if(this.bounceSprite) {
+        this.sprite = this.bounceSprite;
+      } else {
+        this.sprite = this.usedSprite;
+      }
+
+      this.velocity.y = -2;
+    }
   }
 
   update(dt, gameTime) {

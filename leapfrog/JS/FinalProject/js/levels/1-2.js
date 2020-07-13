@@ -78,7 +78,7 @@ class Level12 extends Level {
     });
 
     //Others
-    this.putQBlock(30, 6, null);
+    this.putQBlock(30, 6, new Mushroom(new Vector(30 * TILE_SIZE, 6 *TILE_SIZE), this));
     this.putRotatingFire(30, 10);
     this.putRotatingFire(49, 6);
     this.putRotatingFire(60, 6);

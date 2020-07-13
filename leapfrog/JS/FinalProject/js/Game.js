@@ -106,6 +106,10 @@ class Game {
   detectCollision() {
     this.player.detectCollision(this.level);
 
+    this.level.items.forEach(item => {
+      item.detectCollision(this.camera, this.player);
+    });
+
     this.level.enemies.forEach(enemy => {
       enemy.detectCollision(this.camera, this.player);
     });

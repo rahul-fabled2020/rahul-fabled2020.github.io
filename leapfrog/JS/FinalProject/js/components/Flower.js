@@ -57,6 +57,8 @@ class Flower extends Entity {
     }
 
     isCollidingWith(entity) {
+        if(this.spawningCount) return;
+
         let entityHLeft = entity.position.x + entity.hitbox.x;
         let entityHTop = entity.position.y + entity.hitbox.y;
         let entityHCenter = new Vector(

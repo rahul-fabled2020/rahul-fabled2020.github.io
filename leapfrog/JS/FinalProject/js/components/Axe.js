@@ -1,5 +1,5 @@
 class Axe extends Entity {
-  constructor(position) {
+  constructor(position, level) {
     super({
       position: position,
       sprite: SPRITES.axeSprite,
@@ -11,6 +11,7 @@ class Axe extends Entity {
       },
     });
 
+    this.level = level;
     this.sprite = SPRITES.axeSprite;
   }
 
@@ -18,7 +19,11 @@ class Axe extends Entity {
     this.sprite.update(dt, gameTime);
   }
 
-  isCollidingWith(entity, level) {
+  detectCollision(camera, player) {
+    this.isCollidingWith(player);
+  }
+
+  isCollidingWith(entity) {
     if (!(entity instanceof Mario)) return;
 
     let entityHLeft = entity.position.x + entity.hitbox.x;
@@ -47,7 +52,7 @@ class Axe extends Entity {
     )
       return;
     
-      level.bridges.forEach((bridgeGroup)=>{
+      this.level.bridges.forEach((bridgeGroup)=>{
         bridgeGroup.forEach((bridge => {
           bridge.isCollapsing = true;
         }))

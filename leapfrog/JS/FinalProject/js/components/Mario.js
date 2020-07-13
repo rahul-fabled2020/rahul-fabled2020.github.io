@@ -25,6 +25,7 @@ class Mario extends Entity {
     this.isCrounching = false;
     this.isRunHeld = false;
     this.noInput = false;
+    this.collectedItem = null;
     this.targetPosition = new Vector(0, 0);
   }
 
@@ -231,9 +232,9 @@ class Mario extends Entity {
       }))
     });
 
-    level.items.forEach(item => {
-      item.isCollidingWith(this, level);
-    })
+    // level.items.forEach(item => {
+    //   item.isCollidingWith(this, level);
+    // })
   }
 
   animate() {
@@ -279,6 +280,6 @@ class Mario extends Entity {
   }
 
   powerUp(index) {
-      
+      console.log(index);
   }
 }
