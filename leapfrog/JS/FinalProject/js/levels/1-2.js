@@ -5,26 +5,10 @@ class Level12 extends Level {
       background: "#000",
       scrolling: true,
     };
-    
+
     super(levelConfig);
 
     this.levelEndPosition = 153 * TILE_SIZE;
-  }
-
-  putFloor(horizontalPosition, VerticalPosition) {
-    let hStart = horizontalPosition[0];
-    let hEnd = horizontalPosition[1];
-    let vStart = VerticalPosition[0];
-    let vEnd = VerticalPosition[1];
-
-    for (let col = hStart; col < hEnd; col++) {
-      for (let row = vStart; row < vEnd; row++) {
-        this.statics[row][col] = new Floor(
-          new Vector(TILE_SIZE * col, TILE_SIZE * row),
-          SPRITES.floorSprite
-        );
-      }
-    }
   }
 
   loadLevel(player, camera) {

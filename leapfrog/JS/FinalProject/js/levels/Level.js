@@ -38,18 +38,22 @@ class Level {
     }
   }
 
-  putFloor(start, end) {
-    for (let i = start; i < end; i++) {
-      this.statics[13][i] = new Floor(
-        new Vector(16 * i, 208),
-        SPRITES.floorSprite
-      );
-      this.statics[14][i] = new Floor(
-        new Vector(16 * i, 224),
-        SPRITES.floorSprite
-      );
+  putFloor(horizontalPosition, VerticalPosition) {
+    let hStart = horizontalPosition[0];
+    let hEnd = horizontalPosition[1];
+    let vStart = VerticalPosition[0];
+    let vEnd = VerticalPosition[1];
+
+    for (let col = hStart; col < hEnd; col++) {
+      for (let row = vStart; row < vEnd; row++) {
+        this.statics[row][col] = new Floor(
+          new Vector(TILE_SIZE * col, TILE_SIZE * row),
+          SPRITES.floorSprite
+        );
+      }
     }
   }
+
 
   putWall(x, y, height) {
     // y = bottom of the wall
