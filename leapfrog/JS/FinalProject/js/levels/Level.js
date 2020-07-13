@@ -5,20 +5,6 @@ class Level {
 
     this.background = configuration.background;
 
-    this.floorSprite = configuration.floorSprite;
-    this.wallSprite = configuration.wallSprite;
-    this.brickSprite = configuration.brickSprite;
-    this.uBlockSprite = configuration.uBlockSprite;
-    this.qBlockSprite = configuration.qBlockSprite;
-    this.brickBounceSprite = configuration.brickBounceSprite;
-
-    this.fireBackgroundSprites = configuration.fireBackgroundSprites;
-    this.fireBridgeSprite = configuration.fireBridgeSprite;
-
-    //Enemies
-    this.goombaSprite = configuration.goombaSprite;
-    this.koopaSprite = configuration.koopaSprite;
-
     this.initLevel();
   }
 
