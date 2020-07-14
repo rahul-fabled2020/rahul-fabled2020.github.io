@@ -108,6 +108,8 @@ class Enemy extends Entity {
   }
 
   isCollidingWith(entity) {
+    if(entity instanceof Mario && entity.dyingTime) return;
+
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
     let entityHCenter = new Vector(
@@ -138,7 +140,7 @@ class Enemy extends Entity {
       if (entity.velocity.y > 0) {
         delete this.level.enemies[this.index];
       } else {
-        entity.killMario();
+        entity.getDamaged();
       }
     } else {
       this.reverseHorizontalVelocity();

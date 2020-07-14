@@ -14,6 +14,8 @@ class Level12 extends Level {
   loadLevel(player, camera) {
     this.initLevel();
     SPRITES.floorSprite.position = new Vector(2 * TILE_SIZE, 5 * TILE_SIZE);
+    player.position = this.playerPosition.copy();
+    camera.reset();
 
     let ground = [
       { horizontalPosition: [0, 3], VerticalPosition: [7, 8] },
@@ -49,10 +51,6 @@ class Level12 extends Level {
       { horizontalPosition: [128, 141], VerticalPosition: [13, 15] },
     ];
 
-    player.position = this.playerPosition;
-
-    camera.x = 0;
-
     //Floor building
     ground.forEach((tilePosition) => {
       this.putFloor(
@@ -79,13 +77,13 @@ class Level12 extends Level {
 
     //Others
     this.putQBlock(30, 6, new Mushroom(new Vector(30 * TILE_SIZE, 6 *TILE_SIZE), this));
-    this.putRotatingFire(30, 10);
-    this.putRotatingFire(49, 6);
-    this.putRotatingFire(60, 6);
-    this.putRotatingFire(67, 6);
-    this.putRotatingFire(76, 9);
-    this.putRotatingFire(84, 9);
-    this.putRotatingFire(89, 4);
+    this.putRotatingFire(30.25, 10.25);
+    this.putRotatingFire(49.25, 6.25);
+    this.putRotatingFire(60.25, 6.25);
+    this.putRotatingFire(67.25, 6.25);
+    this.putRotatingFire(76.25, 9.25);
+    this.putRotatingFire(84.25, 9.25);
+    this.putRotatingFire(89.25, 4.25);
 
     this.putUsedBlock(30, 10, null);
     this.putUsedBlock(49, 6, null);
