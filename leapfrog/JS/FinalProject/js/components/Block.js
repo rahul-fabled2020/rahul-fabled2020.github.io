@@ -18,6 +18,8 @@ class Block extends Floor {
   }
 
   bonk(marioState) {
+    if(this.sprite === this.usedSprite) return;
+
     if(marioState > 0 && this.isBreakable) {
       this.break();
     } else if(this.isOnGround) {
