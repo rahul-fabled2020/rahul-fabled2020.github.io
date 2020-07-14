@@ -4,7 +4,6 @@ class Level {
     this.scrolling = configuration.scrolling;
 
     this.background = configuration.background;
-    console.log(this.playerPosition);
 
     this.initLevel();
   }

@@ -7,12 +7,36 @@ const SPRITES = {
     [0, 0, 0, 0, 1, 2, 1]
   ),
 
+  brokenBrickSprite: new Sprite(
+    ITEMS,
+    new Vector(4 * TILE_SIZE, 0),
+    { width: 8, height: 8 },
+    3,
+    [0, 1]
+  ),
+
+  blockCoinSprite: new Sprite(
+    ITEMS,
+    new Vector(0, 7 * TILE_SIZE),
+    { width: TILE_SIZE, height: TILE_SIZE },
+    20,
+    [0, 1, 2, 3]
+  ),
+
   coinSprite: new Sprite(
     ITEMS,
     new Vector(0, 6 * TILE_SIZE),
     { width: TILE_SIZE, height: TILE_SIZE },
     6,
     [0, 0, 0, 0, 1, 2, 1]
+  ),
+
+  fireBulletSprites: new Sprite(
+    ITEMS,
+    new Vector(6 * TILE_SIZE, 9 * TILE_SIZE),
+    { width: 8, height: 8 },
+    5,
+    [0, 1, 2, 3]
   ),
 
   floorSprite: new Sprite(

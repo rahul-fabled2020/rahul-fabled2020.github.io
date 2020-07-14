@@ -97,7 +97,7 @@ class Game {
     this.camera.move(this.level, this.player);
 
     this.level.items.forEach(item => {
-      item.update(dt, this.gameTime);
+      item.update(dt, this.gameTime, this.player);
     });
 
     this.level.enemies.forEach(enemy => {
