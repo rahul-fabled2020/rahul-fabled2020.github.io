@@ -91,7 +91,7 @@ class Flower extends Entity {
           return;
     
         if (entity instanceof Mario) {
-            entity.powerUp(this.index);
+            entity.powerUp(this.index, this.level);
         }
       }    
 }

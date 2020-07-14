@@ -108,7 +108,7 @@ class Enemy extends Entity {
   }
 
   isCollidingWith(entity) {
-    if(entity instanceof Mario && entity.dyingTime) return;
+    if(entity instanceof Mario && (entity.dyingTime || entity.powerTime)) return;
 
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
