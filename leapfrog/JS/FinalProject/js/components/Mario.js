@@ -18,7 +18,7 @@ class Mario extends Entity {
 
     this.state = SMALL_MARIO;
     this.numberOfCoins = 0;
-    this.stateIndices = [];
+    this.powerTime = 0;
     this.bounce = false;
     this.jumpTime = 0;
     this.canJump = true;
@@ -136,14 +136,12 @@ class Mario extends Entity {
   }
 
   update(dt, camera, game) {
-    if (this.stateIndices.length !== 0) {
-      let nextIndex = this.stateIndices.shift();
+    if(this.powerTime) {
+      this.powerTime-=dt;
 
-      if (nextIndex == 5) {
-        //5 means no update
-        return;
+      if(this.powerTime < 0.01) {
+        this.powerTime = 0;
       }
-      //Baaki xa garna ajha
     }
 
     if (this.bounce) {
@@ -172,10 +170,10 @@ class Mario extends Entity {
       if (this.dyingTime <= 0) {
         this.dyingTime = 0;
         game.player = new Mario(game.level.playerPosition);
+        this.state = SMALL_MARIO;
 
         game.level.loadLevel(game.player, game.camera);
         game.controller.reset();
-        console.log("killing");
       }
     } else {
       this.acceleration.y = 0.25;
@@ -201,7 +199,8 @@ class Mario extends Entity {
     this.acceleration.x = 0;
     this.sprite.position = new Vector(11 * TILE_SIZE, 2 * TILE_SIZE);
     this.sprite.animationSpeed = 0;
-    this.state = SMALL_MARIO;
+
+    this.powerTime = 0;
     this.waitingTime = 0.5;
     this.dyingTime = 2;
 
@@ -261,7 +260,6 @@ class Mario extends Entity {
         bridge.isCollidingWith(this, level);
       });
     });
-    
   }
 
   animate() {
@@ -309,6 +307,8 @@ class Mario extends Entity {
 
   powerUp(index, level) {
     this.collectedItem = index;
+    delete level.items[index];
+    this.powerTime = 1;
 
     if (this.state === SMALL_MARIO) {
       this.state = BIG_MARIO;
@@ -322,38 +322,23 @@ class Mario extends Entity {
       this.sprite.position.x = 5 * TILE_SIZE;
       this.sprite.position.y = 0; //Delete me later after fixing animation
       this.sprite.size.height = 2 * TILE_SIZE; //Delete me too
-      this.stateSpritePositions = [
-        new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
-        new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
-        new Vector(20 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
-        new Vector(5 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
-        new Vector(8 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
-      ];
-
-      this.stateSizes = [
-        { width: TILE_SIZE, height: TILE_SIZE }, //Size of Small Mario
-        { width: TILE_SIZE, height: TILE_SIZE }, //Size of Small Mario
-        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
-        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
-        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
-      ];
     } else if (this.state === BIG_MARIO) {
+      this.state = FIRE_MARIO;
+
+      this.sprite.position.x = 5 * TILE_SIZE;
+      this.sprite.position.y = 6 * TILE_SIZE; //Delete me later after fixing animation
     } else {
-      delete level.items[index];
+      //Do nothing
     }
   }
 
   getDamaged() {
+    this.powerTime = 1;
+
     if (this.state === SMALL_MARIO) {
       this.getKilled();
-    } else {
+    } else if (this.state === BIG_MARIO) {
       this.sprite.position = new Vector(10 * TILE_SIZE, 0);
-      this.stateSpritePositions = [
-        new Vector(10 * TILE_SIZE, 0),
-        new Vector(15 * TILE_SIZE, 2 * TILE_SIZE),
-        new Vector(15 * TILE_SIZE, 0),
-        new Vector(10 * TILE_SIZE, 2 * TILE_SIZE),
-      ];
 
       this.state = SMALL_MARIO;
       this.hitbox = {
@@ -362,8 +347,14 @@ class Mario extends Entity {
         width: TILE_SIZE,
         height: TILE_SIZE,
       };
-      this.sprite.size.height = TILE_SIZE; //Delete Me
-      this.sprite.position.y = 2 * TILE_SIZE; //Delete Me
+      this.sprite.size.height = TILE_SIZE;
+      this.sprite.position.y = 2 * TILE_SIZE;
+    } else {
+      this.state = BIG_MARIO;
+
+      this.sprite.position.x = 5 * TILE_SIZE;
+      this.sprite.position.y = 0;
+      
     }
   }
 }

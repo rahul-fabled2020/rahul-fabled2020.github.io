@@ -24,7 +24,7 @@ const SPRITES = {
 
   flowerSprite: new Sprite(
     ITEMS,
-    new Vector(0, 4 * TILE_SIZE),
+    new Vector(0, 2 * TILE_SIZE),
     { width: TILE_SIZE, height: TILE_SIZE },
     20,
     [0, 1, 2, 3]
