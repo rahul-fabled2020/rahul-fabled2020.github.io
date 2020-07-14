@@ -42,7 +42,7 @@ class RotatingFire extends Entity {
   }
 
   detectCollision(camera, player) {
-    if (player.dyingTime) return;
+    if (player.dyingTime || player.powerTime) return;
 
     this.isCollidingWith(player);
   }
