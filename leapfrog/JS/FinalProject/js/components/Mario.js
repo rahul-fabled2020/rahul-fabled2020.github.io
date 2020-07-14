@@ -18,7 +18,7 @@ class Mario extends Entity {
 
     this.state = 0; //0 means Small Mario, 1 means Big Mario, 2 means Fire Mario
     this.numberOfCoins = 0;
-    this.powering = [];
+    this.stateIndices = [];
     this.bounce = false;
     this.jumpCount = 0;
     this.canJump = true;
@@ -30,7 +30,6 @@ class Mario extends Entity {
   }
 
   run() {
-    
     this.maxSpeed = 2.5;
 
     if (this.state == 2 && !this.isRunHeld) {
@@ -40,9 +39,7 @@ class Mario extends Entity {
     this.isRunHeld = true;
   }
 
-  shoot() {
-    
-  }
+  shoot() {}
 
   noRun() {
     this.maxSpeed = 1.5;
@@ -119,12 +116,8 @@ class Mario extends Entity {
       this.isOnGround = false;
       this.velocity.y = -6;
 
-      
-
       if (this.state === 0) {
-        
       } else {
-        
       }
     }
   }
@@ -143,10 +136,11 @@ class Mario extends Entity {
   }
 
   update(dt, camera, gameTime) {
-    if (this.powering.length !== 0) {
-      let next = this.powering.shift();
+    if (this.stateIndices.length !== 0) {
+      let next = this.stateIndices.shift();
 
-      if (next == 5) { //5 means no update
+      if (next == 5) {
+        //5 means no update
         return;
       }
       //Baaki xa garna ajha
@@ -191,16 +185,14 @@ class Mario extends Entity {
   }
 
   detectCollision(level) {
-    let h = 2;
+    let h = 1;
     let w = 1;
 
-    if (this.position.y % TILE_SIZE !== 0) {
-      h++;
-    }
+    if (this.position.y % TILE_SIZE !== 0) h++;
 
-    if (this.position.x % TILE_SIZE !== 0) {
-      w++;
-    }
+    if (this.position.x % TILE_SIZE !== 0) w++;
+
+    if (this.state > 0) h++;
 
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
@@ -221,20 +213,17 @@ class Mario extends Entity {
 
         if (level.blocks[baseY + i][baseX + j]) {
           level.blocks[baseY + i][baseX + j].isCollidingWith(this, level);
-        }        
+        }
       }
     }
 
     //With bridge
-    level.bridges.forEach((bridgeGroup)=>{
-      bridgeGroup.forEach((bridge => {
+    level.bridges.forEach((bridgeGroup) => {
+      bridgeGroup.forEach((bridge) => {
         bridge.isCollidingWith(this, level);
-      }))
+      });
     });
 
-    // level.items.forEach(item => {
-    //   item.isCollidingWith(this, level);
-    // })
   }
 
   animate() {
@@ -258,7 +247,6 @@ class Mario extends Entity {
           } else {
             this.sprite.animationSpeed = Math.abs(this.velocity.x) * 8;
           }
-
         } else if (
           (this.velocity.x > 0 && this.isFacingLeft) ||
           (this.velocity.x < 0 && !this.isFacingLeft)
@@ -268,11 +256,11 @@ class Mario extends Entity {
         }
       } else {
         this.sprite.animationSpeed = 0;
-        this.sprite.position.x = 5*TILE_SIZE;
+        this.sprite.position.x = 5 * TILE_SIZE;
       }
     }
 
-    if(this.isFacingLeft) {
+    if (this.isFacingLeft) {
       this.sprite.imageUrl = PLAYER_LEFT;
     } else {
       this.sprite.imageUrl = PLAYER_RIGHT;
@@ -280,7 +268,35 @@ class Mario extends Entity {
   }
 
   powerUp(index) {
-      console.log(index);
+    this.collectedItem = index;
+
+    if (this.state === 0) {
       this.state = 1;
+      this.hitbox = {
+        x: 0,
+        y: 0,
+        width: TILE_SIZE,
+        height: 2 * TILE_SIZE,
+      };
+
+      this.sprite.position.x = 5 * TILE_SIZE;
+      this.sprite.position.y = this.sprite.position.y - 2 *TILE_SIZE; //Delete me later after fixing animation
+      this.sprite.size.height = 2*TILE_SIZE; //Delete me too
+      this.stateSpritePositions = [
+        new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
+        new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
+        new Vector(20 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
+        new Vector(5 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
+        new Vector(8 * TILE_SIZE, this.sprite.position.y - 2 * TILE_SIZE), //Large Mario
+      ];
+
+      this.stateSizes = [
+        { width: TILE_SIZE, height: TILE_SIZE }, //Size of Small Mario
+        { width: TILE_SIZE, height: TILE_SIZE }, //Size of Small Mario
+        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
+        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
+        { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
+      ];
+    }
   }
 }
