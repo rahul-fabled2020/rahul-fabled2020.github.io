@@ -10,3 +10,8 @@ const ITEMS = "images/items.png";
 const TILES = "images/tiles.png";
 const ENEMIES_LEFT = "images/enemiesLeft.png";
 const ENEMIES_RIGHT = "images/enemiesRight.png";
+
+//Mario States
+const SMALL_MARIO = 0;
+const BIG_MARIO = 1;
+const FIRE_MARIO = 2;

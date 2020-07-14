@@ -14,6 +14,8 @@ class Level11 extends Level {
   loadLevel(player, camera) {
     this.initLevel();
     SPRITES.floorSprite.position = new Vector(0, 0);
+    player.position = this.playerPosition.copy();
+    camera.reset();
 
     let ground = [
       { horizontalPosition: [0, 69], VerticalPosition: [13, 15] },
@@ -28,8 +30,6 @@ class Level11 extends Level {
       { horizontalPosition: [395, 402], VerticalPosition: [13, 15] },
       { horizontalPosition: [405, 446], VerticalPosition: [13, 15] },
     ];
-    player.position = this.playerPosition;
-    camera.x = 0;
 
     //Ground building
     ground.forEach((tilePosition) => {

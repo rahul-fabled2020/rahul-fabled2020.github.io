@@ -4,6 +4,7 @@ class Level {
     this.scrolling = configuration.scrolling;
 
     this.background = configuration.background;
+    console.log(this.playerPosition);
 
     this.initLevel();
   }
@@ -58,7 +59,6 @@ class Level {
     }
   }
 
-
   putWall(x, y, height) {
     // y = bottom of the wall
     for (let i = y - height; i < y; i++) {
@@ -90,11 +90,13 @@ class Level {
   }
 
   putCoin(x, y) {
-    this.items.push(new Coin(
-      new Vector(x *TILE_SIZE, y*TILE_SIZE),
-      SPRITES.coinSprite,
-      this
-    ));
+    this.items.push(
+      new Coin(
+        new Vector(x * TILE_SIZE, y * TILE_SIZE),
+        SPRITES.coinSprite,
+        this
+      )
+    );
   }
 
   putQBlock(x, y, item) {
@@ -127,14 +129,23 @@ class Level {
   }
 
   putRotatingFire(x, y) {
-    this.obstacles.push([
-      new RotatingFire(new Vector(x * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x + 0.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x + 1) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x + 1.5) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x + 2) * TILE_SIZE, y * TILE_SIZE)),
-      new RotatingFire(new Vector((x + 2.5) * TILE_SIZE, y * TILE_SIZE)),
-    ]);
+    let angle = Math.random() * 360;
+    let center = new Vector(x*TILE_SIZE, y*TILE_SIZE)
+    let obstacles = [];
+
+    for(let i=0; i<6; i++) {
+      let distaneFromCenter = i*(0.5*TILE_SIZE);
+      obstacles.push(
+        new RotatingFire(
+          new Vector(x * TILE_SIZE, y * TILE_SIZE),
+          angle,
+          center,
+          distaneFromCenter
+        ),        
+      );
+    }
+
+    this.obstacles.push(obstacles);
   }
 
   putFireBridge(x, y, length) {
@@ -174,5 +185,4 @@ class Level {
       )
     );
   }
-
 }

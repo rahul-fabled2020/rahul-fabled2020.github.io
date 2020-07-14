@@ -58,6 +58,8 @@ class Game {
   }
 
   onKeyboardInput(dt) {
+    if(this.player.dyingTime) return;
+
     if (this.controller.isDown("RUN")) {
       this.player.run();
     } else {
@@ -86,7 +88,7 @@ class Game {
   }
 
   updateEntities(dt) {
-    this.player.update(dt, this.camera, this.gameTime);
+    this.player.update(dt, this.camera, this);
 
     this.updateables.forEach((entity) => {
       entity.update(dt, this.gameTime);
@@ -104,7 +106,9 @@ class Game {
   }
 
   detectCollision() {
-    this.player.detectCollision(this.level);
+    if(!this.player.dyingTime) {
+      this.player.detectCollision(this.level);
+    }
 
     this.level.items.forEach(item => {
       item.detectCollision(this.camera, this.player);
@@ -113,14 +117,17 @@ class Game {
     this.level.enemies.forEach(enemy => {
       enemy.detectCollision(this.camera, this.player);
     });
+
+    this.level.obstacles.forEach((obstacleGroup) => {
+      obstacleGroup.forEach(obstacle => {
+        obstacle.detectCollision(this.camera, this.player);
+      });
+    });
   }
 
   switchLevel() {
     let index = (this.currentLevelIndex + 1) % this.levels.length;
     this.currentLevelIndex = index;
-
-    this.player.position.x = 0;
-    this.camera.reset();
 
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);

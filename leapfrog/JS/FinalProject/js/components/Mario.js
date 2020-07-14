@@ -16,11 +16,11 @@ class Mario extends Entity {
       },
     });
 
-    this.state = 0; //0 means Small Mario, 1 means Big Mario, 2 means Fire Mario
+    this.state = SMALL_MARIO;
     this.numberOfCoins = 0;
     this.stateIndices = [];
     this.bounce = false;
-    this.jumpCount = 0;
+    this.jumpTime = 0;
     this.canJump = true;
     this.isCrounching = false;
     this.isRunHeld = false;
@@ -32,7 +32,7 @@ class Mario extends Entity {
   run() {
     this.maxSpeed = 2.5;
 
-    if (this.state == 2 && !this.isRunHeld) {
+    if (this.state == FIRE_MARIO && !this.isRunHeld) {
       this.shoot();
     }
 
@@ -89,7 +89,7 @@ class Mario extends Entity {
   }
 
   crouch() {
-    if (this.state === 0) {
+    if (this.state === SMALL_MARIO) {
       this.isCrounching = false;
       return;
     }
@@ -108,15 +108,15 @@ class Mario extends Entity {
       return;
     }
 
-    if (this.jumpCount) {
-      this.jumpCount -= 1;
+    if (this.jumpTime) {
+      this.jumpTime -= 1;
     } else if (this.isOnGround && this.canJump) {
-      this.jumpCount = 20;
+      this.jumpTime = 20;
       this.canJump = false;
       this.isOnGround = false;
       this.velocity.y = -6;
 
-      if (this.state === 0) {
+      if (this.state === SMALL_MARIO) {
       } else {
       }
     }
@@ -125,21 +125,21 @@ class Mario extends Entity {
   noJump() {
     this.canJump = true;
 
-    if (this.jumpCount) {
-      if (this.jumpCount <= 16) {
+    if (this.jumpTime) {
+      if (this.jumpTime <= 16) {
         this.velocity.y = 0;
-        this.jumpCount = 0;
+        this.jumpTime = 0;
       } else {
-        this.jumpCount -= 1;
+        this.jumpTime -= 1;
       }
     }
   }
 
-  update(dt, camera, gameTime) {
+  update(dt, camera, game) {
     if (this.stateIndices.length !== 0) {
-      let next = this.stateIndices.shift();
+      let nextIndex = this.stateIndices.shift();
 
-      if (next == 5) {
+      if (nextIndex == 5) {
         //5 means no update
         return;
       }
@@ -162,12 +162,27 @@ class Mario extends Entity {
       this.acceleration.x = 0;
     }
 
-    //Delete this
-    this.acceleration.y = 0.25;
-    if (this.position.y > 14 * TILE_SIZE) {
-      this.killMario();
+    if (this.dyingTime) {
+      if (this.y < this.targetPosition.y) {
+        this.velocity.y = 1;
+      }
+
+      this.dyingTime -= 1 * dt;
+
+      if (this.dyingTime <= 0) {
+        this.dyingTime = 0;
+        game.player = new Mario(game.level.playerPosition);
+
+        game.level.loadLevel(game.player, game.camera);
+        game.controller.reset();
+        console.log("killing");
+      }
+    } else {
+      this.acceleration.y = 0.25;
+      if (this.position.y > 14 * TILE_SIZE) {
+        this.getKilled();
+      }
     }
-    //Delete Above
 
     this.velocity.x += this.acceleration.x;
     this.velocity.y += this.acceleration.y;
@@ -175,16 +190,39 @@ class Mario extends Entity {
     this.position.y += this.velocity.y;
 
     this.animate();
-    this.sprite.update(dt, gameTime);
+    this.sprite.update(dt, game.gameTime);
   }
 
-  killMario() {
-    this.velocity.y = 0;
-    this.position.y = 4 * TILE_SIZE;
-    this.isOnGround = true;
+  getKilled() {
+    this.noWalk();
+    this.noRun();
+    this.noJump();
+
+    this.acceleration.x = 0;
+    this.sprite.position = new Vector(11 * TILE_SIZE, 2 * TILE_SIZE);
+    this.sprite.animationSpeed = 0;
+    this.state = SMALL_MARIO;
+    this.waitingTime = 0.5;
+    this.dyingTime = 2;
+
+    if (this.position.y < 15 * TILE_SIZE) {
+      this.targetPosition = new Vector(
+        this.position.x,
+        this.position.y - 8 * TILE_SIZE
+      );
+      this.velocity = new Vector(0, -5);
+    } else {
+      this.velocity = new Vector(0, 0);
+      this.targetPosition = new Vector(
+        this.position.x,
+        this.position.y - TILE_SIZE
+      );
+    }
   }
 
   detectCollision(level) {
+    if (this.dyingTime) return;
+
     let h = 1;
     let w = 1;
 
@@ -192,7 +230,7 @@ class Mario extends Entity {
 
     if (this.position.x % TILE_SIZE !== 0) w++;
 
-    if (this.state > 0) h++;
+    if (this.state !== SMALL_MARIO) h++;
 
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
@@ -223,17 +261,19 @@ class Mario extends Entity {
         bridge.isCollidingWith(this, level);
       });
     });
-
+    
   }
 
   animate() {
+    if (this.dyingTime) return;
+
     if (this.isCrounching) {
       this.sprite.position.x = 10 * TILE_SIZE;
       this.sprite.animationSpeed = 0;
       return;
     }
 
-    if (this.jumpCount) {
+    if (this.jumpTime) {
       this.sprite.position.x = 10 * TILE_SIZE;
       this.sprite.animationSpeed = 0;
     } else if (this.isOnGround) {
@@ -267,11 +307,11 @@ class Mario extends Entity {
     }
   }
 
-  powerUp(index) {
+  powerUp(index, level) {
     this.collectedItem = index;
 
-    if (this.state === 0) {
-      this.state = 1;
+    if (this.state === SMALL_MARIO) {
+      this.state = BIG_MARIO;
       this.hitbox = {
         x: 0,
         y: 0,
@@ -280,8 +320,8 @@ class Mario extends Entity {
       };
 
       this.sprite.position.x = 5 * TILE_SIZE;
-      this.sprite.position.y = this.sprite.position.y - 2 *TILE_SIZE; //Delete me later after fixing animation
-      this.sprite.size.height = 2*TILE_SIZE; //Delete me too
+      this.sprite.position.y = 0; //Delete me later after fixing animation
+      this.sprite.size.height = 2 * TILE_SIZE; //Delete me too
       this.stateSpritePositions = [
         new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
         new Vector(5 * TILE_SIZE, this.sprite.position.y), //Small Mario
@@ -297,6 +337,33 @@ class Mario extends Entity {
         { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
         { width: TILE_SIZE, height: 2 * TILE_SIZE }, //Size of Large Mario
       ];
+    } else if (this.state === BIG_MARIO) {
+    } else {
+      delete level.items[index];
+    }
+  }
+
+  getDamaged() {
+    if (this.state === SMALL_MARIO) {
+      this.getKilled();
+    } else {
+      this.sprite.position = new Vector(10 * TILE_SIZE, 0);
+      this.stateSpritePositions = [
+        new Vector(10 * TILE_SIZE, 0),
+        new Vector(15 * TILE_SIZE, 2 * TILE_SIZE),
+        new Vector(15 * TILE_SIZE, 0),
+        new Vector(10 * TILE_SIZE, 2 * TILE_SIZE),
+      ];
+
+      this.state = SMALL_MARIO;
+      this.hitbox = {
+        x: 0,
+        y: 0,
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+      };
+      this.sprite.size.height = TILE_SIZE; //Delete Me
+      this.sprite.position.y = 2 * TILE_SIZE; //Delete Me
     }
   }
 }

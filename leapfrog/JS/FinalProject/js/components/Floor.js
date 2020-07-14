@@ -77,7 +77,7 @@ class Floor extends Entity {
       }
     } else {
       if (entity instanceof Mario) {
-        entity.jumpCount = 0;
+        entity.jumpTime = 0;
       }
 
       if (displacement.y < 0) {
@@ -93,7 +93,7 @@ class Floor extends Entity {
 
         if(entity instanceof Mario && this instanceof Block) {
           this.bonk(entity.state);
-          entity.jumpCount = 0;
+          entity.jumpTime = 0;
         }
         
       }
