@@ -121,6 +121,8 @@ class Level {
     this.blocks[y][x] = new Block({
       position: new Vector(x * TILE_SIZE, y * TILE_SIZE),
       sprite: SPRITES.uBlockSprite,
+      usedSprite: SPRITES.uBlockSprite,
+      breakable: false,
     });
   }
 

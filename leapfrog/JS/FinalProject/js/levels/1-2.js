@@ -87,13 +87,13 @@ class Level12 extends Level {
     this.putRotatingFire(84, 9);
     this.putRotatingFire(89, 4);
 
-    this.putUsedBlock(30, 10);
-    this.putUsedBlock(49, 6);
-    this.putUsedBlock(60, 6);
-    this.putUsedBlock(67, 6);
-    this.putUsedBlock(76, 9);
-    this.putUsedBlock(84, 9);
-    this.putUsedBlock(89, 4);
+    this.putUsedBlock(30, 10, null);
+    this.putUsedBlock(49, 6, null);
+    this.putUsedBlock(60, 6, null);
+    this.putUsedBlock(67, 6, null);
+    this.putUsedBlock(76, 9, null);
+    this.putUsedBlock(84, 9, null);
+    this.putUsedBlock(89, 4, null);
 
     this.putCoin(5, 8);
 
