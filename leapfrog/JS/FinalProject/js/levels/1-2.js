@@ -99,8 +99,8 @@ class Level12 extends Level {
     this.putAxe(141.5, 8);
 
     //Enemies
-    // this.putGoomba(10, 5);
-    // this.putGoomba(12, 5);
+    this.putGoomba(10, 5);
+    this.putGoomba(12, 5);
     this.putGoomba(92, 9);
     this.putGoomba(100, 9);
     this.putGoomba(130, 9);
@@ -109,6 +109,6 @@ class Level12 extends Level {
     this.putKoopa(8, 5);
     this.putKoopa(102, 9);
 
-    this.putBowser(10,9);
+    this.putBowser(137,5);
   }
 }

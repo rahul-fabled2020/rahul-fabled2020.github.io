@@ -8,7 +8,7 @@ class SHM {
     }
 
     update(dt) {
-        this.position.x = this.initialPosition.x + Math.sin(this.radians)*this.distance;
+        this.position.x = this.initialPosition.x + Math.cos(this.radians)*this.distance;
         this.radians+=this.velocity.x*dt;
 
         if(this.radians >= 2* Math.PI) this.radians = 0;

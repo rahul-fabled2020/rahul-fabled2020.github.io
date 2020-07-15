@@ -168,7 +168,7 @@ class Enemy extends Entity {
       }
     }
     if (entity instanceof Mario) {
-      if (entity.velocity.y > 0) {
+      if (entity.velocity.y > 0 && !(this instanceof Bowser)) {
         delete this.level.enemies[this.index];
       } else {
         entity.getDamaged();
