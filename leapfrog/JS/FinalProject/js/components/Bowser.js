@@ -15,23 +15,24 @@ class Bowser extends Enemy {
     this.shm = new SHM(this.position, this.velocity, 32);
     this.velocity.x = 1;
     this.canJump = true;
-    this.jumpTime = 25;
-    this.jumpCountDownTime = 2;
+    this.jumpTime = BOWSER_JUMP_TIME;
+    this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
+    this.weapon = [];
   }
 
   update(dt, camera, player, gameTime) {
-    if(player.powerTime) return;
-    
+    if (player.powerTime) return;
+
     if (this.position.x - camera.x > 21 * TILE_SIZE) return;
 
     if (this.position.x - camera.x < -2 * TILE_SIZE) {
       delete this.level.enemies[this.index];
     }
 
-    if(this.velocity.x >0) {
-        this.sprite.imageUrl = ENEMIES_RIGHT;
+    if (this.velocity.x > 0) {
+      this.sprite.imageUrl = ENEMIES_RIGHT;
     } else {
-        this.sprite.imageUrl = ENEMIES_LEFT;
+      this.sprite.imageUrl = ENEMIES_LEFT;
     }
 
     if (this.isDyingCount) {
@@ -42,12 +43,12 @@ class Bowser extends Enemy {
       }
     }
 
-    if(this.jumpCountDownTime <= 0){
+    if (this.jumpCountDownTime <= 0) {
       this.jump();
       this.jump();
-      this.jumpCountDownTime=2;
+      this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
     }
-    this.jumpCountDownTime-=dt;
+    this.jumpCountDownTime -= dt;
     this.noJump();
     this.acceleration.y = 0.2;
     this.velocity.y += this.acceleration.y;
@@ -63,9 +64,9 @@ class Bowser extends Enemy {
     }
 
     if (this.jumpTime) {
-      this.jumpTime --;
+      this.jumpTime--;
     } else if (this.isOnGround && this.canJump) {
-      this.jumpTime = 25;
+      this.jumpTime = BOWSER_JUMP_TIME;
       this.canJump = false;
       this.isOnGround = false;
       this.velocity.y = -6;

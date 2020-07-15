@@ -15,3 +15,7 @@ const ENEMIES_RIGHT = "images/enemiesRight.png";
 const SMALL_MARIO = 0;
 const BIG_MARIO = 1;
 const FIRE_MARIO = 2;
+
+//Bowser
+const BOWSER_JUMP_TIME = 30;
+const BOWSER_JUMP_INTERVAL = Math.floor(Math.random() * 3) + 2;
