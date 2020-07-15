@@ -23,6 +23,14 @@ const SPRITES = {
     [0, 1, 2, 3]
   ),
 
+  bowserSprite: new Sprite(
+    ENEMIES_LEFT,
+    new Vector(47* TILE_SIZE, 0),
+    {width: 2* TILE_SIZE, height: 2*TILE_SIZE},
+    5,
+    [0, -1]
+  ),
+
   coinSprite: new Sprite(
     ITEMS,
     new Vector(0, 6 * TILE_SIZE),

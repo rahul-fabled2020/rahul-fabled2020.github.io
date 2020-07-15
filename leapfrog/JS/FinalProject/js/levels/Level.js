@@ -184,4 +184,13 @@ class Level {
       )
     );
   }
+
+  putBowser(x, y) {
+    this.enemies.push(
+      new Bowser(
+        new Vector(x * TILE_SIZE, y * TILE_SIZE),
+        this
+      )
+    );
+  }
 }

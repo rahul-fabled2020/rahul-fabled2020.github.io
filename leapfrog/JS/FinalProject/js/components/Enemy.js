@@ -57,7 +57,9 @@ class Enemy extends Entity {
       w++;
     }
 
-    if(this instanceof Koopa) h++;
+    if(this instanceof Koopa || this instanceof Bowser) h++;
+
+    if(this instanceof Bowser) w++;
 
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
