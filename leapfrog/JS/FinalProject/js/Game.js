@@ -3,9 +3,10 @@ class Game {
     this.previousTime = 0;
     this.gameTime = 0;
     this.updateables = [];
+    this.fireBullets = [];
     this.currentLevelIndex = 1;
 
-    this.player = new Mario(new Vector(0, 0));
+    this.player = new Mario(new Vector(0, 0), this);
     this.levels = [new Level11(), new Level12()];
     this.controller = new Controller();
     this.camera = new Camera(0, 0, 256, 240);
@@ -101,8 +102,12 @@ class Game {
     });
 
     this.level.enemies.forEach(enemy => {
-      enemy.update(dt, this.camera);
+      enemy.update(dt, this.camera, this.player);
     });
+
+    this.fireBullets.forEach(fireBullet => {
+      fireBullet.update(dt, this.gameTime);
+    })
   }
 
   detectCollision() {
@@ -116,6 +121,10 @@ class Game {
 
     this.level.enemies.forEach(enemy => {
       enemy.detectCollision(this.camera, this.player);
+    });
+
+    this.fireBullets.forEach(fireBullet => {
+      fireBullet.detectCollision(this.level);
     });
 
     this.level.obstacles.forEach((obstacleGroup) => {

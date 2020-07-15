@@ -63,6 +63,12 @@ class Floor extends Entity {
         return;
       }
 
+      if(entity instanceof FireBullet) {
+        entity.numOfHits = 1;
+        
+        return;
+      }
+
       if (displacement.x < 0) {
         //Entity is colliding from the left
         entity.velocity.x = Math.min(0, entity.velocity.x);

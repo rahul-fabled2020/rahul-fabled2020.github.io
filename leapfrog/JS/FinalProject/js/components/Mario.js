@@ -1,5 +1,5 @@
 class Mario extends Entity {
-  constructor(position) {
+  constructor(position, game) {
     super({
       position: position,
       sprite: new Sprite(
@@ -16,8 +16,11 @@ class Mario extends Entity {
       },
     });
 
+    this.game = game;
+
     this.state = SMALL_MARIO;
     this.numberOfCoins = 0;
+    this.numOfFireBullets = 0;
     this.powerTime = 0;
     this.bounce = false;
     this.jumpTime = 0;
@@ -39,7 +42,15 @@ class Mario extends Entity {
     this.isRunHeld = true;
   }
 
-  shoot() {}
+  shoot() {
+    if(this.numOfFireBullets >= 2) return; //Two bullets at a time
+
+    this.numOfFireBullets +=1;
+    let fireBullet = new FireBullet(new Vector(this.position.x + 0.5* TILE_SIZE, this.position.y), this.game);
+    fireBullet.spawn(this.isFacingLeft);
+    
+    this.shootingCount = 2;
+  }
 
   noRun() {
     this.maxSpeed = 1.5;
@@ -169,7 +180,7 @@ class Mario extends Entity {
 
       if (this.dyingTime <= 0) {
         this.dyingTime = 0;
-        game.player = new Mario(game.level.playerPosition);
+        game.player = new Mario(game.level.playerPosition, this.game);
         this.state = SMALL_MARIO;
 
         game.level.loadLevel(game.player, game.camera);
@@ -295,6 +306,11 @@ class Mario extends Entity {
       } else {
         this.sprite.animationSpeed = 0;
         this.sprite.position.x = 5 * TILE_SIZE;
+      }
+
+      if(this.shootingCount) {
+        this.sprite.position.x += 10*TILE_SIZE;
+        this.shootingCount -= 1;
       }
     }
 

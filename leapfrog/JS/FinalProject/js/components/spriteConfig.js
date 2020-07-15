@@ -1,10 +1,10 @@
 const SPRITES = {
   axeSprite: new Sprite(
-    TILES,
-    new Vector(27 * TILE_SIZE, TILE_SIZE),
-    { width: TILE_SIZE, height: TILE_SIZE },
-    8,
-    [0, 0, 0, 0, 1, 2, 1]
+    TILES, //Sprite Sheet
+    new Vector(27 * TILE_SIZE, TILE_SIZE), //Position of sprite in the sprite sheet
+    { width: TILE_SIZE, height: TILE_SIZE }, //Dimension of the sprite in the sprite sheet
+    8, //Animation Speed
+    [0, 0, 0, 0, 1, 2, 1] //Indices of the animation sprites relative to current sprite in the same row
   ),
 
   brokenBrickSprite: new Sprite(

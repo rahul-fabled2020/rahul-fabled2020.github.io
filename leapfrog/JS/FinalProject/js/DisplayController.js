@@ -24,6 +24,10 @@ class DisplayController {
       this.renderEntity(enemy);
     });
 
+    this.game.fireBullets.forEach(fireBullet => {
+      this.renderEntity(fireBullet);
+    });
+
     this.renderImmovables();
     this.renderEntity(this.game.player);
     this.renderFireBridge();
