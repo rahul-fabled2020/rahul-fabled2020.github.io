@@ -55,29 +55,32 @@ class Floor extends Entity {
       Math.abs(displacement.x / this.hitbox.width) >
       Math.abs(displacement.y / this.hitbox.height)
     ) {
-      if(this instanceof FireBridge) return;
+      if (this instanceof FireBridge) return;
 
-      if(entity instanceof Enemy || entity instanceof Mushroom) {
-
-        entity.reverseHorizontalVelocity();
-        return;
-      }
-
-      if(entity instanceof FireBullet) {
+      if (entity instanceof FireBullet) {
         entity.numOfHits = 1;
-        
+
         return;
       }
 
       if (displacement.x < 0) {
         //Entity is colliding from the left
-        entity.velocity.x = Math.min(0, entity.velocity.x);
-        entity.acceleration.x = Math.min(0, entity.acceleration.x);
+
+        if (entity instanceof Enemy || entity instanceof Mushroom) {
+          entity.velocity.x = -Math.abs(entity.velocity.x);
+        } else {
+          entity.velocity.x = Math.min(0, entity.velocity.x);
+          entity.acceleration.x = Math.min(0, entity.acceleration.x);
+        }
 
         entity.position.x = this.position.x - entity.hitbox.width;
       } else {
         //Entity is colliding from the right
-        entity.acceleration.x = Math.max(0, entity.acceleration.x);
+        if (entity instanceof Enemy || entity instanceof Mushroom) {
+          entity.velocity.x = Math.abs(entity.velocity.x);
+        } else {
+          entity.acceleration.x = Math.max(0, entity.acceleration.x);
+        }
 
         entity.position.x = this.position.x + this.hitbox.width;
       }
@@ -89,19 +92,19 @@ class Floor extends Entity {
       if (displacement.y < 0) {
         //Entity is colliding from the top
         entity.velocity.y = 0;
-        entity.position.y = this.position.y - entity.hitbox.height - entity.hitbox.y;
+        entity.position.y =
+          this.position.y - entity.hitbox.height - entity.hitbox.y;
         entity.isOnGround = true;
-
       } else {
         //Entity is colliding from the bottom
         entity.velocity.y = 0;
-        entity.position.y = this.position.y + this.hitbox.height + this.hitbox.y;
+        entity.position.y =
+          this.position.y + this.hitbox.height + this.hitbox.y;
 
-        if(entity instanceof Mario && this instanceof Block) {
+        if (entity instanceof Mario && this instanceof Block) {
           this.bonk(entity.state);
           entity.jumpTime = 0;
         }
-        
       }
     }
   }

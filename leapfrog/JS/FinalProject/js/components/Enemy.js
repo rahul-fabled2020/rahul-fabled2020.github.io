@@ -12,19 +12,19 @@ class Enemy extends Entity {
     this.index = this.level.enemies.length;
   }
 
-  update(dt, camera, player) {
-    if(player.powerTime) return;
-    
+  update(dt, camera, player, gameTime) {
+    if (player.powerTime) return;
+
     if (this.position.x - camera.x > 21 * TILE_SIZE) return;
 
     if (this.position.x - camera.x < -2 * TILE_SIZE) {
       delete this.level.enemies[this.index];
     }
 
-    if(!(this instanceof Goomba) && this.velocity.x >0) {
-        this.sprite.imageUrl = ENEMIES_RIGHT;
+    if (!(this instanceof Goomba) && this.velocity.x > 0) {
+      this.sprite.imageUrl = ENEMIES_RIGHT;
     } else {
-        this.sprite.imageUrl = ENEMIES_LEFT;
+      this.sprite.imageUrl = ENEMIES_LEFT;
     }
 
     if (this.isDyingCount) {
@@ -39,7 +39,7 @@ class Enemy extends Entity {
     this.velocity.y += this.acceleration.y;
     this.position = this.position.add(this.velocity);
 
-    this.sprite.update(dt);
+    this.sprite.update(dt, gameTime);
   }
 
   detectCollision(camera, player) {
@@ -57,9 +57,9 @@ class Enemy extends Entity {
       w++;
     }
 
-    if(this instanceof Koopa || this instanceof Bowser) h++;
+    if (this instanceof Koopa || this instanceof Bowser) h++;
 
-    if(this instanceof Bowser) w++;
+    if (this instanceof Bowser) w++;
 
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
@@ -81,11 +81,17 @@ class Enemy extends Entity {
         }
 
         if (this.level.statics[baseY + i][baseX + j]) {
-          this.level.statics[baseY + i][baseX + j].isCollidingWith(this, this.level);
+          this.level.statics[baseY + i][baseX + j].isCollidingWith(
+            this,
+            this.level
+          );
         }
 
         if (this.level.blocks[baseY + i][baseX + j]) {
-          this.level.blocks[baseY + i][baseX + j].isCollidingWith(this, this.level);
+          this.level.blocks[baseY + i][baseX + j].isCollidingWith(
+            this,
+            this.level
+          );
         }
       }
     }
@@ -111,7 +117,8 @@ class Enemy extends Entity {
   }
 
   isCollidingWith(entity) {
-    if(entity instanceof Mario && (entity.dyingTime || entity.powerTime)) return;
+    if (entity instanceof Mario && (entity.dyingTime || entity.powerTime))
+      return;
 
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -139,6 +146,27 @@ class Enemy extends Entity {
     )
       return;
 
+    if (
+      Math.abs(displacement.x / this.hitbox.width) >
+      Math.abs(displacement.y / this.hitbox.height)
+    ) {
+      if (entity instanceof Enemy) {
+        if (displacement.x < 0) {
+          //Entity is colliding from the left
+          entity.velocity.x = - Math.abs(entity.velocity.x)
+          // entity.velocity.x = Math.min(0, entity.velocity.x);
+          // entity.acceleration.x = Math.min(0, entity.acceleration.x);
+
+          entity.position.x = this.position.x - entity.hitbox.width;
+        } else {
+          //Entity is colliding from the right
+          entity.velocity.x = Math.abs(entity.velocity.x)
+          // entity.acceleration.x = Math.max(0, entity.acceleration.x);
+
+          entity.position.x = this.position.x + this.hitbox.width;
+        }
+      }
+    }
     if (entity instanceof Mario) {
       if (entity.velocity.y > 0) {
         delete this.level.enemies[this.index];
@@ -146,7 +174,8 @@ class Enemy extends Entity {
         entity.getDamaged();
       }
     } else {
-      this.reverseHorizontalVelocity();
+      // this.reverseHorizontalVelocity();
+      // entity.reverseHorizontalVelocity()
     }
   }
 

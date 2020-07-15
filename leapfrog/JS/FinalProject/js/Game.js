@@ -102,7 +102,7 @@ class Game {
     });
 
     this.level.enemies.forEach(enemy => {
-      enemy.update(dt, this.camera, this.player);
+      enemy.update(dt, this.camera, this.player, this.gameTime);
     });
 
     this.fireBullets.forEach(fireBullet => {
