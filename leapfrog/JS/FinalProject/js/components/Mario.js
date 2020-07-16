@@ -353,7 +353,7 @@ class Mario extends Entity {
 
     if (this.state === SMALL_MARIO) {
       this.getKilled();
-    } else if (this.state === BIG_MARIO) {
+    } else {
       this.sprite.position = new Vector(10 * TILE_SIZE, 0);
 
       this.state = SMALL_MARIO;
@@ -365,12 +365,6 @@ class Mario extends Entity {
       };
       this.sprite.size.height = TILE_SIZE;
       this.sprite.position.y = 2 * TILE_SIZE;
-    } else {
-      this.state = BIG_MARIO;
-
-      this.sprite.position.x = 5 * TILE_SIZE;
-      this.sprite.position.y = 0;
-      
     }
   }
 }
