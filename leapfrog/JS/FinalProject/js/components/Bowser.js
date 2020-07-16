@@ -17,6 +17,7 @@ class Bowser extends Enemy {
     this.canJump = true;
     this.jumpTime = BOWSER_JUMP_TIME;
     this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
+    this.fireTime = FIRE_TIME;
     this.weapon = [];
   }
 
@@ -43,11 +44,17 @@ class Bowser extends Enemy {
       }
     }
 
+    if(this.fireTime <=0) {
+      this.fire();
+      this.fireTime = FIRE_TIME;
+    }
+
+    this.fireTime -=dt;
+
     if (this.jumpCountDownTime <= 0) {
       this.jump();
-      this.jump();
-      this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
     }
+
     this.jumpCountDownTime -= dt;
     this.noJump();
     this.acceleration.y = 0.2;
@@ -58,10 +65,18 @@ class Bowser extends Enemy {
     this.sprite.update(dt, gameTime);
   }
 
+  fire() {
+    let weapon = new Fire(this.position.subtract(new Vector(TILE_SIZE, -0.25 * TILE_SIZE)), this);
+    weapon.spawn();
+  }
+
   jump() {
     if (this.velocity.y > 0) {
       return;
     }
+
+    this.sprite.animationSpeed = 0;
+    this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
 
     if (this.jumpTime) {
       this.jumpTime--;
@@ -75,6 +90,7 @@ class Bowser extends Enemy {
 
   noJump() {
     this.canJump = true;
+    this.sprite.animationSpeed = 5;
 
     if (this.jumpTime) {
       if (this.jumpTime <= 16) {

@@ -20,6 +20,10 @@ class DisplayController {
       this.renderEntity(item);
     });
 
+    this.game.enemyWeapons.forEach(weapon => {
+      this.renderEntity(weapon);
+    });
+
     this.game.level.enemies.forEach((enemy) => {
       this.renderEntity(enemy);
     });

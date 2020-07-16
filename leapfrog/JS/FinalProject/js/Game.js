@@ -4,6 +4,7 @@ class Game {
     this.gameTime = 0;
     this.updateables = [];
     this.fireBullets = [];
+    this.enemyWeapons = [];
     this.currentLevelIndex = 1;
 
     this.player = new Mario(new Vector(0, 0), this);
@@ -18,7 +19,7 @@ class Game {
       ITEMS,
       TILES,
       ENEMIES_LEFT,
-      ENEMIES_RIGHT
+      ENEMIES_RIGHT,
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));
@@ -59,7 +60,7 @@ class Game {
   }
 
   onKeyboardInput(dt) {
-    if(this.player.dyingTime) return;
+    if (this.player.dyingTime) return;
 
     if (this.controller.isDown("RUN")) {
       this.player.run();
@@ -97,38 +98,49 @@ class Game {
 
     this.camera.move(this.level, this.player);
 
-    this.level.items.forEach(item => {
+    this.level.items.forEach((item) => {
       item.update(dt, this.gameTime, this.player);
     });
 
-    this.level.enemies.forEach(enemy => {
+    this.level.enemies.forEach((enemy) => {
+      if (enemy instanceof Bowser) {
+        this.enemyWeapons = enemy.weapon;
+      }
       enemy.update(dt, this.camera, this.player, this.gameTime);
     });
 
-    this.fireBullets.forEach(fireBullet => {
+    this.fireBullets.forEach((fireBullet) => {
       fireBullet.update(dt, this.gameTime);
-    })
+    });
+
+    this.enemyWeapons.forEach((weapon) => {
+      weapon.update(dt, this.camera);
+    });
   }
 
   detectCollision() {
-    if(!this.player.dyingTime) {
+    if (!this.player.dyingTime) {
       this.player.detectCollision(this.level);
     }
 
-    this.level.items.forEach(item => {
+    this.level.items.forEach((item) => {
       item.detectCollision(this.camera, this.player);
     });
 
-    this.level.enemies.forEach(enemy => {
+    this.enemyWeapons.forEach(weapon => {
+      weapon.detectCollision(this.player);
+    });
+
+    this.level.enemies.forEach((enemy) => {
       enemy.detectCollision(this.camera, this.player);
     });
 
-    this.fireBullets.forEach(fireBullet => {
+    this.fireBullets.forEach((fireBullet) => {
       fireBullet.detectCollision(this.level);
     });
 
     this.level.obstacles.forEach((obstacleGroup) => {
-      obstacleGroup.forEach(obstacle => {
+      obstacleGroup.forEach((obstacle) => {
         obstacle.detectCollision(this.camera, this.player);
       });
     });
@@ -158,4 +170,3 @@ document.addEventListener("keyup", function (e) {
 window.addEventListener("blur", function () {
   g.controller.pressedKeys = {};
 });
-

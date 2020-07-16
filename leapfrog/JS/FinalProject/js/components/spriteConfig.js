@@ -47,6 +47,13 @@ const SPRITES = {
     [0, 1, 2, 3]
   ),
 
+  fireSprite: new Sprite(
+    ENEMIES_LEFT,
+    new Vector(49 * TILE_SIZE, 0),
+    {width: 2*TILE_SIZE, height: 0.5 * TILE_SIZE},
+    0
+  ),
+
   floorSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),
