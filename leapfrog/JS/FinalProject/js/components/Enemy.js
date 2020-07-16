@@ -57,7 +57,7 @@ class Enemy extends Entity {
       w++;
     }
 
-    if (this instanceof Koopa || this instanceof Bowser) h++;
+    if (this instanceof Koopa || this instanceof Bowser || HammerBro) h++;
 
     if (this instanceof Bowser) w++;
 

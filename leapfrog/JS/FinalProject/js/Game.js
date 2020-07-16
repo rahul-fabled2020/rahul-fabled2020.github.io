@@ -4,7 +4,8 @@ class Game {
     this.gameTime = 0;
     this.updateables = [];
     this.fireBullets = [];
-    this.enemyWeapons = [];
+    this.bowserFire = [];
+    this.hammerBroHammer = [];
     this.currentLevelIndex = 1;
 
     this.player = new Mario(new Vector(0, 0), this);
@@ -20,6 +21,7 @@ class Game {
       TILES,
       ENEMIES_LEFT,
       ENEMIES_RIGHT,
+      HAMMER
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));
@@ -104,8 +106,13 @@ class Game {
 
     this.level.enemies.forEach((enemy) => {
       if (enemy instanceof Bowser) {
-        this.enemyWeapons = enemy.weapon;
+        this.bowserFire = enemy.weapon;
       }
+
+      if(enemy instanceof HammerBro) {
+        this.hammerBroHammer = enemy.weapon;
+      }
+
       enemy.update(dt, this.camera, this.player, this.gameTime);
     });
 
@@ -113,8 +120,12 @@ class Game {
       fireBullet.update(dt, this.gameTime);
     });
 
-    this.enemyWeapons.forEach((weapon) => {
+    this.bowserFire.forEach((weapon) => {
       weapon.update(dt, this.camera);
+    });
+
+    this.hammerBroHammer.forEach((weapon) => {
+      weapon.update(dt, this.camera, this.gameTime);
     });
   }
 
@@ -127,10 +138,14 @@ class Game {
       item.detectCollision(this.camera, this.player);
     });
 
-    this.enemyWeapons.forEach(weapon => {
+    this.bowserFire.forEach(weapon => {
       weapon.detectCollision(this.player);
     });
 
+    this.hammerBroHammer.forEach(weapon => {
+      weapon.detectCollision(this.player);
+    });
+    
     this.level.enemies.forEach((enemy) => {
       enemy.detectCollision(this.camera, this.player);
     });

@@ -193,4 +193,13 @@ class Level {
       )
     );
   }
+
+  putHammerBro(x, y) {
+    this.enemies.push(
+      new HammerBro(
+        new Vector(x * TILE_SIZE, y*TILE_SIZE),
+        this
+      )
+    );
+  }
 }

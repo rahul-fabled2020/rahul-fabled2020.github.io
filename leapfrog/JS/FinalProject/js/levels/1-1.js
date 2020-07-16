@@ -129,5 +129,7 @@ class Level11 extends Level {
     this.putGoomba(170, 12);
     this.putGoomba(172, 12);
     this.putKoopa(35, 11);
+
+    this.putHammerBro(76,5);
   }
 }

@@ -69,6 +69,22 @@ const SPRITES = {
     [0, 1, 2, 3]
   ),
 
+  hammerBroSprite: new Sprite(
+    ENEMIES_LEFT,
+    new Vector(20 * TILE_SIZE, 0),
+    { width: TILE_SIZE, height: 2 * TILE_SIZE },
+    5,
+    [0, 1]
+  ),
+
+  hammerSprite: new Sprite(
+    HAMMER,
+    new Vector(0, 0),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    10,
+    [0,0,0,2,3,1]
+  ),
+
   mushroomSprite: new Sprite(
     ITEMS,
     new Vector(0, 0),
