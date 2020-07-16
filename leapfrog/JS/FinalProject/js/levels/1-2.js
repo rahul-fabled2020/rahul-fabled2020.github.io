@@ -109,6 +109,6 @@ class Level12 extends Level {
     this.putKoopa(8, 5);
     this.putKoopa(102, 9);
 
-    this.putBowser(137,5);
+    this.putBowser(136.5,5);
   }
 }

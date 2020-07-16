@@ -4,9 +4,9 @@ class Bowser extends Enemy {
       position: position,
       sprite: SPRITES.bowserSprite,
       hitbox: {
-        x: 0,
+        x: 0.5 * TILE_SIZE,
         y: 0,
-        width: 2 * TILE_SIZE,
+        width: 1.5 * TILE_SIZE,
         height: 2 * TILE_SIZE,
       },
       level: level,
