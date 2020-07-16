@@ -20,3 +20,4 @@ const FIRE_MARIO = 2;
 const BOWSER_JUMP_TIME = 30;
 const BOWSER_JUMP_INTERVAL = Math.floor(Math.random() * 3) + 2;
 const FIRE_TIME = 1.5;
+const MOUTH_OPEN_TIME = 1;

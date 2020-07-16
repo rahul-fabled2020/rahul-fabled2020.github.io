@@ -6,7 +6,7 @@ class Fire extends Entity {
       hitbox: {
         x: 0,
         y: 0,
-        width: 2*TILE_SIZE,
+        width: 1.5*TILE_SIZE,
         height: 0.5 * TILE_SIZE,
       },
     });

@@ -14,11 +14,14 @@ class Bowser extends Enemy {
 
     this.shm = new SHM(this.position, this.velocity, 32);
     this.velocity.x = 1;
+    this.acceleration.y = 0.2;
     this.canJump = true;
     this.jumpTime = BOWSER_JUMP_TIME;
     this.jumpCountDownTime = BOWSER_JUMP_INTERVAL;
     this.fireTime = FIRE_TIME;
+    this.mouthOpenTime = MOUTH_OPEN_TIME;
     this.weapon = [];
+    this.weaponIndex = 0;
   }
 
   update(dt, camera, player, gameTime) {
@@ -44,20 +47,25 @@ class Bowser extends Enemy {
       }
     }
 
-    if(this.fireTime <=0) {
+    this.fireTime -= dt;
+    this.jumpCountDownTime -= dt;
+    this.mouthOpenTime -= dt;
+
+    if (this.fireTime <= 0) {
       this.fire();
       this.fireTime = FIRE_TIME;
     }
 
-    this.fireTime -=dt;
+    if(this.mouthOpenTime <=0 ){
+      this.sprite.position.x = 47 * TILE_SIZE;
+      this.mouthOpenTime = MOUTH_OPEN_TIME;
+    }
 
     if (this.jumpCountDownTime <= 0) {
       this.jump();
     }
 
-    this.jumpCountDownTime -= dt;
     this.noJump();
-    this.acceleration.y = 0.2;
     this.velocity.y += this.acceleration.y;
     // this.position = this.position.add(this.velocity);
     this.position.y += this.velocity.y;
@@ -66,7 +74,13 @@ class Bowser extends Enemy {
   }
 
   fire() {
-    let weapon = new Fire(this.position.subtract(new Vector(TILE_SIZE, -0.25 * TILE_SIZE)), this);
+    this.sprite.position.x = 43 * TILE_SIZE;
+    this.sprite.animationSpeed = 5;
+    let weapon = new Fire(
+      this.position.subtract(new Vector(TILE_SIZE, -0.25 * TILE_SIZE)),
+      this
+    );
+    this.weaponIndex = weapon.index;
     weapon.spawn();
   }
 
