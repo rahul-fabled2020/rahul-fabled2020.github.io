@@ -18,6 +18,10 @@ class Controller {
     var key;
 
     switch (keyCode) {
+      case 13: //ENTER
+        key = "ENTER"
+        break;
+
       case 32: //SPACE
         key = "JUMP";
         break;
@@ -68,7 +72,7 @@ class Controller {
     }
 
     this.pressedKeys[key] = isActive;
-  
+    console.log(this.pressedKeys)
   }
 
   /**

@@ -7,6 +7,7 @@ class Game {
     this.bowserFire = [];
     this.hammerBroHammer = [];
     this.currentLevelIndex = 0;
+    this.gameStarted = false;
 
     this.player = new Mario(new Vector(0, 0), this);
     this.levels = [new Level11(), new Level12()];
@@ -15,6 +16,7 @@ class Game {
     this.displayController = new DisplayController(this, canvasId, this.camera);
 
     Game.imageLoader.load([
+      START_SCREEN,
       PLAYER_LEFT,
       PLAYER_RIGHT,
       ITEMS,
@@ -54,15 +56,22 @@ class Game {
     if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
+    
+    this.onKeyboardInput(dt);
+    if(!this.gameStarted) return;
 
     this.gameTime += dt;
-    this.onKeyboardInput(dt);
+  
     this.updateEntities(dt);
     this.detectCollision();
   }
 
   onKeyboardInput(dt) {
-    if (this.player.dyingTime) return;
+    if(this.controller.isDown("ENTER")) {
+      this.gameStarted = true;
+    }
+
+    if (this.player.dyingTime ||!this.gameStarted) return;
 
     if (this.controller.isDown("RUN")) {
       this.player.run();
@@ -163,7 +172,7 @@ class Game {
 
   switchLevel() {
     this.gameTime = 0;
-    
+
     let index = (this.currentLevelIndex + 1) % this.levels.length;
     this.currentLevelIndex = index;
 

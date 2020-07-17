@@ -41,6 +41,10 @@ class DisplayController {
     this.renderEntity(this.game.player);
     this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
+
+    if(!this.game.gameStarted) {
+      this.renderStartScreen();
+    }
   }
 
   renderFireBridge() {
@@ -131,6 +135,24 @@ class DisplayController {
 
     this.context.fillText("TIME", 11 * TILE_SIZE, y);
     this.context.fillText(this.formatGameTime(), 11.25 * TILE_SIZE, y + 10);
+  }
+
+  renderStartScreen() {
+    let banner = Game.imageLoader.getImage(START_SCREEN);
+    let centerX = this.canvas.width/6 - banner.width/6;
+    let centerY = 2* TILE_SIZE;
+
+    this.context.drawImage(banner, centerX, centerY, banner.width/3, banner.height/3);
+
+    this.context.fillText("Press 'Enter Key' to Start the Game", centerX, 8*TILE_SIZE);
+
+    this.context.font = "7px Comic Sans MS";
+    this.context.fillText("Instructions", centerX + 4*TILE_SIZE, 9*TILE_SIZE);
+
+    this.context.font = "6px Comic Sans MS";
+    this.context.fillText("Movement: Arrow Keys or A S D", centerX+ 2*TILE_SIZE, 10*TILE_SIZE);
+    this.context.fillText("Jump: Space Bar or X", centerX+ 3*TILE_SIZE, 10.75*TILE_SIZE);
+    this.context.fillText("Sprint/Bullet: Z", centerX + 3.5* TILE_SIZE, 11.5*TILE_SIZE);
   }
 
   formatPlayerCoins() {
