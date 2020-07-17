@@ -104,7 +104,7 @@ class Floor extends Entity {
           this.position.y + this.hitbox.height + this.hitbox.y;
 
         if (entity instanceof Mario && this instanceof Block) {
-          this.bonk(entity.state);
+          this.bonk(entity.state, level);
           entity.jumpTime = 0;
         }
       }

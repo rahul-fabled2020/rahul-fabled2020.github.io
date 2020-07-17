@@ -13,15 +13,18 @@ class Block extends Floor {
     this.isBreakable = configuration.breakable;
   }
 
-  break() {
-    console.log("Break");
+  break(level) {
+    let x = Math.floor(this.position.x / TILE_SIZE);
+    let y = Math.floor(this.position.y / TILE_SIZE);
+
+    delete level.blocks[y][x];
   }
 
-  bonk(marioState) {
+  bonk(marioState, level) {
     if(this.sprite === this.usedSprite) return;
 
     if(marioState > 0 && this.isBreakable) {
-      this.break();
+      this.break(level);
     } else if(this.isOnGround) {
       this.isOnGround = false;
 
