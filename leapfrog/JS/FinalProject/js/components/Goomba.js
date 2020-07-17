@@ -13,4 +13,28 @@ class Goomba extends Enemy {
     });
     
   }
+
+  stomp(player) {
+    if(this.isDyingCount) return;
+
+    player.bounce = true;
+
+    this.sprite = new Sprite(
+      ENEMIES_LEFT,
+      new Vector(2*TILE_SIZE, TILE_SIZE),
+      { width: TILE_SIZE, height: TILE_SIZE },
+      0,
+    )
+    
+    this.sprite.animationSpeed = 0;
+    this.velocity.x = 0;
+    this.isDyingCount = 10;
+  }
+  
+  bump() {
+    this.sprite.imageUrl = ENEMIES_RIGHT;
+    this.isFlipping = true;
+    this.position.y -= 1;
+    this.velocity = new Vector(0, -2.5);
+  }
 }

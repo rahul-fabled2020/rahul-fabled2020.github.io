@@ -10,10 +10,11 @@ class Enemy extends Entity {
     this.velocity = new Vector(-0.5, 0);
     this.level = configuration.level;
     this.index = this.level.enemies.length;
+    this.isFlipping = false;
   }
 
   update(dt, camera, player, gameTime) {
-    if (player.powerTime) return;
+    if (player.powerTime || player.dyingTime) return;
 
     if (this.position.x - camera.x > 21 * TILE_SIZE) return;
 
@@ -113,12 +114,12 @@ class Enemy extends Entity {
     });
 
     //With player
+    if(player.dyingTime || player.powerTime || this.isDyingCount) return;
+
     this.isCollidingWith(player);
   }
 
   isCollidingWith(entity) {
-    if (entity instanceof Mario && (entity.dyingTime || entity.powerTime))
-      return;
 
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -169,7 +170,7 @@ class Enemy extends Entity {
     }
     if (entity instanceof Mario) {
       if (entity.velocity.y > 0 && !(this instanceof Bowser)) {
-        delete this.level.enemies[this.index];
+        this.stomp(entity);
       } else {
         entity.getDamaged();
       }
@@ -181,5 +182,9 @@ class Enemy extends Entity {
 
   reverseHorizontalVelocity() {
     this.velocity.x *= -1;
+  }
+
+  stomp(player) {
+
   }
 }

@@ -77,11 +77,11 @@ class Sprite {
       this.size.width,
       this.size.height
     );
-    // context.strokeRect(
-    //   Math.round(entityPosition.x - camera.x),
-    //   Math.round(entityPosition.y - camera.y),
-    //   this.size.width,
-    //   this.size.height
-    // );
+    context.strokeRect(
+      Math.round(entityPosition.x - camera.x),
+      Math.round(entityPosition.y - camera.y),
+      this.size.width,
+      this.size.height
+    );
   }
 }
