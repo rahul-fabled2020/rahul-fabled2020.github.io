@@ -182,6 +182,7 @@ class Mario extends Entity {
         this.dyingTime = 0;
         game.player = new Mario(game.level.playerPosition, this.game);
         this.state = SMALL_MARIO;
+        game.gameTime = 0;
 
         game.level.loadLevel(game.player, game.camera);
         game.controller.reset();

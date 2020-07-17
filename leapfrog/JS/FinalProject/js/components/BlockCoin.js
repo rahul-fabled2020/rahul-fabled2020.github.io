@@ -12,10 +12,11 @@ class BlockCoin extends Entity {
         });
 
         this.level = level;
-        this.index = level.items.length;
+        this.index = -1;
     }
 
     spawn() {
+        this.index = this.level.items.length;
         this.level.items.push(this);
         this.isActive = true;
         this.velocity.y = -12;

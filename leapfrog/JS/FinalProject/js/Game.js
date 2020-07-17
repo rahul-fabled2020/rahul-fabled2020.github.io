@@ -162,6 +162,8 @@ class Game {
   }
 
   switchLevel() {
+    this.gameTime = 0;
+    
     let index = (this.currentLevelIndex + 1) % this.levels.length;
     this.currentLevelIndex = index;
 
