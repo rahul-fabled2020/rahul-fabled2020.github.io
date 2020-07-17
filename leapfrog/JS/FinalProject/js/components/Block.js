@@ -38,8 +38,6 @@ class Block extends Floor {
       } else {
         this.sprite = this.usedSprite;
       }
-
-      this.velocity.y = -2;
     }
   }
 
