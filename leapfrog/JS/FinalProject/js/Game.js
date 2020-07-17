@@ -6,7 +6,7 @@ class Game {
     this.fireBullets = [];
     this.bowserFire = [];
     this.hammerBroHammer = [];
-    this.currentLevelIndex = 1;
+    this.currentLevelIndex = 0;
 
     this.player = new Mario(new Vector(0, 0), this);
     this.levels = [new Level11(), new Level12()];

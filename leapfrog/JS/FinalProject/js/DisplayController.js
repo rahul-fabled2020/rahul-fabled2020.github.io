@@ -14,17 +14,18 @@ class DisplayController {
     this.context.fillStyle = this.game.level.background;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.renderStatistics();
     this.renderBackgroundScenes();
 
     this.game.level.items.forEach((item) => {
       this.renderEntity(item);
     });
 
-    this.game.bowserFire.forEach(weapon => {
+    this.game.bowserFire.forEach((weapon) => {
       this.renderEntity(weapon);
     });
 
-    this.game.hammerBroHammer.forEach(weapon => {
+    this.game.hammerBroHammer.forEach((weapon) => {
       this.renderEntity(weapon);
     });
 
@@ -32,7 +33,7 @@ class DisplayController {
       this.renderEntity(enemy);
     });
 
-    this.game.fireBullets.forEach(fireBullet => {
+    this.game.fireBullets.forEach((fireBullet) => {
       this.renderEntity(fireBullet);
     });
 
@@ -99,5 +100,62 @@ class DisplayController {
 
   renderEntity(entity) {
     entity.render(this.context, this.camera);
+  }
+
+  renderStatistics() {
+    let y = 15;
+    let coin = SPRITES.coinSprite;
+    let coinImage = Game.imageLoader.getImage(coin.imageUrl);
+
+    this.context.font = "9px Comic Sans MS";
+    this.context.fillStyle = "#fff";
+
+    this.context.fillText("MARIO", 2 * TILE_SIZE, y);
+    this.context.fillText("000000", 2 * TILE_SIZE, y + 10);
+
+    this.context.drawImage(
+      coinImage,
+      coin.position.x,
+      coin.position.y,
+      coin.size.width,
+      coin.size.height,
+      4.875 * TILE_SIZE,
+      0.9* TILE_SIZE,
+      coin.size.width / 1.5,
+      coin.size.height / 1.5
+    );
+    this.context.fillText(this.formatPlayerCoins(), 5.5 * TILE_SIZE, y + 10);
+
+    this.context.fillText("WORLD", 8 * TILE_SIZE, y);
+    this.context.fillText(this.formatLevel(), 8.75 * TILE_SIZE, y + 10);
+
+    this.context.fillText("TIME", 11 * TILE_SIZE, y);
+    this.context.fillText(this.formatGameTime(), 11.25 * TILE_SIZE, y + 10);
+  }
+
+  formatPlayerCoins() {
+    let coins;
+
+    if(this.game.player.numberOfCoins > 99) {
+      this.game.player.numberOfCoins = 0;
+    }
+
+    coins = this.game.player.numberOfCoins;
+
+    if(coins < 10)
+      return "x 0"+coins;
+    
+    return "x "+coins;
+  }
+
+  formatLevel() {
+    let level = this.game.currentLevelIndex;
+    return "1-"+(level+1);
+  }
+
+  formatGameTime() {
+    let seconds = Math.floor(this.game.gameTime);
+    
+    return seconds;
   }
 }
