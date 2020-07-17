@@ -124,4 +124,14 @@ class HammerBro extends Enemy {
       }
     }
   }
+
+  stomp(player) {
+    if(this.isDyingCount) return;
+
+    player.bounce = true;
+    
+    this.sprite.animationSpeed = 0;
+    this.velocity.x = 0;
+    this.isDyingCount = 10;
+  }
 }
