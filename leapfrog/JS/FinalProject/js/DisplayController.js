@@ -42,12 +42,14 @@ class DisplayController {
     this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
 
-    if(!this.game.gameStarted) {
-      this.renderStartScreen();
+    if(this.game.gamePaused && this.game.gameStarted) {
+      if(this.game.gameTime < 0.5) return;
+
+      this.renderPauseScreen();
     }
 
-    if(this.game.gamePaused && this.game.gameStarted) {
-      this.renderPauseScreen();
+    if(!this.game.gameStarted) {
+      this.renderStartScreen();
     }
 
   }

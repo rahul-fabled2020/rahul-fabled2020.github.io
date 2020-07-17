@@ -24,7 +24,7 @@ class Game {
       TILES,
       ENEMIES_LEFT,
       ENEMIES_RIGHT,
-      HAMMER
+      HAMMER,
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));
@@ -57,23 +57,22 @@ class Game {
     if (this.player.position.x > this.level.levelEndPosition) {
       this.switchLevel();
     }
-    
+
     this.onKeyboardInput(dt);
-    if(!this.gameStarted || this.gamePaused) return;
+    if (!this.gameStarted || this.gamePaused) return;
 
     this.gameTime += dt;
-  
+
     this.updateEntities(dt);
     this.detectCollision();
   }
 
   onKeyboardInput(dt) {
-    if(this.controller.isDown("ENTER")) {
+    if (this.controller.isDown("ENTER")) {
       this.gameStarted = true;
-      this.gamePaused = !this.gamePaused;
     }
 
-    if (this.player.dyingTime ||!this.gameStarted || this.gamePaused) return;
+    if (this.player.dyingTime || !this.gameStarted || this.gamePaused) return;
 
     if (this.controller.isDown("RUN")) {
       this.player.run();
@@ -120,7 +119,7 @@ class Game {
         this.bowserFire = enemy.weapon;
       }
 
-      if(enemy instanceof HammerBro) {
+      if (enemy instanceof HammerBro) {
         this.hammerBroHammer = enemy.weapon;
       }
 
@@ -149,14 +148,14 @@ class Game {
       item.detectCollision(this.camera, this.player);
     });
 
-    this.bowserFire.forEach(weapon => {
+    this.bowserFire.forEach((weapon) => {
       weapon.detectCollision(this.player);
     });
 
-    this.hammerBroHammer.forEach(weapon => {
+    this.hammerBroHammer.forEach((weapon) => {
       weapon.detectCollision(this.player);
     });
-    
+
     this.level.enemies.forEach((enemy) => {
       enemy.detectCollision(this.camera, this.player);
     });
@@ -181,6 +180,10 @@ class Game {
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);
   }
+
+  togglePauseState() {
+    this.gamePaused = !this.gamePaused;
+  }
 }
 
 Game.imageLoader = new ImageLoader();
@@ -193,6 +196,8 @@ document.addEventListener("keydown", function (e) {
 
 document.addEventListener("keyup", function (e) {
   g.controller.assignKey(e, false);
+
+  if (e.keyCode === 13) g.togglePauseState();
 });
 
 window.addEventListener("blur", function () {
