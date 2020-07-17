@@ -36,6 +36,7 @@ class Fire extends Entity {
   }
 
   detectCollision(player) {
+    if(player.dyingTime || player.powerTime) return;
     this.isCollidingWith(player);
   }
 
