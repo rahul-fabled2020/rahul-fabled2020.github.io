@@ -43,12 +43,15 @@ class Mario extends Entity {
   }
 
   shoot() {
-    if(this.numOfFireBullets >= 2) return; //Two bullets at a time
+    if (this.numOfFireBullets >= 2) return; //Two bullets at a time
 
-    this.numOfFireBullets +=1;
-    let fireBullet = new FireBullet(new Vector(this.position.x + 0.5* TILE_SIZE, this.position.y), this.game);
+    this.numOfFireBullets += 1;
+    let fireBullet = new FireBullet(
+      new Vector(this.position.x + 0.5 * TILE_SIZE, this.position.y),
+      this.game
+    );
     fireBullet.spawn(this.isFacingLeft);
-    
+
     this.shootingCount = 2;
   }
 
@@ -147,10 +150,10 @@ class Mario extends Entity {
   }
 
   update(dt, camera, game) {
-    if(this.powerTime) {
-      this.powerTime-=dt;
+    if (this.powerTime) {
+      this.powerTime -= dt;
 
-      if(this.powerTime < 0.01) {
+      if (this.powerTime < 0.01) {
         this.powerTime = 0;
       }
     }
@@ -278,9 +281,30 @@ class Mario extends Entity {
     if (this.dyingTime) return;
 
     if (this.isCrounching) {
-      this.sprite.position.x = 10 * TILE_SIZE;
+      if (this.state === BIG_MARIO) {
+        this.sprite.position = new Vector(11 * TILE_SIZE, 0.5 * TILE_SIZE);
+      } else {
+        this.sprite.position = new Vector(11 * TILE_SIZE, 6.5 * TILE_SIZE);
+      }
+
       this.sprite.animationSpeed = 0;
+      this.hitbox.height = 1.5 * TILE_SIZE;
+      this.sprite.size.height = 1.5 * TILE_SIZE;
+
       return;
+    } else {
+      if (this.state !== SMALL_MARIO) {
+        this.hitbox.height = 2 * TILE_SIZE;
+        this.sprite.size.height = 2 * TILE_SIZE;
+      }
+
+      if (this.state == BIG_MARIO) {
+        this.sprite.position.y = 0;
+      }
+
+      if (this.state == FIRE_MARIO) {
+        this.sprite.position.y = 6 * TILE_SIZE;
+      }
     }
 
     if (this.jumpTime) {
@@ -309,8 +333,8 @@ class Mario extends Entity {
         this.sprite.position.x = 5 * TILE_SIZE;
       }
 
-      if(this.shootingCount) {
-        this.sprite.position.x += 10*TILE_SIZE;
+      if (this.shootingCount) {
+        this.sprite.position.x += 10 * TILE_SIZE;
         this.shootingCount -= 1;
       }
     }
