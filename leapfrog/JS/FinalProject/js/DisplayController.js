@@ -45,6 +45,11 @@ class DisplayController {
     if(!this.game.gameStarted) {
       this.renderStartScreen();
     }
+
+    if(this.game.gamePaused && this.game.gameStarted) {
+      this.renderPauseScreen();
+    }
+
   }
 
   renderFireBridge() {
@@ -153,6 +158,13 @@ class DisplayController {
     this.context.fillText("Movement: Arrow Keys or A S D", centerX+ 2*TILE_SIZE, 10*TILE_SIZE);
     this.context.fillText("Jump: Space Bar or X", centerX+ 3*TILE_SIZE, 10.75*TILE_SIZE);
     this.context.fillText("Sprint/Bullet: Z", centerX + 3.5* TILE_SIZE, 11.5*TILE_SIZE);
+  }
+
+  renderPauseScreen() {
+    this.context.font = "9px Comic Sans MS";
+    this.context.fillStyle = "#fff";
+
+    this.context.fillText("PAUSED", 7 * TILE_SIZE, 7 * TILE_SIZE);
   }
 
   formatPlayerCoins() {

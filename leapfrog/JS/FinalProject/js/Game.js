@@ -8,6 +8,7 @@ class Game {
     this.hammerBroHammer = [];
     this.currentLevelIndex = 0;
     this.gameStarted = false;
+    this.gamePaused = true;
 
     this.player = new Mario(new Vector(0, 0), this);
     this.levels = [new Level11(), new Level12()];
@@ -58,7 +59,7 @@ class Game {
     }
     
     this.onKeyboardInput(dt);
-    if(!this.gameStarted) return;
+    if(!this.gameStarted || this.gamePaused) return;
 
     this.gameTime += dt;
   
@@ -69,9 +70,10 @@ class Game {
   onKeyboardInput(dt) {
     if(this.controller.isDown("ENTER")) {
       this.gameStarted = true;
+      this.gamePaused = !this.gamePaused;
     }
 
-    if (this.player.dyingTime ||!this.gameStarted) return;
+    if (this.player.dyingTime ||!this.gameStarted || this.gamePaused) return;
 
     if (this.controller.isDown("RUN")) {
       this.player.run();
