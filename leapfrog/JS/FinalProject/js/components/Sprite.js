@@ -26,7 +26,7 @@ class Sprite {
     if (gameTime && gameTime == this.previousUpdateTime) {
       return;
     }
-      this.animationFrameCounter += this.animationSpeed * dt;
+    this.animationFrameCounter += this.animationSpeed * dt;
 
     if (gameTime) {
       this.previousUpdateTime = gameTime;
@@ -64,24 +64,20 @@ class Sprite {
     let imageUrl = this.imageUrl;
     let image = Game.imageLoader.getImage(imageUrl);
 
+    let offSet = 1 / 3;
+
     x += animationFrameIndex * this.size.width;
 
     context.drawImage(
       image,
-      x,
-      y,
-      this.size.width,
-      this.size.height,
+      x + offSet,
+      y + offSet,
+      this.size.width - 2 * offSet,
+      this.size.height - 2 * offSet,
       Math.round(entityPosition.x - camera.x),
       Math.round(entityPosition.y - camera.y),
       this.size.width,
       this.size.height
     );
-    // context.strokeRect(
-    //   Math.round(entityPosition.x - camera.x),
-    //   Math.round(entityPosition.y - camera.y),
-    //   this.size.width,
-    //   this.size.height
-    // );
   }
 }
