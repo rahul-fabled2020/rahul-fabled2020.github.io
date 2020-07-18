@@ -18,6 +18,9 @@ class FireBullet extends Entity {
   }
 
   spawn() {
+    SOUND.firebullet.currentTime = 0;
+    SOUND.firebullet.play();
+
     if (this.game.fireBullets[0]) {
       this.index = 1;
       this.game.fireBullets[1] = this;

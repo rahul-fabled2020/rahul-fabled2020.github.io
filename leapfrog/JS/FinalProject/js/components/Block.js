@@ -14,6 +14,8 @@ class Block extends Floor {
   }
 
   break(level) {
+    SOUND.breakblock.play();
+
     let x = Math.floor(this.position.x / TILE_SIZE);
     let y = Math.floor(this.position.y / TILE_SIZE);
 
@@ -21,6 +23,8 @@ class Block extends Floor {
   }
 
   bonk(marioState, level) {
+    SOUND.bump.play();
+
     if(this.sprite === this.usedSprite) return;
 
     if(marioState > 0 && this.isBreakable) {

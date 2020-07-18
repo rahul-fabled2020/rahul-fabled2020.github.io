@@ -16,6 +16,9 @@ class BlockCoin extends Entity {
     }
 
     spawn() {
+        SOUND.coin.currentTime = 0;
+        SOUND.coin.play();
+
         this.index = this.level.items.length;
         this.level.items.push(this);
         this.isActive = true;

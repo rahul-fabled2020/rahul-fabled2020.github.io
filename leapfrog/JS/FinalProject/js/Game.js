@@ -62,13 +62,17 @@ class Game {
     if (!this.gameStarted || this.gamePaused) return;
 
     this.gameTime += dt;
-
     this.updateEntities(dt);
     this.detectCollision();
   }
 
   onKeyboardInput(dt) {
     if (this.controller.isDown("ENTER")) {
+
+      if(!this.gameStarted) {
+        MUSIC.level.play();
+      }
+
       this.gameStarted = true;
     }
 
@@ -179,10 +183,20 @@ class Game {
 
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);
+
+    MUSIC.level.currentTime = 0;
+    MUSIC.level.play();
   }
 
   togglePauseState() {
     this.gamePaused = !this.gamePaused;
+
+    if(this.gamePaused){
+      MUSIC.level.pause();
+      SOUND.pause.play();
+    } else {
+      MUSIC.level.play();
+    }
   }
 }
 

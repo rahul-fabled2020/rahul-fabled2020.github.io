@@ -130,9 +130,8 @@ class Mario extends Entity {
       this.isOnGround = false;
       this.velocity.y = -6;
 
-      if (this.state === SMALL_MARIO) {
-      } else {
-      }
+      SOUND.jump.currentTime = 0;
+      SOUND.jump.play();
     }
   }
 
@@ -189,6 +188,10 @@ class Mario extends Entity {
 
         game.level.loadLevel(game.player, game.camera);
         game.controller.reset();
+
+        MUSIC.level.currentTime = 0;
+        MUSIC.level.play();
+
       }
     } else {
       this.acceleration.y = 0.25;
@@ -207,6 +210,10 @@ class Mario extends Entity {
   }
 
   getKilled() {
+    MUSIC.level.pause();
+    MUSIC.level.currentTime = 0;
+    MUSIC.death.play();
+
     this.noWalk();
     this.noRun();
     this.noJump();
@@ -347,6 +354,8 @@ class Mario extends Entity {
   }
 
   powerUp(index, level) {
+    SOUND.powerup.play();
+
     this.collectedItem = index;
     delete level.items[index];
     this.powerTime = 1;
@@ -379,6 +388,8 @@ class Mario extends Entity {
     if (this.state === SMALL_MARIO) {
       this.getKilled();
     } else {
+      SOUND.powerdown.play();
+
       this.sprite.position = new Vector(10 * TILE_SIZE, 0);
 
       this.state = SMALL_MARIO;

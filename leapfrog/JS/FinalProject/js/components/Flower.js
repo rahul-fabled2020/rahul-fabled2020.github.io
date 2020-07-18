@@ -24,6 +24,8 @@ class Flower extends Entity {
     }
 
     spawn() {
+        SOUND.appear.play();
+
         this.index = this.level.items.length;
         this.level.items.push(this);
 

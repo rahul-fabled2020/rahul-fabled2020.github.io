@@ -16,6 +16,7 @@ class Goomba extends Enemy {
   stomp(player) {
     if (this.isDyingCount) return;
 
+    SOUND.stomp.play();
     player.bounce = true;
 
     this.sprite = new Sprite(
@@ -31,6 +32,8 @@ class Goomba extends Enemy {
   }
 
   bump() {
+    SOUND.kick.play();
+
     this.sprite = new Sprite(
       ENEMIES_RIGHT,
       new Vector(0, TILE_SIZE),

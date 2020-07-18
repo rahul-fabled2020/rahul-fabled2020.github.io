@@ -74,6 +74,8 @@ class Bowser extends Enemy {
   }
 
   fire() {
+    SOUND.bowserfire.play();
+
     this.sprite.position.x = 43 * TILE_SIZE;
     this.sprite.animationSpeed = 5;
     let weapon = new Fire(

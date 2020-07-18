@@ -12,10 +12,6 @@ class FireBridge extends Floor {
     this.gravity = 1;
   }
 
-  break() {
-    console.log("Break");
-  }
-
   update(dt, gameTime) {
     if (this.isCollapsing) {
       this.position.y += (this.velocity.y + this.index*(TILE_SIZE / 4))*dt;

@@ -30,6 +30,8 @@ class Mushroom extends Entity {
       return;
     }
 
+    SOUND.appear.play();
+
     this.index = this.level.items.length;
     this.level.items.push(this);
 

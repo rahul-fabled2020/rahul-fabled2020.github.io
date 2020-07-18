@@ -16,6 +16,8 @@ class Koopa extends Enemy {
   stomp(player) {
     if(this.isDyingCount) return;
 
+    SOUND.stomp.play();
+    
     player.bounce = true;
 
     this.sprite = new Sprite(
@@ -40,6 +42,8 @@ class Koopa extends Enemy {
   bump() {
     if(this.isFlipping) return;
 
+    SOUND.kick.play();
+    
     this.isFlipping = true;
     this.sprite = new Sprite(
       ENEMIES_LEFT,

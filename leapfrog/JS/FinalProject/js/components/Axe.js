@@ -52,6 +52,8 @@ class Axe extends Entity {
     )
       return;
     
+      SOUND.bowserfall.play();
+      
       this.level.bridges.forEach((bridgeGroup)=>{
         bridgeGroup.forEach((bridge => {
           bridge.isCollapsing = true;

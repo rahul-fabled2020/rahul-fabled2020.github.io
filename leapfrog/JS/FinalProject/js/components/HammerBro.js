@@ -128,6 +128,7 @@ class HammerBro extends Enemy {
   stomp(player) {
     if(this.isDyingCount) return;
 
+    SOUND.stomp.play();
     player.bounce = true;
     
     this.sprite.animationSpeed = 0;

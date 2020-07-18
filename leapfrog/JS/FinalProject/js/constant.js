@@ -28,3 +28,26 @@ const MOUTH_OPEN_TIME = 1;
 const HAMMER_BRO_JUMP_TIME = 35;
 const HAMMER_BRO_JUMP_INTERVAL = Math.floor(Math.random() * 3) + 2;
 const SECOND_FIRE_TIME = 1;
+
+//Sounds
+const MUSIC = {
+    level: new Audio("sounds/level.ogg"),
+    exit: new Audio("sounds/exit.wav"),
+    death: new Audio("sounds/death.wav"),
+}
+
+const SOUND = {
+    appear: new Audio("sounds/appear.wav"),
+    bowserfire: new Audio("sounds/bowserfire.mp3"),
+    bowserfall: new Audio("sounds/bowserfall.mp3"),
+    breakblock: new Audio("sounds/breakblock.wav"),
+    bump: new Audio("sounds/bump.wav"),
+    coin: new Audio("sounds/coin.wav"),
+    firebullet: new Audio("sounds/firebullet.wav"),
+    jump: new Audio("sounds/jump.wav"),
+    kick: new Audio("sounds/kick.wav"),
+    pause: new Audio("sounds/pause.mp3"),
+    powerdown: new Audio("sounds/powerdown.wav"),
+    powerup: new Audio("sounds/powerup.wav"),
+    stomp: new Audio("sounds/stomp.wav"),
+}

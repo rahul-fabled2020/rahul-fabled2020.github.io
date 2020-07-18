@@ -47,6 +47,9 @@ class Coin extends Entity {
       return;
 
     if (entity instanceof Mario) {
+      SOUND.coin.currentTime = 0;
+      SOUND.coin.play();
+
       entity.numberOfCoins += 1;
       delete this.level.items[this.index];
     }
