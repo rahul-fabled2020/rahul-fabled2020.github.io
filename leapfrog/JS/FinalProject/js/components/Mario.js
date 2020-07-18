@@ -218,6 +218,8 @@ class Mario extends Entity {
 
   getKilled() {
     MUSIC.level.pause();
+    MUSIC.castle.pause();
+    
     MUSIC.level.currentTime = 0;
     MUSIC.death.play();
 
