@@ -57,8 +57,6 @@ class DisplayController {
 
   renderFireBridge() {
     this.game.level.bridges.forEach((bridgeGroup) => {
-      // if (!(bridgeGroup[0].x - this.camera.x <= MAX_ROW_SIZE * TILE_SIZE)) return;
-
       bridgeGroup.forEach((bridge) => {
         this.renderEntity(bridge);
         this.game.updateables.push(bridge);
@@ -212,7 +210,7 @@ class DisplayController {
     
     this.context.drawImage(
       princessMessage,
-      imageX - this.game.camera.x - 6 *TILE_SIZE,
+      imageX - this.game.camera.x - 5 *TILE_SIZE,
       4 * TILE_SIZE - this.game.camera.y,
       princessMessage.width/3,
       princessMessage.height/3
@@ -220,7 +218,7 @@ class DisplayController {
 
     this.context.fillText(
       message,
-      imageX - this.game.camera.x - 6 * TILE_SIZE,
+      imageX - this.game.camera.x - 5 * TILE_SIZE,
       8 * TILE_SIZE - this.game.camera.y
     );
 

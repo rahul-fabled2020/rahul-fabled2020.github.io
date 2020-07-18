@@ -1,6 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 canvas {
     position: relative;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
+    max-height: 100vh;
 }
