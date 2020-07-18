@@ -166,4 +166,32 @@ const SPRITES = {
     3,
     [0, 1]
   ),
+
+  pipeTopLeftSprite: new Sprite(
+    TILES,
+    new Vector(0, 8 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
+
+  pipeTopRightSprite: new Sprite(
+    TILES,
+    new Vector(TILE_SIZE, 8 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
+
+  pipeMidLeftSprite: new Sprite(
+    TILES,
+    new Vector(0, 9 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
+
+  pipeMidRightSprite: new Sprite(
+    TILES,
+    new Vector(TILE_SIZE, 9 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
 };
