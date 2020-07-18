@@ -165,6 +165,32 @@ class Level {
     this.items.push(new Axe(new Vector(x * TILE_SIZE, y * TILE_SIZE), this));
   }
 
+  putPipe(x, y, height) {
+    for(let i = y - height; i< y; i++) {
+      if(i=== y-height) {
+        this.statics[i][x] = new Floor(
+          new Vector(16 * x, 16 * i),
+          SPRITES.pipeTopLeftSprite
+        );
+
+        this.statics[i][x+1] = new Floor(
+          new Vector(16 * (x+1), 16 * i),
+          SPRITES.pipeTopRightSprite
+        );
+      } else {
+        this.statics[i][x] = new Floor(
+          new Vector(16 * x, 16 * i),
+          SPRITES.pipeMidLeftSprite
+        );
+
+        this.statics[i][x+1] = new Floor(
+          new Vector(16 * (x+1), 16 * i),
+          SPRITES.pipeMidRightSprite
+        );
+      }
+    }
+  }
+
   putGoomba(x, y) {
     this.enemies.push(
       new Goomba(

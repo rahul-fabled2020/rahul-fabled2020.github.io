@@ -111,6 +111,13 @@ class Level11 extends Level {
     this.putWall(188, 13, 8);
     this.putWall(189, 13, 8);
 
+    this.putPipe(28, 13, 2);
+    this.putPipe(38, 13, 3);
+    this.putPipe(46, 13, 4);
+    this.putPipe(57, 13, 4);
+    this.putPipe(163, 13, 2);
+    this.putPipe(179, 13, 2);
+
     //Enemies
     this.putGoomba(22, 12);
     this.putGoomba(40, 12);
