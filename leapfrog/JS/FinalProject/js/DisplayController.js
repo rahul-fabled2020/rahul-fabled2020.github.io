@@ -42,13 +42,13 @@ class DisplayController {
     this.renderFireBridge();
     this.renderRotatingObstacleGroup(this.renderEntity);
 
-    if(this.game.gamePaused && this.game.gameStarted) {
-      if(this.game.gameTime < 0.5) return;
+    if (this.game.gamePaused && this.game.gameStarted) {
+      if (this.game.gameTime < 0.5) return;
 
       this.renderPauseScreen();
     }
 
-    if(!this.game.gameStarted) {
+    if (!this.game.gameStarted) {
       this.renderStartScreen();
     }
 
@@ -132,7 +132,7 @@ class DisplayController {
       coin.size.width,
       coin.size.height,
       4.875 * TILE_SIZE,
-      0.9* TILE_SIZE,
+      0.9 * TILE_SIZE,
       coin.size.width / 1.5,
       coin.size.height / 1.5
     );
@@ -147,20 +147,46 @@ class DisplayController {
 
   renderStartScreen() {
     let banner = Game.imageLoader.getImage(START_SCREEN);
-    let centerX = this.canvas.width/6 - banner.width/6;
-    let centerY = 2* TILE_SIZE;
+    let centerX = this.canvas.width / 6 - banner.width / 6;
+    let centerY = 2 * TILE_SIZE;
 
-    this.context.drawImage(banner, centerX, centerY, banner.width/3, banner.height/3);
+    this.context.drawImage(
+      banner,
+      centerX,
+      centerY,
+      banner.width / 3,
+      banner.height / 3
+    );
 
-    this.context.fillText("Press 'Enter Key' to Start the Game", centerX, 8*TILE_SIZE);
+    this.context.fillText(
+      "Press 'Enter Key' to Start the Game",
+      centerX,
+      8 * TILE_SIZE
+    );
 
     this.context.font = "7px Comic Sans MS";
-    this.context.fillText("Instructions", centerX + 4*TILE_SIZE, 9*TILE_SIZE);
+    this.context.fillText(
+      "Instructions",
+      centerX + 4 * TILE_SIZE,
+      9 * TILE_SIZE
+    );
 
     this.context.font = "6px Comic Sans MS";
-    this.context.fillText("Movement: Arrow Keys or A S D", centerX+ 2*TILE_SIZE, 10*TILE_SIZE);
-    this.context.fillText("Jump: Space Bar or X", centerX+ 3*TILE_SIZE, 10.75*TILE_SIZE);
-    this.context.fillText("Sprint/Bullet: Z", centerX + 3.5* TILE_SIZE, 11.5*TILE_SIZE);
+    this.context.fillText(
+      "Movement: Arrow Keys or A S D",
+      centerX + 2 * TILE_SIZE,
+      10 * TILE_SIZE
+    );
+    this.context.fillText(
+      "Jump: Space Bar or X",
+      centerX + 3 * TILE_SIZE,
+      10.75 * TILE_SIZE
+    );
+    this.context.fillText(
+      "Sprint/Bullet: Z",
+      centerX + 3.5 * TILE_SIZE,
+      11.5 * TILE_SIZE
+    );
   }
 
   renderPauseScreen() {
@@ -171,42 +197,64 @@ class DisplayController {
   }
 
   renderEndScreen() {
+    if (this.game.currentLevelIndex !== 1) return;
+
     let princess = Game.imageLoader.getImage(PRINCESS);
+    let princessMessage = Game.imageLoader.getImage(PRINCESS_MESSAGE);
+
     let imageX = 154 * TILE_SIZE;
-    let imageY = 13*TILE_SIZE - princess.height/3;
+    let imageY = 13 * TILE_SIZE - princess.height / 3;
 
     this.context.font = "9px Comic Sans MS";
     this.context.fillStyle = "#fff";
 
-    let message = "The world we live is a horrible hell of endless suffering where we desperately light for a false sense of happiness which subtly covers our fear for lonliness and immitent death and perpetually prolongs the illusion that life is a gift. Existence is futile, everything is vain. Anyone, Thank you for Saving Me!";
+    let message = "Anyway, Thank you Mario for saving me!";
+    
+    this.context.drawImage(
+      princessMessage,
+      imageX - this.game.camera.x - 6 *TILE_SIZE,
+      4 * TILE_SIZE - this.game.camera.y,
+      princessMessage.width/3,
+      princessMessage.height/3
+    );
 
-    this.context.fillText(message, imageX - this.game.camera.x , 180 - this.game.camera.y);
-    this.context.drawImage(princess, imageX - this.game.camera.x, imageY - this.game.camera.y, princess.width/3, princess.height/3);
+    this.context.fillText(
+      message,
+      imageX - this.game.camera.x - 6 * TILE_SIZE,
+      8 * TILE_SIZE - this.game.camera.y
+    );
+
+    this.context.drawImage(
+      princess,
+      imageX - this.game.camera.x,
+      imageY - this.game.camera.y,
+      princess.width / 3,
+      princess.height / 3
+    );
   }
 
   formatPlayerCoins() {
     let coins;
 
-    if(this.game.player.numberOfCoins > 99) {
+    if (this.game.player.numberOfCoins > 99) {
       this.game.player.numberOfCoins = 0;
     }
 
     coins = this.game.player.numberOfCoins;
 
-    if(coins < 10)
-      return "x 0"+coins;
-    
-    return "x "+coins;
+    if (coins < 10) return "x 0" + coins;
+
+    return "x " + coins;
   }
 
   formatLevel() {
     let level = this.game.currentLevelIndex;
-    return "1-"+(level+1);
+    return "1-" + (level + 1);
   }
 
   formatGameTime() {
     let seconds = Math.floor(this.game.gameTime);
-    
+
     return seconds;
   }
 }
