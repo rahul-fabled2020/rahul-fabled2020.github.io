@@ -54,6 +54,27 @@ const SPRITES = {
     0
   ),
 
+  flagPoleTopSprite: new Sprite(
+    TILES,
+    new Vector(16 * TILE_SIZE, 8 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
+
+  flagPoleMidSprite: new Sprite(
+    TILES,
+    new Vector(16 * TILE_SIZE, 9 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),  
+
+  flagSprite: new Sprite(
+    ITEMS,
+    new Vector(8 * TILE_SIZE, 2 * TILE_SIZE),
+    {width: TILE_SIZE, height: TILE_SIZE},
+    0
+  ),
+
   floorSprite: new Sprite(
     TILES,
     new Vector(2 * TILE_SIZE, 5 * TILE_SIZE),

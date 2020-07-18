@@ -48,6 +48,7 @@ const SOUND = {
     bump: new Audio("sounds/bump.wav"),
     coin: new Audio("sounds/coin.wav"),
     firebullet: new Audio("sounds/firebullet.wav"),
+    flagfalling: new Audio("sounds/flagfalling.wav"),
     jump: new Audio("sounds/jump.wav"),
     kick: new Audio("sounds/kick.wav"),
     pause: new Audio("sounds/pause.mp3"),

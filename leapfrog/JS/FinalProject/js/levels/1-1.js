@@ -118,6 +118,8 @@ class Level11 extends Level {
     this.putPipe(163, 13, 2);
     this.putPipe(179, 13, 2);
 
+    this.putFlagPole(198);
+
     //Enemies
     this.putGoomba(22, 12);
     this.putGoomba(40, 12);
@@ -135,6 +137,7 @@ class Level11 extends Level {
     this.putGoomba(126, 12);
     this.putGoomba(170, 12);
     this.putGoomba(172, 12);
+    
     this.putKoopa(35, 11);
 
     this.putHammerBro(37,5);

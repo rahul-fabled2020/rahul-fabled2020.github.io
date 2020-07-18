@@ -157,6 +157,15 @@ class Mario extends Entity {
       }
     }
 
+    if (this.waitingTime) {
+      this.waitingTime -= dt;
+      if (this.waitingTime <= 0) {
+        this.waitingTime = 0;
+      } else {
+        return;
+      }
+    }
+
     if (this.bounce) {
       this.bounce = false;
       this.isOnGround = false;
@@ -191,7 +200,7 @@ class Mario extends Entity {
 
         MUSIC.level.pause();
         MUSIC.castle.pause();
-        
+
         if (game.currentLevelIndex == 0) {
           MUSIC.level.currentTime = 0;
           MUSIC.level.play();
@@ -207,6 +216,27 @@ class Mario extends Entity {
       }
     }
 
+    if (this.flagging) {
+      this.acceleration = new Vector(0, 0);
+    }
+
+    if (this.exiting) {
+      this.isFacingLeft = false;
+      this.velocity = new Vector(1, 5, 0.25);
+
+      if (this.position.x >= this.targetPosition.x) {
+        this.velocity = new Vector(0, 0);
+        this.exiting = false;
+        this.flagging = false;
+        
+        setTimeout(() => {
+          this.exiting = false;
+          this.noInput = false;
+          this.game.switchLevel();
+        }, 5000);
+      }
+    }
+
     this.velocity.x += this.acceleration.x;
     this.velocity.y += this.acceleration.y;
     this.position.x += this.velocity.x;
@@ -216,10 +246,25 @@ class Mario extends Entity {
     this.sprite.update(dt, game.gameTime);
   }
 
+  exit() {
+    this.position.x += TILE_SIZE;
+    this.targetPosition.x = this.game.level.levelEndPosition;
+    this.isFacingLeft = true;
+    this.waitingTime = 1;
+    this.exiting = true;
+  }
+
+  flag() {
+    this.noInput = true;
+    this.flagging = true;
+    this.velocity = new Vector(0, 2);
+    this.acceleration = new Vector(0, 0);
+  }
+
   getKilled() {
     MUSIC.level.pause();
     MUSIC.castle.pause();
-    
+
     MUSIC.level.currentTime = 0;
     MUSIC.death.play();
 

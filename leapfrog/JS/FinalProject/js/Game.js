@@ -54,9 +54,9 @@ class Game {
   }
 
   update(dt) {
-    if (this.player.position.x > this.level.levelEndPosition) {
-      this.switchLevel();
-    }
+    // if (this.player.position.x > this.level.levelEndPosition) {
+    //   this.switchLevel();
+    // }
 
     this.onKeyboardInput(dt);
     if (!this.gameStarted || this.gamePaused) return;
@@ -75,7 +75,7 @@ class Game {
       this.gameStarted = true;
     }
 
-    if (this.player.dyingTime || !this.gameStarted || this.gamePaused) return;
+    if (this.player.dyingTime || !this.gameStarted || this.gamePaused ||this.player.noInput) return;
 
     if (this.controller.isDown("RUN")) {
       this.player.run();

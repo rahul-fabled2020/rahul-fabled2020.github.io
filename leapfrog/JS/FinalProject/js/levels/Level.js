@@ -191,6 +191,22 @@ class Level {
     }
   }
 
+  putFlagPole(x) {
+    let y = 12;
+    this.statics[y][x] = new Floor(
+      new Vector(16 * x, y * TILE_SIZE),
+      SPRITES.wallSprite
+    );
+
+    for(let i=3; i< y; i++) {
+      this.scenery[i][x] = new FlagPole(new Vector(16 * x, 16 * i), SPRITES.flagPoleMidSprite);
+    }
+
+    this.scenery[2][x] = new FlagPole(new Vector(16 * x, 2 * TILE_SIZE), SPRITES.flagPoleTopSprite);
+    this.items.push(new Flag(16 * x));
+
+  }
+
   putGoomba(x, y) {
     this.enemies.push(
       new Goomba(
