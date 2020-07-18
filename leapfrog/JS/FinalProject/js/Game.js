@@ -25,6 +25,7 @@ class Game {
       ENEMIES_LEFT,
       ENEMIES_RIGHT,
       HAMMER,
+      PRINCESS
     ]);
 
     Game.imageLoader.onReady(this.init.bind(this));

@@ -52,6 +52,7 @@ class DisplayController {
       this.renderStartScreen();
     }
 
+    this.renderEndScreen();
   }
 
   renderFireBridge() {
@@ -167,6 +168,20 @@ class DisplayController {
     this.context.fillStyle = "#fff";
 
     this.context.fillText("PAUSED", 7 * TILE_SIZE, 7 * TILE_SIZE);
+  }
+
+  renderEndScreen() {
+    let princess = Game.imageLoader.getImage(PRINCESS);
+    let imageX = 154 * TILE_SIZE;
+    let imageY = 13*TILE_SIZE - princess.height/3;
+
+    this.context.font = "9px Comic Sans MS";
+    this.context.fillStyle = "#fff";
+
+    let message = "The world we live is a horrible hell of endless suffering where we desperately light for a false sense of happiness which subtly covers our fear for lonliness and immitent death and perpetually prolongs the illusion that life is a gift. Existence is futile, everything is vain. Anyone, Thank you for Saving Me!";
+
+    this.context.fillText(message, imageX - this.game.camera.x , 180 - this.game.camera.y);
+    this.context.drawImage(princess, imageX - this.game.camera.x, imageY - this.game.camera.y, princess.width/3, princess.height/3);
   }
 
   formatPlayerCoins() {

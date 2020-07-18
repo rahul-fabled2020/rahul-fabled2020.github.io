@@ -12,6 +12,7 @@ const TILES = "images/tiles.png";
 const ENEMIES_LEFT = "images/enemiesLeft.png";
 const ENEMIES_RIGHT = "images/enemiesRight.png";
 const HAMMER = "images/hammer.png";
+const PRINCESS = "images/princess.png";
 
 //Mario States
 const SMALL_MARIO = 0;

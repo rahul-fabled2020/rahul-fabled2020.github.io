@@ -13,6 +13,7 @@ class Axe extends Entity {
 
     this.level = level;
     this.sprite = SPRITES.axeSprite;
+    this.isTouched = false;
   }
 
   update(dt, gameTime) {
@@ -24,7 +25,7 @@ class Axe extends Entity {
   }
 
   isCollidingWith(entity) {
-    if (!(entity instanceof Mario)) return;
+    if (!(entity instanceof Mario) || this.isTouched) return;
 
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -53,7 +54,12 @@ class Axe extends Entity {
       return;
     
       SOUND.bowserfall.play();
-      
+
+      this.isTouched = true;
+      entity.flagging = true;
+      entity.flag();
+      entity.exit();
+
       this.level.bridges.forEach((bridgeGroup)=>{
         bridgeGroup.forEach((bridge => {
           bridge.isCollapsing = true;
