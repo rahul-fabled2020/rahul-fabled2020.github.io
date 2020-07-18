@@ -68,8 +68,7 @@ class Game {
 
   onKeyboardInput(dt) {
     if (this.controller.isDown("ENTER")) {
-
-      if(!this.gameStarted) {
+      if (!this.gameStarted) {
         MUSIC.level.play();
       }
 
@@ -184,18 +183,29 @@ class Game {
     this.level = this.levels[index];
     this.level.loadLevel(this.player, this.camera);
 
-    MUSIC.level.currentTime = 0;
-    MUSIC.level.play();
+    MUSIC.level.pause();
+    MUSIC.castle.pause();
+    
+    if (index == 0) {
+      MUSIC.level.currentTime = 0;
+      MUSIC.level.play();
+    } else {
+      MUSIC.castle.currentTime = 0;
+      MUSIC.castle.play();
+    }
   }
 
   togglePauseState() {
     this.gamePaused = !this.gamePaused;
 
-    if(this.gamePaused){
+    if (this.gamePaused) {
+      MUSIC.castle.pause();
       MUSIC.level.pause();
       SOUND.pause.play();
     } else {
-      MUSIC.level.play();
+
+      if (this.currentLevelIndex == 0) MUSIC.level.play();
+      else MUSIC.castle.play();
     }
   }
 }

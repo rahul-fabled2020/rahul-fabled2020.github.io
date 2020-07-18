@@ -31,10 +31,14 @@ const SECOND_FIRE_TIME = 1;
 
 //Sounds
 const MUSIC = {
+    castle: new Audio("sounds/castle.ogg"),
     level: new Audio("sounds/level.ogg"),
     exit: new Audio("sounds/exit.wav"),
     death: new Audio("sounds/death.wav"),
 }
+
+MUSIC.castle.loop = true;
+MUSIC.level.loop = true;
 
 const SOUND = {
     appear: new Audio("sounds/appear.wav"),

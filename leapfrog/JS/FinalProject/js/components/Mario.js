@@ -189,9 +189,16 @@ class Mario extends Entity {
         game.level.loadLevel(game.player, game.camera);
         game.controller.reset();
 
-        MUSIC.level.currentTime = 0;
-        MUSIC.level.play();
-
+        MUSIC.level.pause();
+        MUSIC.castle.pause();
+        
+        if (game.currentLevelIndex == 0) {
+          MUSIC.level.currentTime = 0;
+          MUSIC.level.play();
+        } else {
+          MUSIC.castle.currentTime = 0;
+          MUSIC.castle.play();
+        }
       }
     } else {
       this.acceleration.y = 0.25;
