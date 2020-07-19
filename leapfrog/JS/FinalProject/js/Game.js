@@ -33,7 +33,6 @@ class Game {
   }
 
   init() {
-    console.log("Image Loaded");
     this.level = this.levels[this.currentLevelIndex];
     this.level.loadLevel(this.player, this.camera);
     this.previousTime = Date.now();
@@ -56,9 +55,6 @@ class Game {
   }
 
   update(dt) {
-    // if (this.player.position.x > this.level.levelEndPosition) {
-    //   this.switchLevel();
-    // }
 
     this.onKeyboardInput(dt);
     if (!this.gameStarted || this.gamePaused) return;
