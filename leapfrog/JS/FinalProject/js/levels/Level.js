@@ -1,3 +1,6 @@
+/**
+ * Generic Level class
+ */
 class Level {
   constructor(configuration) {
     this.playerPosition = configuration.playerPosition;
@@ -8,6 +11,9 @@ class Level {
     this.initLevel();
   }
 
+  /**
+   * Initializes the required variables for level
+   */
   initLevel() {
     this.statics = [];
     this.scenery = [];
@@ -26,6 +32,8 @@ class Level {
     }
   }
 
+  //Different functions for placing different elements in the desired position in the game level
+  
   putCeiling(horizontalPosition, VerticalPosition) {
     let hStart = horizontalPosition[0];
     let hEnd = horizontalPosition[1];

@@ -1,3 +1,6 @@
+/**
+ * The second level of the game
+ */
 class Level12 extends Level {
   constructor() {
     var levelConfig = {
@@ -11,6 +14,11 @@ class Level12 extends Level {
     this.levelEndPosition = 153 * TILE_SIZE;
   }
 
+  /**
+   * Loads the level
+   * @param {Mario} player 
+   * @param {Camera} camera 
+   */
   loadLevel(player, camera) {
     this.initLevel();
     SPRITES.floorSprite.position = new Vector(2 * TILE_SIZE, 5 * TILE_SIZE);

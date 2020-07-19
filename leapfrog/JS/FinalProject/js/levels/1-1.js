@@ -1,3 +1,6 @@
+/**
+ * The first level of the game
+ */
 class Level11 extends Level {
   constructor() {
     var levelConfig = {
@@ -11,6 +14,11 @@ class Level11 extends Level {
     this.levelEndPosition = 204 * TILE_SIZE;
   }
 
+  /**
+   * Loads the level
+   * @param {Mario} player 
+   * @param {Camera} camera 
+   */
   loadLevel(player, camera) {
     this.initLevel();
     SPRITES.floorSprite.position = new Vector(0, 0);
