@@ -18,7 +18,7 @@ class Bowser extends Enemy {
       level: level,
     });
 
-    this.shm = new SHM(this.position, this.velocity, 32);
+    this.shm = new SHM(this.position, this.velocity, 32); //for the to and fro horizontal motion of the Bowser
     this.velocity.x = 1;
     this.acceleration.y = 0.2;
 
@@ -115,6 +115,7 @@ class Bowser extends Enemy {
 
   /**
    * Enemy jumps
+   * Stops walk animation while jumping
    */
   jump() {
     if (this.velocity.y > 0) {
@@ -136,6 +137,7 @@ class Bowser extends Enemy {
 
   /**
    * Resets jump
+   * Enables walk animaiton while not jumping
    */
   noJump() {
     this.canJump = true;
