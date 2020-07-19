@@ -1,3 +1,6 @@
+/**
+ * Camera controls scrollling
+ */
 class Camera {
   constructor(x, y, width, height) {
     this.x = x;
@@ -8,6 +11,11 @@ class Camera {
     this.CAMERA_POSITION_TILE = 0;
   }
 
+  /**
+   * Moves the Camera in forward directiton
+   * @param {Level} level 
+   * @param {Mario} player 
+   */
   move(level, player) {
     if (level.scrolling && player.position.x > this.x + OFFSET_FROM_LEFT) {
       this.x = player.position.x - OFFSET_FROM_LEFT;
@@ -16,6 +24,9 @@ class Camera {
     }
   }
 
+  /**
+   * Resets the camera to initial position
+   */
   reset() {
     this.x = 0;
     this.y = 0;
