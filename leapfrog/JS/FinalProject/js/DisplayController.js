@@ -1,3 +1,6 @@
+/**
+ * Handles rendering job
+ */
 class DisplayController {
   constructor(game, canvasId, camera) {
     this.canvas = document.getElementById(canvasId);
@@ -7,6 +10,9 @@ class DisplayController {
     this.camera = camera;
   }
 
+  /**
+   * Renders different elements of the game
+   */
   render() {
     this.game.updateables = [];
 
