@@ -1,3 +1,10 @@
+/**
+ * Koopa is the second weakest enemy after Goomba.
+ * Koopa doesn't have any weapon.
+ * @param {Vector} position
+ * @param {Sprite} sprite
+ * @param {Level} level
+ */
 class Koopa extends Enemy {
   constructor(position, sprite, level) {
     super({
@@ -13,6 +20,10 @@ class Koopa extends Enemy {
     });
   }
 
+  /**
+   * Initiate Koopa's death when Mario jumps on Koopa
+   * @param {Mario} player 
+   */
   stomp(player) {
     if(this.isDyingCount) return;
 
@@ -39,12 +50,16 @@ class Koopa extends Enemy {
     this.isDyingCount = 10;
   }
 
+  /**
+   * Kill Koopa when Mario strikes it with bullet
+   */
   bump() {
     if(this.isFlipping) return;
 
     SOUND.kick.play();
     
     this.isFlipping = true;
+    
     this.sprite = new Sprite(
       ENEMIES_LEFT,
       new Vector(10*TILE_SIZE, 0),
