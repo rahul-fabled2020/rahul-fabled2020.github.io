@@ -1,5 +1,6 @@
 /**
  * Bowser class is a subclass of Enemy class
+ * Bowser is the main enemy of the game. He is the turtle king. He kidnaps the princess and keeps in his castle. The castle is full of fire.
  * position is the position of the object to be rendered in the canvas.
  * position is a 2D Vector representing (x, y) where x is the distance from the left edge of the canvas and y is the distance from the top edge of the canvas
  * level is the level in which the enemy is to be rendered
