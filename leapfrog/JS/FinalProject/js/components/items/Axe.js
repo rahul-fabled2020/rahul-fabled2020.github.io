@@ -1,3 +1,7 @@
+/**
+ * Axe class
+ * It is the axe in the castle which on touching collapses the bridge of the bowser castle
+ */
 class Axe extends Entity {
   constructor(position, level) {
     super({
@@ -16,14 +20,28 @@ class Axe extends Entity {
     this.isTouched = false;
   }
 
+  /**
+   * Updates the axe sprite
+   * @param {number} dt
+   * @param {number} gameTime
+   */
   update(dt, gameTime) {
     this.sprite.update(dt, gameTime);
   }
 
+  /**
+   * Checks collision with the player
+   * @param {Camera} camera
+   * @param {Mario} player
+   */
   detectCollision(camera, player) {
     this.isCollidingWith(player);
   }
 
+  /**
+   * Handles the collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     if (!(entity instanceof Mario) || this.isTouched) return;
 
@@ -52,18 +70,18 @@ class Axe extends Entity {
       Math.abs(displacement.y) > averageHeight
     )
       return;
-    
-      SOUND.bowserfall.play();
 
-      this.isTouched = true;
-      entity.flagging = true;
-      entity.flag();
-      entity.exit();
+    SOUND.bowserfall.play();
 
-      this.level.bridges.forEach((bridgeGroup)=>{
-        bridgeGroup.forEach((bridge => {
-          bridge.isCollapsing = true;
-        }))
+    this.isTouched = true;
+    entity.flagging = true;
+    entity.flag();
+    entity.exit();
+
+    this.level.bridges.forEach((bridgeGroup) => {
+      bridgeGroup.forEach((bridge) => {
+        bridge.isCollapsing = true;
       });
+    });
   }
 }

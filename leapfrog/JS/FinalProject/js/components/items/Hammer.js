@@ -1,3 +1,6 @@
+/**
+ * Hammer is the weapon of Hammer Bro
+ */
 class Hammer extends Entity {
   constructor(position, owner) {
     super({
@@ -15,9 +18,13 @@ class Hammer extends Entity {
     this.owner = owner;
   }
 
+  /**
+   * Makes hammer appear and adds it to the weapon array of Hammer Bro
+   * @param {boolean} isFacingLeft
+   */
   spawn(isFacingLeft) {
-    let horizontalVelocity = Math.floor(Math.random()*3)+1;
-    if (isFacingLeft) horizontalVelocity = - (Math.floor(Math.random()*3)+1);
+    let horizontalVelocity = Math.floor(Math.random() * 3) + 1;
+    if (isFacingLeft) horizontalVelocity = -(Math.floor(Math.random() * 3) + 1);
 
     this.velocity = new Vector(horizontalVelocity, -5);
     this.acceleration = new Vector(0, 0.2);
@@ -25,6 +32,12 @@ class Hammer extends Entity {
     this.owner.weapon.push(this);
   }
 
+  /**
+   * Updates the Hammer
+   * @param {number} dt
+   * @param {Camera} camera
+   * @param {number} gameTime
+   */
   update(dt, camera, gameTime) {
     this.velocity = this.velocity.add(this.acceleration);
     this.position = this.position.add(this.velocity);
@@ -39,11 +52,19 @@ class Hammer extends Entity {
     this.sprite.update(dt, gameTime);
   }
 
+  /**
+   * Checks collision with the player
+   * @param {Mario} player
+   */
   detectCollision(player) {
-    if(player.dyingTime || player.powerTime) return;
+    if (player.dyingTime || player.powerTime) return;
     this.isCollidingWith(player);
   }
 
+  /**
+   * Handles collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;

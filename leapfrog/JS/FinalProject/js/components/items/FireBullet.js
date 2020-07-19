@@ -1,3 +1,6 @@
+/**
+ * FireBullet is the weapon of Mario
+ */
 class FireBullet extends Entity {
   constructor(position, game) {
     super({
@@ -13,10 +16,13 @@ class FireBullet extends Entity {
 
     this.index = -1;
     this.numOfHits = 0;
-    this.isOnGround = false;
+    this.isOnGround = false; //for checking whether to bounce or not
     this.game = game;
   }
 
+  /**
+   * Adds fire bullet in the firebullet array
+   */
   spawn() {
     SOUND.firebullet.currentTime = 0;
     SOUND.firebullet.play();
@@ -38,6 +44,11 @@ class FireBullet extends Entity {
     this.isOnGround = false;
   }
 
+  /**
+   * Updates the Fire bullet
+   * @param {number} dt
+   * @param {number} gameTime
+   */
   update(dt, gameTime) {
     if (this.numOfHits == 1) {
       this.sprite.position = new Vector(6 * TILE_SIZE, 10 * TILE_SIZE);
@@ -77,6 +88,10 @@ class FireBullet extends Entity {
     this.sprite.update(dt, gameTime);
   }
 
+  /**
+   * Checks for collision
+   * @param {Level} level
+   */
   detectCollision(level) {
     if (this.numOfHits) return;
 
@@ -90,11 +105,11 @@ class FireBullet extends Entity {
     let baseX = Math.floor(this.position.x / TILE_SIZE);
     let baseY = Math.floor(this.position.y / TILE_SIZE);
 
-    if(baseY + h > MAX_ROW_SIZE) {
-        delete this.game.fireBullets[this.index];
-        this.game.player.fireBullets -= 1;
+    if (baseY + h > MAX_ROW_SIZE) {
+      delete this.game.fireBullets[this.index];
+      this.game.player.fireBullets -= 1;
 
-        return;
+      return;
     }
 
     for (let i = 0; i < h; i++) {
@@ -136,6 +151,10 @@ class FireBullet extends Entity {
     });
   }
 
+  /**
+   * Handles collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -162,7 +181,7 @@ class FireBullet extends Entity {
       Math.abs(displacement.y) > averageHeight
     )
       return;
-    
+
     this.numOfHits = 1;
     entity.bump();
   }

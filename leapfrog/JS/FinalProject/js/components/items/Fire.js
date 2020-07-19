@@ -1,3 +1,6 @@
+/**
+ * Fire is the weapon of Bowser
+ */
 class Fire extends Entity {
   constructor(position, owner) {
     super({
@@ -6,7 +9,7 @@ class Fire extends Entity {
       hitbox: {
         x: 0,
         y: 0,
-        width: 1.5*TILE_SIZE,
+        width: 1.5 * TILE_SIZE,
         height: 0.5 * TILE_SIZE,
       },
     });
@@ -15,6 +18,9 @@ class Fire extends Entity {
     this.owner = owner;
   }
 
+  /**
+   * Adds the fire to the weapon array of Bowser
+   */
   spawn() {
     this.velocity = new Vector(-0.5, 0);
     this.acceleration = new Vector(-0.09, 0);
@@ -22,9 +28,13 @@ class Fire extends Entity {
     this.owner.weapon.push(this);
   }
 
+  /**
+   * Updates the Fire
+   * @param {number} dt
+   * @param {Camera} camera
+   */
   update(dt, camera) {
-
-    this.velocity= this.velocity.add(this.acceleration);
+    this.velocity = this.velocity.add(this.acceleration);
     this.position = this.position.add(this.velocity);
 
     if (
@@ -35,11 +45,19 @@ class Fire extends Entity {
     }
   }
 
+  /**
+   * Checks collision with the player
+   * @param {Mario} player
+   */
   detectCollision(player) {
-    if(player.dyingTime || player.powerTime) return;
+    if (player.dyingTime || player.powerTime) return;
     this.isCollidingWith(player);
   }
 
+  /**
+   * Handles collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;

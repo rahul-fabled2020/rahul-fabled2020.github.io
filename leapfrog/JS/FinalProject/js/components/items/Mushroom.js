@@ -1,3 +1,6 @@
+/**
+ * Mushrom turns Mario into Big Mario
+ */
 class Mushroom extends Entity {
   constructor(position, level) {
     super({
@@ -13,16 +16,25 @@ class Mushroom extends Entity {
 
     this.level = level;
     this.targetPosition = new Vector(0, 0);
-    this.spawningCount = 0;
-    this.waitingCount = 0;
+    this.spawningCount = 0; //Spawning Time
+    this.waitingCount = 0; //Waiting Time
     this.index = -1;
   }
 
+  /**
+   * Renders Mushroom
+   * @param {Object} context
+   * @param {Camera} camera
+   */
   render(context, camera) {
     if (this.spawningCount > 1) return;
     this.sprite.render(context, this.position, camera);
   }
 
+  /**
+   * Makes mushroom appear
+   * @param {number} marioState
+   */
   spawn(marioState) {
     if (marioState > 0) {
       let flower = new Flower(this.position, this.level);
@@ -42,6 +54,11 @@ class Mushroom extends Entity {
     );
   }
 
+  /**
+   * Updates the Mushroom
+   * @param {number} dt
+   * @param {number} gameTime
+   */
   update(dt, gameTime) {
     if (this.spawningCount > 1) {
       this.spawningCount -= 1;
@@ -76,6 +93,11 @@ class Mushroom extends Entity {
     this.sprite.update(dt, gameTime);
   }
 
+  /**
+   * Checks collision with the player
+   * @param {Camera} camera
+   * @param {Mario} player
+   */
   detectCollision(camera, player) {
     if (this.spawningCount) return;
 
@@ -138,6 +160,10 @@ class Mushroom extends Entity {
     this.isCollidingWith(player);
   }
 
+  /**
+   * Handles collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -170,6 +196,9 @@ class Mushroom extends Entity {
     }
   }
 
+  /**
+   * Reverse velocity of the mushroom
+   */
   reverseHorizontalVelocity() {
     this.velocity.x = -this.velocity.x;
   }

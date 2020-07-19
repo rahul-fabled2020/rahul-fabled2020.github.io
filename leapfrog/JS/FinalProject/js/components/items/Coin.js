@@ -1,3 +1,6 @@
+/**
+ * Coin is the coin that Mario finds on the way
+ */
 class Coin extends Entity {
   constructor(position, sprite, level) {
     super({
@@ -15,10 +18,19 @@ class Coin extends Entity {
     this.index = this.level.items.length;
   }
 
+  /**
+   * Checks collision with the player
+   * @param {Camera} camera
+   * @param {Mario} player
+   */
   detectCollision(camera, player) {
-    this.isCollidingWith(player)
+    this.isCollidingWith(player);
   }
 
+  /**
+   * Handles collision
+   * @param {Entity} entity
+   */
   isCollidingWith(entity) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
@@ -55,10 +67,20 @@ class Coin extends Entity {
     }
   }
 
+  /**
+   * Updates the sprite
+   * @param {number} dt
+   * @param {number} gameTime
+   */
   update(dt, gameTime) {
     this.sprite.update(dt, gameTime);
   }
 
+  /**
+   * Renders the coin
+   * @param {Object} context
+   * @param {Camera} camera
+   */
   render(context, camera) {
     this.sprite.render(context, this.position, camera);
   }
