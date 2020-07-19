@@ -29,7 +29,7 @@ class Goomba extends Enemy {
     if (this.isDyingCount) return;
 
     SOUND.stomp.play();
-    player.bounce = true;
+    player.bounce = true; //Mario should bounce when mario jumps on Goomba's head
 
     //Change the sprite to death sprite
     this.sprite = new Sprite(
