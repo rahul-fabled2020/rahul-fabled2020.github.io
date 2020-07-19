@@ -1,3 +1,6 @@
+/**
+ * Block may be brick or question mark block
+ */
 class Block extends Floor {
   constructor(configuration) {
     super(configuration.position, configuration.sprite, {
@@ -13,6 +16,10 @@ class Block extends Floor {
     this.isBreakable = configuration.breakable;
   }
 
+  /**
+   * Deltes the breakable block if mario is in higher state
+   * @param {Level} level 
+   */
   break(level) {
     SOUND.breakblock.play();
 
@@ -22,6 +29,11 @@ class Block extends Floor {
     delete level.blocks[y][x];
   }
 
+  /**
+   * Handles spawning and beaking on collision with Mario
+   * @param {number} marioState 
+   * @param {Level} level 
+   */
   bonk(marioState, level) {
     SOUND.bump.play();
 
@@ -45,6 +57,11 @@ class Block extends Floor {
     }
   }
 
+  /**
+   * Updates Block
+   * @param {number} dt 
+   * @param {number} gameTime 
+   */
   update(dt, gameTime) {
     this.sprite.update(dt, gameTime);
   }

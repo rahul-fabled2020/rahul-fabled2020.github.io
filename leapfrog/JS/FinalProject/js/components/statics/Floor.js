@@ -2,7 +2,7 @@
  * Floor Class
  * Parent Class: Entity
  * @param {Vector} position
- * @param {Object} sprite
+ * @param {Sprite} sprite
  */
 class Floor extends Entity {
   constructor(position, sprite, hitbox) {
@@ -18,6 +18,11 @@ class Floor extends Entity {
     });
   }
 
+  /**
+   * Handles collision with entity
+   * @param {Entity} entity 
+   * @param {Level} level 
+   */
   isCollidingWith(entity, level) {
     let entityHLeft = entity.position.x + entity.hitbox.x;
     let entityHTop = entity.position.y + entity.hitbox.y;
