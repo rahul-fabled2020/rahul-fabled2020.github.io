@@ -1,0 +1,15 @@
+.button {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 24px 32px;
+    text-transform: uppercase;
+
+    @include m(primary) {
+        background-color: $caribbean-green;
+        border: 1px solid $caribbean-green;
+        color: $white;
+        outline-color: $green;
+        
+    }
+}
