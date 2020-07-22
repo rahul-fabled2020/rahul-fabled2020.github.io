@@ -2,7 +2,6 @@
     display: inline-block;
     font-size: 15px;
     font-weight: bold;
-    margin-left: 88px;
     text-transform: uppercase;
 
     @include e(item) {
@@ -11,6 +10,6 @@
 
     @include e(link) {
         display: block;
-        padding: 8px 20px;
+        padding: 8px 16px;
     }
 }

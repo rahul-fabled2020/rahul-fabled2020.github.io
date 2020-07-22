@@ -707,26 +707,27 @@ option {
   cursor: pointer;
   outline: none; }
 
+.header__nav-bar {
+  margin-left: 80px; }
+
 .nav {
   display: inline-block;
   font-size: 15px;
   font-weight: bold;
-  margin-left: 88px;
   text-transform: uppercase; }
   .nav__item {
     float: left; }
   .nav__link {
     display: block;
-    padding: 8px 20px; }
+    padding: 8px 16px; }
 
 .banner {
   background-image: url(../images/banner.png);
-  height: 100vh;
   background-color: green;
-  text-align: center; }
+  text-align: center;
+  padding: 304px 0; }
   .banner__content {
-    display: inline-block;
-    margin-top: 288px; }
+    display: inline-block; }
   .banner__heading {
     color: #fff;
     font-family: "Lato", sans-serif;
