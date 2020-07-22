@@ -1,12 +1,12 @@
 .banner {
     background-image: url(../images/banner.png);
-    height: 100vh;
     background-color: green;
     text-align: center;
+    padding: 304px 0;
 
     @include e(content) {
         display: inline-block;
-        margin-top: 288px;
+        // margin-top: 288px;
     }
 
     @include e(heading) {
