@@ -5,7 +5,7 @@ npm-debug.log
 
 # Directories
 node_modules/
-dist/
+#dist/
 bower_components/
 .sass-cache/
-css/
+#css/
