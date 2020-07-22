@@ -1,0 +1,42 @@
+.header {
+    @include e(secondary-header) {
+        padding: 16px 0;
+        background-color: $catskill-white;
+    }
+
+    @include e(contact-info) {
+        float: left;
+    }
+
+    @include e(contact-group) {
+        margin-right: 24px;
+    }
+
+    @include e(contact) {
+        margin-left: 8px;
+    }
+
+    @include e(social-links) {
+        float: right;
+    }
+
+    @include e(social-link) {
+        margin-left: 16px;
+    }
+
+    @include e(primary-header) {
+        padding: 32px 0;
+    }
+
+    @include e(search-bar) {
+        float: right;
+        margin-right: 16px;
+    }
+
+    @include e(search-btn) {
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+    }
+}

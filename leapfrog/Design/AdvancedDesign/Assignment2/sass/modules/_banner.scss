@@ -1,0 +1,31 @@
+.banner {
+    background-image: url(../images/banner.png);
+    height: 100vh;
+    background-color: green;
+    text-align: center;
+
+    @include e(content) {
+        display: inline-block;
+        margin-top: 288px;
+    }
+
+    @include e(heading) {
+        color: $white;
+        font-family: $font-family-lato;
+        font-size: 78px;
+        font-weight: 900;
+        letter-spacing: 8px;
+        margin-bottom: 32px;
+        text-transform: uppercase;
+    }
+
+    @include e(text) {
+        color: $gull-gray;
+        line-height: 1.5em;
+        margin-bottom: 64px;
+    }
+
+    @include e(button) {
+        padding: 24px 64px !important;
+    }
+}
