@@ -1,0 +1,17 @@
+.work {
+    background-color: $athens-gray;
+    color: $blue-bayoux;
+    padding: 120px 0;
+
+    @include e(heading) {
+        @extend %heading;
+    }
+
+    @include e(description) {
+        @extend %heading-description;
+    }
+
+    @include e(carousel) {
+        margin-top: 80px;
+    }
+}

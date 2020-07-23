@@ -1,0 +1,23 @@
+.carousel {
+  @include e(buttons) {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  @include e(button) {
+    background-color: $blue-bayoux;
+    border-radius: 50%;
+    display: inline-block;
+    height: 16px;
+    margin-right: 12px;
+    width: 16px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include m(active) {
+      background-color: $caribbean-green;
+    }
+  }
+}

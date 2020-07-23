@@ -5,6 +5,10 @@
 // style.scss file.
 // ==========================================================================
 
+@import 'button';
+@import 'card';
+@import 'carousel';
+
 @import 'header';
 @import 'nav';
 @import 'banner';
@@ -12,5 +16,3 @@
 @import 'work';
 @import 'contact';
 @import 'footer';
-
-@import 'button';

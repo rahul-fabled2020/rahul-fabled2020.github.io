@@ -1,0 +1,15 @@
+.card {
+  text-align: center;
+
+  @include e(footer) {
+    background-color: $white;
+    padding: 32px 0;
+  }
+
+  @include e(text) {
+    font-family: $font-family-lato;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+}
