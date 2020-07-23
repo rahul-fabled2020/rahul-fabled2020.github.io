@@ -1,15 +1,31 @@
 .nav {
   display: inline-block;
-  font-size: 15px;
+  
   font-weight: bold;
   text-transform: uppercase;
 
+  @include mq(md) {
+    font-size: 14px;
+  }
+
+  @include mq(lg) {
+    font-size: 15px;
+  }
+
   @include e(item) {
-    float: left;
+
+    @include mq(sm) {
+      float: left;
+    }
+    
   }
 
   @include e(link) {
     display: block;
-    padding: 8px 16px;
+    padding: 8px;
+    @include mq(lg) {
+      padding: 8px 16px;
+    }
+    
   }
 }

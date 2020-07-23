@@ -18,12 +18,24 @@
   @include e(icon) {
     color: $caribbean-green;
     float: left;
-    font-size: 40px;
+    font-size: 32px;
+
+    @include mq(xl) {
+      font-size: 40px;
+    }
   }
 
   @include e(content-wrapper) {
     float: right;
     line-height: 1.5em;
     width: 80%;
+  }
+
+  @include e(col) {
+    margin-bottom: 30px;
+
+    @include mq(md) {
+      margin-bottom: 0;
+    }
   }
 }
