@@ -743,6 +743,32 @@ option {
   .banner__button {
     padding: 24px 64px !important; }
 
+.about {
+  color: #425a76;
+  padding: 120px 0; }
+  .about__heading {
+    font-family: "Lato", sans-serif;
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 32px;
+    text-align: center; }
+    .about__heading--secondary {
+      font-size: 26px;
+      text-align: left; }
+  .about__description {
+    font-size: 22px;
+    line-height: 1.5em;
+    margin-bottom: 80px;
+    text-align: center; }
+  .about__icon {
+    color: #00bc9c;
+    float: left;
+    font-size: 40px; }
+  .about__content-wrapper {
+    float: right;
+    line-height: 1.5em;
+    width: 80%; }
+
 .button {
   cursor: pointer;
   font-size: 18px;
