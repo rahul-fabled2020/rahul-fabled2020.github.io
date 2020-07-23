@@ -5,6 +5,13 @@
     padding: 68px 0;
   }
 
+  @include e(secondary-footer) {
+    background-color: $ebony-clay;
+    color: $slate-gray;
+    font-size: 14px;
+    padding: 32px 0;
+  }
+
   @include e(heading) {
     color: $white;
     font-family: $font-family-lato;
@@ -25,8 +32,12 @@
   }
 
   @include e(link) {
-    color: $cadet-blue;
+    color: $slate-gray;
     font-weight: bold;
+
+    @include m(primary) {
+      color: $cadet-blue;
+    }
   }
 
   @include e(row) {
@@ -54,5 +65,18 @@
     height: 56px;
     padding: 8px;
     padding-right: 93px;;
+  }
+
+  @include e(copyright) {
+    float: left;
+  }
+
+  @include e(links) {
+    float: right;
+  }
+
+  @include e(link-item) {
+    display: inline-block;
+    margin-left: 16px;
   }
 }

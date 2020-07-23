@@ -827,6 +827,12 @@ option {
   color: #a3b1bf;
   padding: 68px 0; }
 
+.footer__secondary-footer {
+  background-color: #283645;
+  color: #707e8c;
+  font-size: 14px;
+  padding: 32px 0; }
+
 .footer__heading {
   color: #fff;
   font-family: "Lato", sans-serif;
@@ -845,8 +851,10 @@ option {
   margin-bottom: 16px; }
 
 .footer__link {
-  color: #a3b1bf;
+  color: #707e8c;
   font-weight: bold; }
+  .footer__link--primary {
+    color: #a3b1bf; }
 
 .footer__row {
   margin: 0 -2.5px;
@@ -869,6 +877,16 @@ option {
   height: 56px;
   padding: 8px;
   padding-right: 93px; }
+
+.footer__copyright {
+  float: left; }
+
+.footer__links {
+  float: right; }
+
+.footer__link-item {
+  display: inline-block;
+  margin-left: 16px; }
 
 @media (min-width: 576px) {
   .is-collapsed-mobile {
