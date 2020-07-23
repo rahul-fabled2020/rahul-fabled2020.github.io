@@ -775,7 +775,7 @@ option {
 
 .banner {
   background-image: url(../images/banner.png);
-  background-color: green;
+  background-color: #425a76;
   text-align: center;
   padding: 304px 0; }
   .banner__content {
