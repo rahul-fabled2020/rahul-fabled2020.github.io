@@ -1,0 +1,58 @@
+.footer {
+  @include e(primary-footer) {
+    background-color: $pickled-bluewood;
+    color: $cadet-blue;
+    padding: 68px 0;
+  }
+
+  @include e(heading) {
+    color: $white;
+    font-family: $font-family-lato;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  @include e(logo) {
+    margin-bottom: 20px;
+  }
+
+  @include e(text) {
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.5em;
+    margin-bottom: 16px;
+  }
+
+  @include e(link) {
+    color: $cadet-blue;
+    font-weight: bold;
+  }
+
+  @include e(row) {
+    margin: 0 -2.5px;
+    margin-bottom: 10px;
+  }
+
+  @include e(col) {
+    padding: 0 2.5px;
+  }
+
+  @include e(form) {
+    position: relative;
+  }
+
+  @include e(button) {
+    padding: 8px;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+  }
+
+  @include e(input) {
+    opacity: 50%;
+    height: 56px;
+    padding: 8px;
+    padding-right: 93px;;
+  }
+}
