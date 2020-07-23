@@ -1,15 +1,15 @@
 .nav {
-    display: inline-block;
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
 
-    @include e(item) {
-        float: left;
-    }
+  @include e(item) {
+    float: left;
+  }
 
-    @include e(link) {
-        display: block;
-        padding: 8px 16px;
-    }
+  @include e(link) {
+    display: block;
+    padding: 8px 16px;
+  }
 }

@@ -1,0 +1,13 @@
+.contact {
+  color: $blue-bayoux;
+  padding: 120px 0;
+  text-align: center;
+
+  @include e(heading) {
+    @extend %heading;
+  }
+
+  @include e(description) {
+    @extend %heading-description;
+  }
+}

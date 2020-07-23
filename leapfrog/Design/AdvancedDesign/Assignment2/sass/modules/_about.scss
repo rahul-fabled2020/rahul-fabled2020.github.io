@@ -1,36 +1,29 @@
 .about {
-    color: $blue-bayoux;
-    padding: 120px 0;
+  color: $blue-bayoux;
+  padding: 120px 0;
 
-    @include e(heading) {
-        font-family: $font-family-lato;
-        font-size: 44px;
-        font-weight: bold;
-        margin-bottom: 32px;
-        text-align: center;
+  @include e(heading) {
+    @extend %heading;
 
-        @include m(secondary) {
-            font-size: 26px;
-            text-align: left;
-        }
+    @include m(secondary) {
+      font-size: 26px;
+      text-align: left;
     }
+  }
 
-    @include e(description) {
-        font-size: 22px;
-        line-height: 1.5em;
-        margin-bottom: 80px;
-        text-align: center;
-    }
+  @include e(description) {
+    @extend %heading-description;
+  }
 
-    @include e(icon) {
-        color: $caribbean-green;
-        float: left;
-        font-size: 40px;
-    }
+  @include e(icon) {
+    color: $caribbean-green;
+    float: left;
+    font-size: 40px;
+  }
 
-    @include e(content-wrapper) {
-        float: right;
-        line-height: 1.5em;
-        width: 80%;
-    }
+  @include e(content-wrapper) {
+    float: right;
+    line-height: 1.5em;
+    width: 80%;
+  }
 }
