@@ -5,32 +5,74 @@
     }
 
     @include e(contact-info) {
+      text-align: center;
+      margin-bottom: 10px;
+
+      @include mq(sm) {
         float: left;
+        margin-bottom: 0;
+        text-align: left;
+      }
     }
 
     @include e(contact-group) {
+      margin-right: 14px;
+
+      @include mq(md) {
         margin-right: 24px;
+      }
     }
 
     @include e(contact) {
+      margin-left: 5px;
+
+      @include mq(md) {
         margin-left: 8px;
+      }
     }
 
     @include e(social-links) {
+      text-align: center;
+
+      @include mq(sm) {
         float: right;
+        text-align: left;
+      }
+
     }
 
     @include e(social-link) {
+      margin-left: 12px;
+      
+      @include mq(md) {
         margin-left: 16px;
+      }
     }
 
     @include e(primary-header) {
         padding: 32px 0;
     }
 
+    @include e(logo) {
+      display: inline-block;
+      vertical-align: top;
+
+      img {
+        max-width: 80%;
+
+        @include mq(lg) {
+          max-width: 100%;
+        }
+      }
+    }
+
     @include e(search-bar) {
         float: right;
-        margin-right: 16px;
+        margin-right: 8px;
+
+        @include mq(lg) {
+          margin-right: 16px;
+        }
     }
 
     @include e(search-btn) {
@@ -40,7 +82,32 @@
         outline: none;
     }
 
+    @include e(hamburger) {
+      border: 0;
+      background-color: transparent;
+      outline: none;
+      float: right;
+      padding: 0 4px;
+      vertical-align: top;
+
+      @include mq(md) {
+        display: none;
+      }
+    }
+
     @include e(nav-bar) {
-        margin-left: 80px;
+        display: none;
+        margin-top: 12px;
+        text-align: center;
+
+        @include mq(md) {
+          display: inline-block;
+          margin-top: 0;
+          text-align: left;
+        }
+
+        @include mq(lg) {
+          margin-left: 80px;
+        }
     }
 }

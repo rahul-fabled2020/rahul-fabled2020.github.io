@@ -18,7 +18,12 @@
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 16px;
+    margin-top: 16px;
     text-transform: uppercase;
+
+    @include mq(md) {
+      margin-top: 0;
+    }
   }
   @include e(logo) {
     margin-bottom: 20px;
@@ -46,7 +51,13 @@
   }
 
   @include e(col) {
+    margin-bottom: 20px;
+    text-align: center;
     padding: 0 2.5px;
+
+    @include mq(md) {
+      margin-bottom: 0;
+    }
   }
 
   @include e(form) {
@@ -54,25 +65,48 @@
   }
 
   @include e(button) {
+    font-size: 13px;
     padding: 8px;
     position: absolute;
     top: 10px;
-    right: 0px;
+    right: 8px;
+
+    @include mq(md) {
+      font-size: 10px;
+      overflow: hidden;
+      width: 76px;
+    }
+
+    @include mq(lg) {
+      font-size: 13px;
+      width: auto;
+    }
   }
 
   @include e(input) {
     opacity: 50%;
-    height: 56px;
+    height: 52px;
     padding: 8px;
     padding-right: 93px;;
+    width: 100%;
   }
 
   @include e(copyright) {
-    float: left;
+    margin-bottom: 20px;
+    text-align: center;    
+
+    @include mq(md) {
+      float: left;
+      margin-bottom: 0;
+    }
   }
 
   @include e(links) {
-    float: right;
+    text-align: center;
+
+    @include mq(md) {
+      float: right;
+    }
   }
 
   @include e(link-item) {
