@@ -438,6 +438,9 @@ a:after, span:after, strong:after {
     .about__description, .work__description, .contact__description {
       font-size: 22px; } }
 
+.button--primary:hover, .button--primary:active, .button--primary:focus, .nav__link:hover, .nav__link:active, .nav__link:focus, .header__contact-group:hover, .header__contact-group:active, .header__contact-group:focus, .header__social-link:hover, .header__social-link:active, .header__social-link:focus, .footer__link:hover, .footer__link:active, .footer__link:focus {
+  color: #90a7c1; }
+
 /* Sass Compiled Custom Grid Code Start */
 .container-fluid, .container {
   padding-right: 15px;
@@ -711,6 +714,9 @@ option {
     border: 1px solid #00bc9c;
     color: #fff;
     outline-color: #36D7B7; }
+    .button--primary:hover, .button--primary:active, .button--primary:focus {
+      color: inherit;
+      background-color: #56ffe2; }
 
 .card {
   text-align: center; }

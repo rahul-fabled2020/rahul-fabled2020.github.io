@@ -18,6 +18,8 @@
     @include e(contact-group) {
       margin-right: 14px;
 
+      @include hover;
+
       @include mq(md) {
         margin-right: 24px;
       }
@@ -44,6 +46,8 @@
     @include e(social-link) {
       margin-left: 12px;
       
+      @include hover;
+
       @include mq(md) {
         margin-left: 16px;
       }

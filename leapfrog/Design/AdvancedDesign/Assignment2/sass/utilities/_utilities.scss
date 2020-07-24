@@ -225,3 +225,7 @@
     font-size: 22px;
   }
 }
+
+%hover {
+  color: lighten($color: $blue-bayoux, $amount: 30%);
+}
