@@ -40,6 +40,8 @@
     color: $slate-gray;
     font-weight: bold;
 
+    @include hover;
+
     @include m(primary) {
       color: $cadet-blue;
     }

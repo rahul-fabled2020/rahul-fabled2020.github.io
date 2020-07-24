@@ -18,5 +18,10 @@
     border: 1px solid $caribbean-green;
     color: $white;
     outline-color: $green;
+
+    @include hover {
+      color: inherit;
+      background-color: lighten($color: $caribbean-green, $amount: 30%);
+    }
   }
 }
