@@ -33,6 +33,8 @@ table {
     border-collapse: collapse;
     width: 100%;
     border: 1px solid white;
+    max-width: 1170px;
+    margin: 0 auto;
   }
   
   th, td {
