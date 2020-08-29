@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/leapfrog/pms/precache-manifest.8581cea166e7a8f1f5b610aa8a3485dd.js"
+  "/leapfrog/pms/precache-manifest.e1d5785dd1da6de331a22d59c12a09a3.js"
 );
 
 self.addEventListener('message', (event) => {
